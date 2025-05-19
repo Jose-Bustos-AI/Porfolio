@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
+import ImageUploader from '../components/ImageUploader';
 
 // Definición del tipo para cada post
 interface Post {
@@ -343,18 +344,11 @@ const LabsAdmin: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="image_url" className="block text-sm font-medium mb-2">
-                    URL de Imagen <span className="text-[#E65616]">*</span>
-                  </label>
-                  <input 
-                    type="url"
-                    id="image_url"
-                    name="image_url"
-                    value={formData.image_url}
-                    onChange={handleChange}
-                    className="w-full bg-[#030015]/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-[#62d957] transition-all duration-300"
-                    placeholder="https://example.com/image.jpg"
-                    required
+                  <ImageUploader 
+                    onImageUploaded={(imageUrl) => {
+                      setFormData(prev => ({ ...prev, image_url: imageUrl }));
+                    }}
+                    currentImageUrl={formData.image_url}
                   />
                 </div>
               </div>
