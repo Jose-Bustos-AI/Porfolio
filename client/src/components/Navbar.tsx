@@ -153,7 +153,8 @@ const Navbar: React.FC = () => {
     { label: "Quiénes Somos", href: "#quienes-somos", color: "blue" },
     { label: "Servicios", href: "#servicios", color: "purple" },
     { label: "Verticales", href: "#verticales", color: "pink" },
-    { label: "Página Verticales", href: "/verticales", color: "orange" }
+    { label: "Página Verticales", href: "/verticales", color: "orange" },
+    { label: "Labs", href: "/labs", color: "green" }
   ];
   
   // Generate dynamic style for menu underline based on color
