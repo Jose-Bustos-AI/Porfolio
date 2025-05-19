@@ -1,0 +1,35 @@
+Quiero que lleves el diseño de esta web a un nivel mucho más impactante y futurista, exagerando los efectos visuales y las animaciones para conseguir el mayor “wow effect” posible, sin perder profesionalidad ni usabilidad.  
+Por favor, aplica estas mejoras:
+
+1. HERO SECTION:
+   - Agrega partículas interactivas en el fondo (pueden reaccionar al movimiento del ratón).
+   - Incluye una animación de texto llamativa, tipo “glitch effect”, “typing effect” o palabras que cambien automáticamente.
+   - Si es posible, añade un objeto 3D giratorio o un efecto visual único (puede ser un logo flotante, geometría, etc.).
+   - El botón principal debe tener efecto de partículas/glow al pasar el ratón o hacer clic.
+
+2. NAVBAR:
+   - Haz que el navbar sea glassmorphism real (desenfoque y brillo) y que cambie ligeramente al hacer scroll.
+   - Anima la aparición de los menús y el logo (fade-in, slide, o efecto glitch suave).
+
+3. SECCIONES (Servicios, Verticales, etc.):
+   - Aplica efectos de entrada (scroll reveal) a cada bloque, con animaciones suaves y fluidas.
+   - Las cards deben tener efecto hover avanzado: inclinación 3D, aumento de glow, sombra animada o “floating card”.
+   - Añade sliders animados para mostrar las verticales y los servicios (efecto de deslizamiento, con animaciones llamativas).
+
+4. BOTONES Y MICROINTERACCIONES:
+   - Todos los botones deben tener efectos de hover y clic modernos (glow, pulse, partículas, morphing).
+   - Agrega animaciones a los formularios de contacto (inputs con highlight al enfocar, animación de validación).
+
+5. FONDO GENERAL:
+   - Sube el nivel del fondo: partículas, líneas reactivas, geometrías animadas o morphing shapes. Si puedes, permite que el fondo reaccione al scroll o al mouse.
+   - Ofrece varias opciones de fondo y deja comentarios en el código para elegir o cambiar el estilo fácilmente.
+
+6. FOOTER:
+   - Anima el footer con líneas, luces, o sutiles efectos de movimiento, para cerrar el sitio con elegancia tech.
+
+NO necesitas backend ni base de datos.  
+Usa solo frontend, pero aprovecha librerías potentes como three.js, particles.js, GSAP, etc., si es necesario.  
+El código debe seguir siendo fácil de editar, bien comentado y modular.  
+Céntrate en que cada sección y cada interacción tengan un efecto visual diferenciador y memorable.
+
+¡Quiero un resultado verdaderamente espectacular, rompedor y tecnológico!
