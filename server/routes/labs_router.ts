@@ -59,7 +59,7 @@ labsRouter.post('/posts', async (req: Request, res: Response) => {
       // Error de validación
       return res.status(400).json({ 
         error: 'Datos inválidos', 
-        details: formatZodError(error).message 
+        details: fromZodError(error).message 
       });
     }
     
@@ -94,7 +94,7 @@ labsRouter.put('/posts/:id', async (req: Request, res: Response) => {
       // Error de validación
       return res.status(400).json({ 
         error: 'Datos inválidos', 
-        details: formatZodError(error).message 
+        details: fromZodError(error).message 
       });
     }
     

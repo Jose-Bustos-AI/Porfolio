@@ -3,6 +3,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from 'path';
 import fs from 'fs';
+import labsRouter from './routes/labs_router';
+import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // put application routes here
@@ -11,7 +13,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // use storage to perform CRUD operations on the storage interface
   // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
 
-  // Ruta para servir el archivo JSON de posts
+  // Configurar rutas de API
+  app.use('/api/labs', labsRouter);
+
+  // Ruta para servir el archivo JSON de posts (compatibilidad con implementación anterior)
   app.get('/data/posts.json', (req: Request, res: Response) => {
     try {
       const postsFilePath = path.join(process.cwd(), 'data', 'posts.json');
@@ -28,23 +33,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Ruta para guardar posts (para el panel de administración)
-  app.post('/api/posts', (req: Request, res: Response) => {
+  // Ruta para inicializar la base de datos con datos de ejemplo
+  app.post('/api/init-db', async (req: Request, res: Response) => {
     try {
-      const postsData = req.body;
+      // Redirige a la ruta de importación de posts
+      log('Redirigiendo a la ruta de importación de posts', 'init-db');
       
-      // Validación básica
-      if (!Array.isArray(postsData)) {
-        return res.status(400).json({ error: 'El formato de datos no es válido. Se espera un array de posts.' });
+      // Hacemos una solicitud a nuestra propia API
+      const importResponse = await fetch('http://localhost:5000/api/labs/posts/import', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+      });
+      
+      const importResult = await importResponse.json();
+      
+      if (!importResponse.ok) {
+        throw new Error(`Error al importar posts: ${JSON.stringify(importResult)}`);
       }
       
-      const postsFilePath = path.join(process.cwd(), 'data', 'posts.json');
-      fs.writeFileSync(postsFilePath, JSON.stringify(postsData, null, 2), 'utf8');
-      
-      res.status(200).json({ success: true, message: 'Posts guardados correctamente' });
+      res.status(200).json({
+        success: true,
+        message: 'Base de datos inicializada correctamente',
+        details: importResult
+      });
     } catch (error) {
-      console.error('Error al guardar los posts:', error);
-      res.status(500).json({ error: 'Error al guardar los posts' });
+      console.error('Error al inicializar la base de datos:', error);
+      res.status(500).json({ error: 'Error al inicializar la base de datos' });
     }
   });
 
