@@ -1,9 +1,10 @@
-import type { Express, Request, Response } from "express";
+import express, { type Express, type Request, type Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from 'path';
 import fs from 'fs';
 import labsRouter from './routes/labs_router';
+import uploadsRouter from './routes/uploads';
 import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -15,6 +16,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Configurar rutas de API
   app.use('/api/labs', labsRouter);
+  app.use('/api/uploads', uploadsRouter);
+  
+  // Servir archivos estáticos desde la carpeta public
+  app.use('/uploads', (req, res, next) => {
+    const staticFilesPath = path.join(process.cwd(), 'public', 'uploads');
+    return express.static(staticFilesPath)(req, res, next);
+  });
 
   // Ruta para servir el archivo JSON de posts (compatibilidad con implementación anterior)
   app.get('/data/posts.json', (req: Request, res: Response) => {
