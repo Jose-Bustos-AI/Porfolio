@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface ServiceCardProps {
   icon: string;
@@ -11,8 +11,17 @@ interface ServiceCardProps {
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, features, color, index }) => {
-  const bgColor = color === 'blue' ? '#00EEFF' : color === 'purple' ? '#BD00FF' : '#FF00A0';
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const colorMap = {
+    blue: '#00EEFF',
+    purple: '#BD00FF',
+    pink: '#FF00A0'
+  };
+  
+  const bgColor = colorMap[color];
   const borderClass = `neon-border-${color}`;
+  const textColorClass = `neon-text-${color}`;
   
   const cardVariants = {
     hidden: { y: 50, opacity: 0 },
@@ -27,38 +36,165 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
     }),
     hover: {
       y: -10,
+      scale: 1.03,
       transition: {
         duration: 0.3,
         ease: "easeInOut"
       }
     }
   };
+  
+  // Icon animation variants
+  const iconVariants = {
+    idle: { scale: 1 },
+    hover: { 
+      scale: 1.2,
+      rotate: [0, 10, -10, 0]
+    }
+  };
+  
+  // Feature item variants for staggered animation
+  const featureVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: (i: number) => ({
+      opacity: 1, 
+      x: 0,
+      transition: { 
+        delay: 0.05 * i,
+        duration: 0.4
+      }
+    })
+  };
 
   return (
     <motion.div 
-      className={`glass rounded-xl p-6 group transition-all duration-300 reveal ${borderClass}`}
+      className={`glass rounded-xl p-6 group transition-all duration-300 reveal card-3d ${borderClass} hover-shine overflow-hidden`}
       variants={cardVariants}
       custom={index}
       whileHover="hover"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
-      <div className={`w-14 h-14 rounded-full bg-[${bgColor}]/10 flex items-center justify-center mb-6 group-hover:bg-[${bgColor}]/20 transition-colors duration-300`}>
-        <i className={`ri-${icon} text-2xl text-[${bgColor}]`}></i>
+      {/* Animated background effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black to-transparent opacity-50"></div>
+      
+      {/* Animated glow spot that follows the card's movement */}
+      <motion.div 
+        className={`absolute w-40 h-40 rounded-full bg-[${bgColor}]/10 filter blur-xl opacity-20`}
+        animate={{
+          x: isHovered ? [null, -20, 20, -20, 0] : 0,
+          y: isHovered ? [null, -20, 20, -20, 0] : 0,
+          scale: isHovered ? [null, 1.2, 1.1, 1.2, 1] : 1
+        }}
+        transition={{
+          duration: 4,
+          ease: "easeInOut",
+          times: [0, 0.25, 0.5, 0.75, 1],
+        }}
+        style={{
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)'
+        }}
+      />
+      
+      <div className="relative z-10">
+        {/* Animated icon with glow effect */}
+        <motion.div 
+          className={`w-16 h-16 rounded-full bg-[${bgColor}]/10 flex items-center justify-center mb-6 group-hover:bg-[${bgColor}]/20 transition-colors duration-300 animate-glow-pulse`}
+          animate={isHovered ? 
+            { scale: 1.2, rotate: [0, 10, -10, 0] } : 
+            { scale: 1 }
+          }
+          transition={{ 
+            duration: 0.8,
+            ease: "easeInOut" 
+          }}
+        >
+          <i className={`ri-${icon} text-2xl ${textColorClass}`}></i>
+          
+          {/* Particle effect around icon on hover */}
+          <AnimatePresence>
+            {isHovered && (
+              <>
+                {[...Array(6)].map((_, i) => {
+                  const angle = (Math.PI * 2 / 6) * i;
+                  return (
+                    <motion.div
+                      key={`particle-${i}`}
+                      className={`absolute w-1.5 h-1.5 rounded-full bg-[${bgColor}]`}
+                      initial={{ scale: 0, x: 0, y: 0, opacity: 0 }}
+                      animate={{ 
+                        scale: [0, 1, 0],
+                        x: [0, Math.cos(angle) * 30],
+                        y: [0, Math.sin(angle) * 30],
+                        opacity: [0, 0.8, 0]
+                      }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 0.2 }}
+                    />
+                  );
+                })}
+              </>
+            )}
+          </AnimatePresence>
+        </motion.div>
+        
+        {/* Title with neon glow effect */}
+        <h3 className={`text-xl font-space font-bold mb-3 ${textColorClass} transition-all duration-300`}>
+          {title}
+        </h3>
+        
+        {/* Description with subtle animation */}
+        <motion.p 
+          className="text-[#CCCCCC] mb-4"
+          animate={isHovered ? { opacity: [0.7, 1], y: [0, -2, 0] } : {}}
+          transition={{ duration: 0.3 }}
+        >
+          {description}
+        </motion.p>
+        
+        {/* Features list with staggered animations */}
+        <motion.ul 
+          className="space-y-2 mb-6"
+          initial="hidden"
+          animate={isHovered ? "visible" : "hidden"}
+        >
+          {features.map((feature, i) => (
+            <motion.li 
+              key={i} 
+              className="flex items-center text-sm"
+              variants={featureVariants}
+              custom={i}
+            >
+              <i className={`ri-check-line text-[${bgColor}] mr-2`}></i>
+              <span>{feature}</span>
+            </motion.li>
+          ))}
+        </motion.ul>
+        
+        {/* Call to action with animation */}
+        <motion.a 
+          href="#contacto" 
+          className={`inline-flex items-center text-[${bgColor}] relative`}
+          whileHover={{ x: 5 }}
+        >
+          Saber más 
+          <motion.i 
+            className="ri-arrow-right-line ml-1"
+            animate={isHovered ? { x: [0, 5, 0] } : {}}
+            transition={{ duration: 0.6, repeat: Infinity }}
+          />
+          
+          {/* Animated underline effect */}
+          <motion.div 
+            className={`absolute bottom-0 left-0 h-px bg-[${bgColor}]`}
+            initial={{ width: 0 }}
+            animate={isHovered ? { width: '100%' } : { width: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.a>
       </div>
-      <h3 className="text-xl font-space font-bold mb-3">{title}</h3>
-      <p className="text-[#CCCCCC] mb-4">
-        {description}
-      </p>
-      <ul className="space-y-2 mb-6">
-        {features.map((feature, i) => (
-          <li key={i} className="flex items-center text-sm">
-            <i className={`ri-check-line text-[${bgColor}] mr-2`}></i>
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-      <a href="#contacto" className={`inline-flex items-center text-[${bgColor}] group-hover:underline`}>
-        Saber más <i className="ri-arrow-right-line ml-1 group-hover:ml-2 transition-all duration-300"></i>
-      </a>
     </motion.div>
   );
 };
