@@ -152,7 +152,8 @@ const Navbar: React.FC = () => {
   const navItems = [
     { label: "Quiénes Somos", href: "#quienes-somos", color: "blue" },
     { label: "Servicios", href: "#servicios", color: "purple" },
-    { label: "Verticales", href: "#verticales", color: "pink" }
+    { label: "Verticales", href: "#verticales", color: "pink" },
+    { label: "Página Verticales", href: "/verticales", color: "orange" }
   ];
   
   // Generate dynamic style for menu underline based on color
@@ -160,7 +161,9 @@ const Navbar: React.FC = () => {
     const colorMap: any = {
       blue: '#00EEFF',
       purple: '#BD00FF',
-      pink: '#FF00A0'
+      pink: '#FF00A0',
+      orange: '#E65616',
+      green: '#62d957'
     };
     
     return {
