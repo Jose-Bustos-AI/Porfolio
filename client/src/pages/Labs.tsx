@@ -19,12 +19,12 @@ const Labs: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Obtener los posts del archivo JSON
+  // Obtener los posts de la API
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/data/posts.json');
+        const response = await fetch('/api/labs/posts');
         
         if (!response.ok) {
           throw new Error(`Error al cargar los posts: ${response.status}`);

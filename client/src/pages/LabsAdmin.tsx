@@ -33,12 +33,12 @@ const LabsAdmin: React.FC = () => {
   // Redirección
   const [, setLocation] = useLocation();
 
-  // Cargar posts existentes
+  // Cargar posts existentes usando la API
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/data/posts.json');
+        const response = await fetch('/api/labs/posts');
         
         if (!response.ok) {
           throw new Error(`Error al cargar los posts: ${response.status}`);
@@ -103,7 +103,7 @@ const LabsAdmin: React.FC = () => {
     return new Date(dateString).toLocaleDateString('es-ES', options);
   };
 
-  // Manejar envío del formulario
+  // Manejar envío del formulario usando API
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -119,44 +119,64 @@ const LabsAdmin: React.FC = () => {
         return;
       }
       
-      let updatedPosts: Post[];
+      // Preparar datos para enviar a la API
+      const postData = {
+        title: formData.title,
+        content: formData.content,
+        image_url: formData.image_url,
+        video_url: formData.video_url || null,
+        published: true
+      };
+      
+      let response;
       
       if (editingPostId) {
-        // Editar post existente
-        updatedPosts = posts.map(post => {
-          if (post.id === editingPostId) {
-            return {
-              ...post,
-              title: formData.title,
-              content: formData.content,
-              image_url: formData.image_url,
-              video_url: formData.video_url
-            };
-          }
-          return post;
+        // Actualizar post existente
+        response = await fetch(`/api/labs/posts/${editingPostId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(postData)
         });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Error al actualizar el post');
+        }
+        
+        // Obtener el post actualizado
+        const updatedPost = await response.json();
+        
+        // Actualizar el estado local
+        setPosts(prevPosts => prevPosts.map(post => 
+          post.id === updatedPost.id ? updatedPost : post
+        ));
         
         setSuccess(`Post "${formData.title}" actualizado correctamente.`);
       } else {
         // Crear nuevo post
-        const newPost: Post = {
-          id: generateId(),
-          title: formData.title,
-          content: formData.content,
-          image_url: formData.image_url,
-          video_url: formData.video_url || undefined,
-          created_at: new Date().toISOString()
-        };
+        response = await fetch('/api/labs/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(postData)
+        });
         
-        updatedPosts = [...posts, newPost];
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Error al crear el post');
+        }
+        
+        // Obtener el post creado
+        const newPost = await response.json();
+        
+        // Actualizar el estado local
+        setPosts(prevPosts => [...prevPosts, newPost]);
+        
         setSuccess(`Post "${formData.title}" creado correctamente.`);
       }
-      
-      // Actualizar el estado local
-      setPosts(updatedPosts);
-      
-      // Mostrar JSON actualizado
-      console.log('JSON para guardar en posts.json:', JSON.stringify(updatedPosts, null, 2));
       
       // Limpiar formulario
       setFormData({
@@ -176,7 +196,7 @@ const LabsAdmin: React.FC = () => {
       
     } catch (err) {
       console.error('Error al guardar el post:', err);
-      setError('Ocurrió un error al guardar. Por favor, intenta nuevamente.');
+      setError(err instanceof Error ? err.message : 'Ocurrió un error al guardar. Por favor, intenta nuevamente.');
       setSaving(false);
     }
   };
@@ -495,22 +515,69 @@ const LabsAdmin: React.FC = () => {
           >
             <h3 className="text-lg font-bold mb-4 flex items-center">
               <i className="ri-information-line mr-2 text-[#E65616]"></i>
-              Cómo guardar cambios en el servidor
+              Panel de administración de Labs
             </h3>
             <p className="text-[#CCCCCC] mb-4">
-              Este panel de administración muestra una vista previa de los cambios y genera el JSON necesario para actualizar el archivo de posts. 
-              Para guardar permanentemente los cambios:
+              Este panel de administración te permite gestionar los posts del blog. Todos los cambios se guardan automáticamente en la base de datos.
             </p>
-            <ol className="list-decimal pl-5 mb-4 space-y-2 text-[#CCCCCC]">
-              <li>Copia el JSON mostrado en la consola del navegador al crear o editar un post.</li>
-              <li>Abre el archivo <code className="bg-[#0A0A18] px-2 py-0.5 rounded">data/posts.json</code> en el servidor.</li>
-              <li>Reemplaza el contenido completo con el nuevo JSON.</li>
-              <li>Guarda el archivo.</li>
-            </ol>
+            
+            <div className="border-t border-gray-800 pt-4 mt-4">
+              <h4 className="text-md font-semibold mb-3 flex items-center">
+                <i className="ri-database-2-line mr-2 text-[#62d957]"></i>
+                Acciones de la base de datos
+              </h4>
+              
+              <div className="flex flex-wrap gap-3">
+                <button 
+                  onClick={async () => {
+                    try {
+                      setSaving(true);
+                      setError(null);
+                      
+                      const response = await fetch('/api/init-db', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json'
+                        }
+                      });
+                      
+                      const result = await response.json();
+                      
+                      if (!response.ok) {
+                        throw new Error(result.error || 'Error al inicializar la base de datos');
+                      }
+                      
+                      // Refrescar la lista de posts
+                      const postsResponse = await fetch('/api/labs/posts');
+                      const postsData = await postsResponse.json();
+                      setPosts(postsData);
+                      
+                      setSuccess('Base de datos inicializada correctamente con datos de ejemplo.');
+                      setSaving(false);
+                      
+                      // Después de 3 segundos, ocultar el mensaje de éxito
+                      setTimeout(() => {
+                        setSuccess(null);
+                      }, 3000);
+                    } catch (err) {
+                      console.error('Error al inicializar la base de datos:', err);
+                      setError(err instanceof Error ? err.message : 'Error al inicializar la base de datos');
+                      setSaving(false);
+                    }
+                  }}
+                  className="px-4 py-2 rounded-lg glass hover:bg-[#62d957]/20 transition-colors text-[#62d957] flex items-center"
+                  disabled={saving}
+                >
+                  <i className={`ri-${saving ? 'loader-4-line animate-spin' : 'refresh-line'} mr-2`}></i>
+                  Importar datos de ejemplo
+                </button>
+              </div>
+            </div>
+            
             <div className="flex gap-4 items-center mt-6">
               <i className="ri-alert-line text-2xl text-[#E65616]"></i>
               <p className="text-sm italic text-white/80">
-                Recuerda que este es un sistema básico de administración. Para producción se recomienda implementar un backend con autenticación y base de datos.
+                Este panel de administración está conectado a una base de datos PostgreSQL. Todos los cambios son persistentes.
               </p>
             </div>
           </motion.div>

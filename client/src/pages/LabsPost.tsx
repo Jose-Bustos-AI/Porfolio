@@ -24,24 +24,22 @@ const LabsPost: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Obtener el post del archivo JSON
+  // Obtener el post de la API
   useEffect(() => {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/data/posts.json');
+        const response = await fetch(`/api/labs/posts/${postId}`);
         
         if (!response.ok) {
-          throw new Error(`Error al cargar los posts: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        const foundPost = data.find((p: Post) => p.id === postId);
-        
-        if (foundPost) {
-          setPost(foundPost);
+          if (response.status === 404) {
+            setError('Post no encontrado');
+          } else {
+            throw new Error(`Error al cargar el post: ${response.status}`);
+          }
         } else {
-          setError('Post no encontrado');
+          const foundPost = await response.json();
+          setPost(foundPost);
         }
         
         setLoading(false);
