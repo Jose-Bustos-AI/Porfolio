@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base colors */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  
+  /* Primary and accent colors (neon colors) */
+  --primary: 187 100% 50%;  /* Neon Blue #00EEFF */
+  --primary-foreground: 211 100% 99%;
+  --secondary: 281 100% 50%;  /* Neon Purple #BD00FF */
+  --secondary-foreground: 0 0% 98%;
+  --accent: 324 100% 50%;  /* Neon Pink #FF00A0 */
+  --accent-foreground: 0 0% 98%;
+  
+  /* Other colors */
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+  
+  /* Custom Innovapyme colors */
+  --dark-space: 240 17% 5%;  /* #050816 */
+  --dark-void: 240 19% 7%;   /* #0A0A18 */
+  --dark-gray: 240 16% 20%;  /* #2A2A3A */
+  --light-gray: 0 0% 80%;    /* #CCCCCC */
+  
+  /* Chart colors */
+  --chart-1: 187 100% 50%;
+  --chart-2: 281 100% 50%;
+  --chart-3: 324 100% 50%;
+  --chart-4: 220 100% 50%;
+  --chart-5: 34 100% 50%;
+  
+  /* Sidebar colors */
+  --sidebar-background: 240 10% 3.9%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 187 100% 50%;
+  --sidebar-primary-foreground: 211 100% 99%;
+  --sidebar-accent: 281 100% 50%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 240 4.9% 83.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-[#050816] text-foreground overflow-x-hidden;
+    background-color: hsl(240, 17%, 5%); /* --dark-space */
+  }
+  
+  /* Typography classes */
+  .font-space {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  
+  /* Glassmorphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Neon border effects */
+  .neon-border-blue {
+    border: 1px solid #00EEFF;
+    box-shadow: 0 0 15px 0 rgba(0, 238, 255, 0.4);
+  }
+  
+  .neon-border-purple {
+    border: 1px solid #BD00FF;
+    box-shadow: 0 0 15px 0 rgba(189, 0, 255, 0.4);
+  }
+  
+  .neon-border-pink {
+    border: 1px solid #FF00A0;
+    box-shadow: 0 0 15px 0 rgba(255, 0, 160, 0.4);
+  }
+  
+  /* Text gradient effect */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#00EEFF] via-[#BD00FF] to-[#FF00A0];
+    background-size: 300% 100%;
+    animation: text-shimmer 6s ease infinite;
+  }
+  
+  /* Mouse follow light effect */
+  .light-follow {
+    background: radial-gradient(
+      circle at var(--x, 50%) var(--y, 50%), 
+      rgba(0, 238, 255, 0.15) 0%, 
+      rgba(0, 238, 255, 0) 50%
+    );
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 15px 0 rgba(0, 238, 255, 0.4);
+    border-color: #00EEFF; 
+  }
+  50% { 
+    box-shadow: 0 0 25px 5px rgba(0, 238, 255, 0.7);
+    border-color: #BD00FF; 
+  }
+}
+
+@keyframes text-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 8s linear infinite;
+}
+
+/* Reveal animation class */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hidden scrollbar but maintain functionality */
+::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
