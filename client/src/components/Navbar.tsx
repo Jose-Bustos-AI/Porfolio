@@ -150,6 +150,7 @@ const Navbar: React.FC = () => {
 
   // Navigation items array with colors and styling info
   const navItems = [
+    { label: "Servicios", href: "/servicios", color: "purple" },
     { label: "Verticales", href: "/verticales", color: "orange" },
     { label: "Labs", href: "/labs", color: "green" }
   ];

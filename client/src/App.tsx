@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Verticales from "@/pages/Verticales";
+import Servicios from "./pages/Servicios";
 // Importaciones para la sección Labs
 import Labs from "./pages/Labs";
 import LabsPost from "./pages/LabsPost";
@@ -25,6 +26,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/servicios" component={Servicios} />
       <Route path="/verticales" component={Verticales} />
       <Route path="/labs/admin" component={LabsAdmin} /> {/* Esta ruta debe ir antes */}
       <Route path="/labs/:id" component={LabsPost} />
