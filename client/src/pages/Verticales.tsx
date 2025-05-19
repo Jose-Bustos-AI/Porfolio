@@ -1,6 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Link } from 'wouter';
+import ParticleBackground from '@/components/ParticleBackground';
 
 // Definición del tipo para cada vertical
 interface Vertical {
@@ -9,7 +10,8 @@ interface Vertical {
   description: string;
   image: string;
   url: string;
-  color: string;
+  color: 'blue' | 'purple' | 'pink' | 'orange' | 'green';
+  icon?: string;
 }
 
 const Verticales: React.FC = () => {
@@ -18,89 +20,197 @@ const Verticales: React.FC = () => {
     {
       id: 'innovagastro',
       name: 'InnovaGastro',
-      description: 'Soluciones tecnológicas para restaurantes, catering y empresas del sector alimentario.',
-      image: 'restaurant-line',
+      description: 'Soluciones tecnológicas avanzadas para restaurantes, catering y empresas del sector alimentario con gestión integral.',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'restaurant-line',
       url: 'https://innovagastro.innovapyme.ai',
-      color: 'bg-amber-500'
+      color: 'orange'
     },
     {
       id: 'innovatattoo',
       name: 'InnovaTattoo',
-      description: 'Plataforma para estudios de tatuajes y artistas independientes con gestión de clientes y diseños.',
-      image: 'ink-bottle-line',
+      description: 'Plataforma para estudios de tatuajes y artistas independientes con gestión de clientes, diseños y citas.',
+      image: 'https://images.unsplash.com/photo-1581731353551-c6bdd6fe9472?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'ink-bottle-line',
       url: 'https://innovatattoo.innovapyme.ai',
-      color: 'bg-purple-600'
+      color: 'purple'
     },
     {
       id: 'innovasalud',
       name: 'InnovaSalud',
-      description: 'Sistemas de gestión para clínicas, hospitales y profesionales de la salud.',
-      image: 'heart-pulse-line',
+      description: 'Sistemas de gestión inteligente para clínicas, hospitales y profesionales de la salud integrado con IA diagnóstica.',
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'heart-pulse-line',
       url: 'https://innovasalud.innovapyme.ai',
-      color: 'bg-cyan-500'
+      color: 'pink'
     },
     {
       id: 'innovaeduca',
       name: 'InnovaEduca',
-      description: 'Plataformas educativas para escuelas, universidades y academias de formación.',
-      image: 'book-open-line',
+      description: 'Plataformas educativas de última generación para escuelas, universidades y centros de formación profesional.',
+      image: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'book-open-line',
       url: 'https://innovaeduca.innovapyme.ai',
-      color: 'bg-blue-600'
+      color: 'blue'
     },
     {
       id: 'innovafintech',
       name: 'InnovaFintech',
-      description: 'Soluciones financieras y bancarias para startups, cooperativas y entidades de crédito.',
-      image: 'bank-line',
+      description: 'Soluciones financieras y bancarias de próxima generación para startups, cooperativas y entidades de crédito.',
+      image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'bank-line',
       url: 'https://innovafintech.innovapyme.ai',
-      color: 'bg-emerald-600'
+      color: 'green'
     },
     {
       id: 'innovaretail',
       name: 'InnovaRetail',
-      description: 'Tecnología para comercios, tiendas y cadenas de retail con gestión de inventario.',
-      image: 'shopping-bag-line',
+      description: 'Tecnología de vanguardia para comercios, tiendas y cadenas de retail con gestión inteligente de inventario.',
+      image: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'shopping-bag-line',
       url: 'https://innovaretail.innovapyme.ai', 
-      color: 'bg-rose-500'
+      color: 'pink'
     },
   ];
 
+  // Estado para el hover
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
   // Animaciones para los elementos
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5
+        duration: 0.6,
+        ease: "easeOut"
       }
     }
   };
 
+  const titleVariants: Variants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8, 
+        ease: "easeOut" 
+      } 
+    }
+  };
+
+  // Scroll reveal effect usando useEffect
+  useEffect(() => {
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      const revealPoint = 150;
+      
+      revealElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add('visible');
+        }
+      });
+    };
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Initial check for elements in viewport
+    
+    return () => {
+      window.removeEventListener('scroll', revealOnScroll);
+    };
+  }, []);
+
+  // Función para obtener valores de colores según la especificación
+  const getColorValues = (color: Vertical['color']) => {
+    switch(color) {
+      case 'blue':
+        return {
+          primary: '#00EEFF',
+          secondary: '#00EEFF'
+        };
+      case 'purple':
+        return {
+          primary: '#BD00FF',
+          secondary: '#BD00FF'
+        };
+      case 'pink':
+        return {
+          primary: '#FF00A0',
+          secondary: '#FF00A0'
+        };
+      case 'orange':
+        return {
+          primary: '#E65616',
+          secondary: '#E65616'
+        };
+      case 'green':
+        return {
+          primary: '#62d957',
+          secondary: '#62d957'
+        };
+      default:
+        return {
+          primary: '#00EEFF',
+          secondary: '#00EEFF'
+        };
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#030015] text-white overflow-hidden">
+      {/* Fondo con partículas */}
+      <div className="fixed inset-0 z-0">
+        <ParticleBackground id="particle-background" connectLines glowEffect density={50} />
+      </div>
+      
+      {/* Animated gradient overlay */}
+      <div className="fixed inset-0 z-0 opacity-30">
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-[#00EEFF]/10 via-[#BD00FF]/5 to-transparent blur-[100px]"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-[#E65616]/10 via-[#62d957]/5 to-transparent blur-[100px]"></div>
+      </div>
+      
+      {/* Grid pattern overlay */}
+      <div className="fixed inset-0 z-0 opacity-5">
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: 'linear-gradient(rgba(0,238,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0,238,255,0.2) 1px, transparent 1px)', 
+          backgroundSize: '40px 40px' 
+        }}></div>
+      </div>
+
       {/* Header con navegación */}
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-6">
+      <header className="glass sticky top-0 z-50 backdrop-blur-md">
+        <div className="container mx-auto px-4 md:px-8 py-6">
           <nav className="flex justify-between items-center">
             <Link href="/">
-              <div className="text-lg font-bold text-gray-800 flex items-center cursor-pointer">
+              <div className="text-lg font-bold text-white flex items-center cursor-pointer hover:text-[#E65616] transition-colors duration-300">
                 <i className="ri-arrow-left-line mr-2"></i>
                 Volver al inicio
               </div>
             </Link>
-            <div className="text-gray-600">
-              <a href="https://innovapyme.ai" className="hover:text-blue-600 transition-colors">
+            <div className="text-white/80">
+              <a 
+                href="https://innovapyme.ai" 
+                className="hover:text-[#00EEFF] transition-colors duration-300"
+                target="_blank"
+                rel="noreferrer"
+              >
                 innovapyme.ai
               </a>
             </div>
@@ -109,59 +219,247 @@ const Verticales: React.FC = () => {
       </header>
 
       {/* Contenido principal */}
-      <main className="container mx-auto px-4 py-16">
+      <main className="container mx-auto px-4 md:px-8 pt-24 pb-20 relative z-10">
         {/* Título de sección */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Nuestras Verticales</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Soluciones tecnológicas especializadas para diferentes sectores y necesidades específicas.
-          </p>
-        </motion.div>
-
-        {/* Grid de tarjetas */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="text-center mb-20 reveal"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {verticales.map((vertical) => (
-            <motion.div 
-              key={vertical.id}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              variants={itemVariants}
-            >
-              <div className={`h-24 ${vertical.color} relative flex items-center justify-center`}>
-                <i className={`ri-${vertical.image} text-white text-5xl`}></i>
-                <div className="absolute inset-0 bg-black opacity-10"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-800 mb-2">{vertical.name}</h3>
-                <p className="text-gray-600 mb-6 h-12">{vertical.description}</p>
-                <a 
-                  href={vertical.url} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 w-full transition-colors"
-                >
-                  Saber más
-                  <i className="ri-arrow-right-line ml-2"></i>
-                </a>
-              </div>
-            </motion.div>
-          ))}
+          <motion.h1 
+            className="text-4xl md:text-6xl font-space font-bold mb-6 text-white"
+            variants={titleVariants}
+          >
+            Nuestras <span className="text-gradient animate-glow-pulse">Verticales</span>
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-[#CCCCCC] max-w-3xl mx-auto"
+            variants={titleVariants}
+          >
+            Soluciones tecnológicas especializadas para diferentes sectores e industrias con enfoque en innovación, rendimiento y resultados.
+          </motion.p>
         </motion.div>
+
+        {/* Grid de tarjetas */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 reveal"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {verticales.map((vertical) => {
+            const colorValues = getColorValues(vertical.color);
+            
+            return (
+              <motion.div 
+                key={vertical.id}
+                className="glass rounded-xl overflow-hidden hover-shine card-3d"
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -10,
+                  transition: { duration: 0.3 }
+                }}
+                onHoverStart={() => setHoveredCard(vertical.id)}
+                onHoverEnd={() => setHoveredCard(null)}
+                style={{ 
+                  boxShadow: hoveredCard === vertical.id ? `0 10px 30px -5px rgba(0,0,0,0.3), 0 0 15px 2px ${colorValues.primary}30` : 'none',
+                  transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                  borderImage: `linear-gradient(45deg, ${colorValues.primary}50, transparent) 1`,
+                  borderWidth: '1px',
+                  borderStyle: 'solid'
+                }}
+              >
+                {/* Imagen con overlay de gradiente */}
+                <div className="relative h-48 overflow-hidden">
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-t from-[#030015] to-transparent opacity-70 z-10"
+                    style={{ backgroundImage: `linear-gradient(to bottom, transparent, ${colorValues.primary}50, #030015)` }}
+                  ></div>
+                  <img 
+                    src={vertical.image} 
+                    alt={vertical.name} 
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                  />
+                  
+                  {/* Icono superpuesto */}
+                  <motion.div 
+                    className="absolute top-4 right-4 z-20 w-12 h-12 rounded-full flex items-center justify-center" 
+                    style={{ 
+                      backgroundColor: `${colorValues.primary}30`,
+                      boxShadow: `0 0 15px ${colorValues.primary}50` 
+                    }}
+                    animate={{ 
+                      rotate: hoveredCard === vertical.id ? 360 : 0,
+                      scale: hoveredCard === vertical.id ? 1.1 : 1
+                    }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <i className={`ri-${vertical.icon} text-2xl`} style={{ color: colorValues.primary }}></i>
+                  </motion.div>
+                </div>
+                
+                {/* Contenido de la tarjeta */}
+                <div className="p-6 z-20 relative">
+                  {/* Efecto de línea brillante bajo el título */}
+                  <h3 className="text-2xl font-space font-bold mb-2 relative inline-block">
+                    {vertical.name}
+                    <motion.span 
+                      className="absolute bottom-0 left-0 h-0.5 rounded-full" 
+                      style={{ backgroundColor: colorValues.primary }}
+                      initial={{ width: 0 }}
+                      animate={{ width: hoveredCard === vertical.id ? '100%' : '40%' }}
+                      transition={{ duration: 0.3 }}
+                    ></motion.span>
+                  </h3>
+                  <p className="text-[#CCCCCC] mb-6 min-h-[80px]">{vertical.description}</p>
+                  
+                  {/* Botón con efecto hover */}
+                  <motion.a 
+                    href={vertical.url} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center px-5 py-3 text-base font-medium rounded-full w-full relative overflow-hidden hover-shine"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {/* Fondo con gradiente animado */}
+                    <motion.div 
+                      className="absolute inset-0 z-0"
+                      style={{ 
+                        background: `linear-gradient(90deg, ${colorValues.primary}, ${colorValues.secondary}, ${colorValues.primary})`,
+                        backgroundSize: '200% 100%'
+                      }}
+                      animate={{ 
+                        backgroundPosition: ['0% 0%', '100% 0%', '0% 0%']
+                      }}
+                      transition={{ 
+                        duration: 3, 
+                        ease: 'linear', 
+                        repeat: Infinity 
+                      }}
+                    ></motion.div>
+                    
+                    <span className="relative z-10 font-bold text-black flex items-center">
+                      <span>Saber más</span>
+                      <motion.i 
+                        className="ri-arrow-right-line ml-2"
+                        animate={{ 
+                          x: hoveredCard === vertical.id ? [0, 5, 0] : 0
+                        }}
+                        transition={{ 
+                          duration: 1, 
+                          repeat: hoveredCard === vertical.id ? Infinity : 0 
+                        }}
+                      ></motion.i>
+                    </span>
+                  </motion.a>
+                </div>
+                
+                {/* Efecto de luz al pasar el ratón */}
+                <motion.div 
+                  className="absolute inset-0 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: hoveredCard === vertical.id ? 0.1 : 0
+                  }}
+                  transition={{ duration: 0.3 }}
+                  style={{ 
+                    background: `radial-gradient(circle at 50% 50%, ${colorValues.primary}, transparent 70%)`,
+                    zIndex: 5
+                  }}
+                ></motion.div>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+        
+        {/* CTA para contacto */}
+        <motion.div 
+          className="mt-20 text-center reveal"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <h2 className="text-2xl md:text-3xl font-space font-bold mb-6">
+            ¿Interesado en nuestras soluciones?
+          </h2>
+          <Link href="/#contacto">
+            <motion.div 
+              className="inline-block py-4 px-8 rounded-full relative overflow-hidden cursor-pointer hover-shine"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Gradient background */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-[#00EEFF] via-[#BD00FF] to-[#E65616]"
+                animate={{ 
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] 
+                }}
+                transition={{ 
+                  duration: 6, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                style={{ backgroundSize: '200% 200%' }}
+              ></motion.div>
+              
+              <span className="relative z-10 font-bold text-black flex items-center">
+                <span>Contactar ahora</span>
+                <motion.i 
+                  className="ri-arrow-right-line ml-2"
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity, 
+                    repeatDelay: 0.5 
+                  }}
+                ></motion.i>
+              </span>
+            </motion.div>
+          </Link>
+        </motion.div>
+        
+        {/* Partículas decorativas */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(10)].map((_, index) => (
+            <motion.div
+              key={index}
+              className="absolute w-2 h-2 rounded-full"
+              initial={{ 
+                x: Math.random() * 100 + '%', 
+                y: Math.random() * 100 + '%',
+                opacity: 0.1,
+                scale: Math.random() * 0.5 + 0.5
+              }}
+              animate={{ 
+                y: [0, -50],
+                opacity: [0.2, 0.8, 0],
+                scale: [0.5, 1.5]
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                repeatType: 'loop',
+                delay: Math.random() * 5
+              }}
+              style={{ 
+                backgroundColor: index % 3 === 0 ? '#00EEFF' : 
+                                index % 3 === 1 ? '#BD00FF' : 
+                                '#E65616',
+                filter: `blur(${Math.random() + 1}px)`
+              }}
+            />
+          ))}
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-gray-600">
+      <footer className="glass border-t border-white/10 relative z-10">
+        <div className="container mx-auto px-4 md:px-8 py-8">
+          <div className="text-center text-gray-400">
             <p>© 2025 Innovapyme. Todos los derechos reservados.</p>
           </div>
         </div>
