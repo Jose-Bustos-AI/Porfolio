@@ -7,6 +7,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Verticales from "@/pages/Verticales";
+import Labs from "@/pages/Labs";
+import LabsPost from "@/pages/LabsPost";
+import LabsAdmin from "@/pages/LabsAdmin";
 
 // Mouse light follower context
 export const MouseContext = createContext<{
@@ -22,6 +25,9 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/verticales" component={Verticales} />
+      <Route path="/labs" component={Labs} />
+      <Route path="/labs/:id" component={LabsPost} />
+      <Route path="/labs/admin" component={LabsAdmin} />
       <Route component={NotFound} />
     </Switch>
   );

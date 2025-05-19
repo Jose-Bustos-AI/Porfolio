@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "title": "El futuro de la inteligencia artificial en PyMEs",
+    "content": "<p>La inteligencia artificial está revolucionando la forma en que las pequeñas y medianas empresas operan. En Innovapyme, estamos desarrollando soluciones accesibles que permiten a las PyMEs implementar IA sin grandes inversiones iniciales.</p><p>Nuestras herramientas de análisis predictivo pueden ayudar a optimizar inventarios, prever tendencias de ventas y mejorar la atención al cliente mediante chatbots inteligentes.</p><p>La democratización de estas tecnologías es fundamental para que los pequeños negocios puedan competir en igualdad de condiciones con las grandes corporaciones. Estamos comprometidos con hacer que la IA sea accesible para todos.</p><h3>Casos de uso específicos</h3><ul><li>Sistemas de recomendación para tiendas online</li><li>Análisis de sentimiento para feedback de clientes</li><li>Automatización de tareas administrativas</li><li>Optimización de rutas para servicios de entrega</li></ul><p>¿Estás interesado en implementar IA en tu negocio? <a href='#contacto'>Contáctanos</a> para una consulta gratuita.</p>",
+    "image_url": "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "created_at": "2025-03-15T14:30:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Implementando DevOps en equipos remotos",
+    "content": "<p>En la era post-pandemia, los equipos distribuidos son la nueva normalidad. Innovapyme ha desarrollado un conjunto de prácticas y herramientas para implementar metodologías DevOps en equipos que trabajan de forma remota.</p><p>La integración continua y entrega continua (CI/CD) se vuelven aún más importantes cuando los desarrolladores trabajan desde diferentes ubicaciones. Nuestro laboratorio ha estado experimentando con nuevas formas de coordinar estos esfuerzos.</p><h3>Herramientas clave para DevOps distribuido</h3><ol><li><strong>Observabilidad mejorada</strong>: Dashboards personalizados que permiten a todos los miembros del equipo tener visibilidad del estado de los sistemas en tiempo real.</li><li><strong>Automatización expandida</strong>: Reducir la necesidad de intervención manual en despliegues y pruebas.</li><li><strong>Comunicación asíncrona</strong>: Herramientas que facilitan la colaboración sin necesidad de reuniones sincrónicas.</li></ol><p>Hemos documentado todo nuestro proceso y estamos desarrollando una plataforma que facilita la implementación de estos principios en cualquier equipo, independientemente de su tamaño o stack tecnológico.</p><p>En próximas semanas publicaremos un whitepaper detallando nuestras conclusiones y mejores prácticas.</p>",
+    "image_url": "https://images.unsplash.com/photo-1618477388954-7852f32655ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "created_at": "2025-04-02T09:15:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Nuevas APIs para integración con sistemas legacy",
+    "content": "<p>Uno de los mayores desafíos para las empresas establecidas es integrar sistemas antiguos (legacy) con nuevas tecnologías. En nuestro laboratorio, hemos estado desarrollando una serie de APIs y conectores que simplifican este proceso.</p><p>Nuestro enfoque utiliza adaptadores inteligentes que permiten la comunicación bidireccional entre sistemas modernos basados en la nube y software empresarial tradicional, sin necesidad de reescribir completamente las aplicaciones existentes.</p><h3>Características principales</h3><ul><li>Mapeo automático de estructuras de datos entre sistemas nuevos y antiguos</li><li>Caché inteligente para optimizar rendimiento</li><li>Monitoreo de comunicación entre sistemas</li><li>Transformaciones de datos configurables</li><li>Control de acceso granular</li></ul><p>Actualmente estamos probando estos conectores con varios clientes piloto y los resultados son muy prometedores. Hemos logrado reducciones de hasta un 70% en el tiempo de integración en comparación con enfoques tradicionales.</p><p>La versión beta estará disponible para pruebas el próximo mes. Si estás interesado en participar en el programa de early access, <a href='#contacto'>contáctanos</a>.</p>",
+    "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "created_at": "2025-04-20T16:45:00Z"
+  },
+  {
+    "id": "4",
+    "title": "Realidad Aumentada para formación industrial",
+    "content": "<p>La formación de personal técnico y operarios industriales es un proceso costoso y que consume mucho tiempo. En Innovapyme Labs estamos desarrollando soluciones de Realidad Aumentada (AR) específicamente diseñadas para acelerar y mejorar este proceso.</p><p>Nuestras aplicaciones de AR permiten a los trabajadores visualizar instrucciones superpuestas directamente sobre los equipos con los que están trabajando, reduciendo errores y acelerando el aprendizaje.</p><h3>Casos de uso actuales</h3><ul><li>Mantenimiento de maquinaria industrial</li><li>Operación de líneas de producción</li><li>Protocolos de seguridad en tiempo real</li><li>Visualización de datos de sensores IoT</li></ul><p>El sistema utiliza reconocimiento de imágenes avanzado para identificar diferentes componentes y adapta las instrucciones según el contexto y la experiencia del usuario.</p><p>Los primeros tests con clientes han mostrado una reducción del 40% en el tiempo de formación y una disminución del 65% en errores operativos. Estamos actualmente preparando un piloto más amplio para validar estos resultados en diferentes sectores industriales.</p><p>Consulta la demo en el video adjunto para ver cómo funciona la tecnología en un entorno real.</p>",
+    "image_url": "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    "video_url": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    "created_at": "2025-05-05T11:00:00Z"
+  }
+]
