@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
+import AdminAuthModal from '../components/AdminAuthModal';
 
 // Definición del tipo para cada post
 interface Post {
@@ -18,6 +19,19 @@ const Labs: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // Estado para el modal de autenticación
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [, setLocation] = useLocation();
+
+  // Verificar si el usuario ya está autenticado al cargar la página
+  useEffect(() => {
+    const adminStatus = localStorage.getItem('isAdmin');
+    if (adminStatus === 'true') {
+      setIsAdmin(true);
+    }
+  }, []);
 
   // Obtener los posts de la API
   useEffect(() => {
@@ -51,6 +65,30 @@ const Labs: React.FC = () => {
       day: 'numeric' 
     };
     return new Date(dateString).toLocaleDateString('es-ES', options);
+  };
+  
+  // Función para manejar el clic en el botón de Admin
+  const handleAdminClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isAdmin) {
+      // Si ya está autenticado, redirigir directamente al panel de admin
+      setLocation('/labs/admin');
+    } else {
+      // Si no está autenticado, mostrar el modal de autenticación
+      setIsAuthModalOpen(true);
+    }
+  };
+  
+  // Función para manejar la autenticación exitosa
+  const handleAuthenticated = () => {
+    setIsAdmin(true);
+    setLocation('/labs/admin');
+  };
+  
+  // Función para cerrar sesión
+  const handleLogout = () => {
+    localStorage.removeItem('isAdmin');
+    setIsAdmin(false);
   };
 
   // Función para crear resumen del contenido
@@ -159,13 +197,35 @@ const Labs: React.FC = () => {
                 Volver al inicio
               </div>
             </Link>
-            <div className="text-white/80">
-              <Link href="/labs/admin">
-                <div className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center">
-                  <i className="ri-add-circle-line mr-1"></i>
+            <div className="text-white/80 flex items-center">
+              {isAdmin ? (
+                <>
+                  <a 
+                    href="/labs/admin"
+                    onClick={handleAdminClick}
+                    className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center mr-4"
+                  >
+                    <i className="ri-add-circle-line mr-1"></i>
+                    Admin
+                  </a>
+                  <button
+                    onClick={handleLogout}
+                    className="hover:text-[#E65616] transition-colors duration-300 cursor-pointer flex items-center"
+                  >
+                    <i className="ri-logout-box-line mr-1"></i>
+                    Cerrar sesión
+                  </button>
+                </>
+              ) : (
+                <a 
+                  href="#"
+                  onClick={handleAdminClick}
+                  className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center"
+                >
+                  <i className="ri-shield-keyhole-line mr-1"></i>
                   Admin
-                </div>
-              </Link>
+                </a>
+              )}
             </div>
           </nav>
         </div>
