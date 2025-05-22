@@ -33,6 +33,18 @@ const LabsAdmin: React.FC = () => {
 
   // Redirección
   const [, setLocation] = useLocation();
+  
+  // Función para cerrar sesión
+  const handleLogout = () => {
+    // Eliminar del localStorage
+    localStorage.removeItem('isAdmin');
+    
+    // Redirigir a la página principal de Labs
+    setLocation('/labs');
+    
+    // Mensaje de confirmación 
+    alert('Has cerrado sesión correctamente.');
+  };
 
   // Cargar posts existentes usando la API
   useEffect(() => {
@@ -248,13 +260,20 @@ const LabsAdmin: React.FC = () => {
                 Volver a Labs
               </div>
             </Link>
-            <div className="text-white/80">
+            <div className="text-white/80 flex items-center space-x-6">
               <Link href="/">
                 <div className="hover:text-[#00EEFF] transition-colors duration-300 cursor-pointer flex items-center">
                   <i className="ri-home-line mr-1"></i>
                   Inicio
                 </div>
               </Link>
+              <button
+                onClick={handleLogout}
+                className="hover:text-[#E65616] transition-colors duration-300 cursor-pointer flex items-center"
+              >
+                <i className="ri-logout-box-line mr-1"></i>
+                Cerrar sesión
+              </button>
             </div>
           </nav>
         </div>
