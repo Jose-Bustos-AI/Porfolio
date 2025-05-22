@@ -419,6 +419,13 @@ const Labs: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Modal de autenticación de administrador */}
+      <AdminAuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthenticated={handleAuthenticated}
+      />
     </div>
   );
 };
