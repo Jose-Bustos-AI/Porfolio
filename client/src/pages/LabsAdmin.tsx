@@ -94,6 +94,51 @@ const LabsAdmin: React.FC = () => {
     // Scroll al formulario
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  
+  // Función para eliminar un post
+  const deletePost = async (postId: string, postTitle: string) => {
+    // Pedir confirmación antes de eliminar
+    const confirmed = confirm(`¿Estás seguro de que quieres eliminar el post "${postTitle}"?`);
+    
+    if (!confirmed) return;
+    
+    try {
+      // Llamar a la API para eliminar el post
+      const response = await fetch(`/api/labs/posts/${postId}`, {
+        method: 'DELETE',
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al eliminar el post');
+      }
+      
+      // Actualizar la lista de posts eliminando el post eliminado
+      setPosts(prevPosts => prevPosts.filter(post => post.id !== postId));
+      
+      // Mostrar mensaje de éxito
+      setSuccess(`Post "${postTitle}" eliminado correctamente.`);
+      
+      // Si estaba editando ese post, limpiar el formulario
+      if (editingPostId === postId) {
+        cancelEdit();
+      }
+      
+      // Después de 3 segundos, ocultar el mensaje de éxito
+      setTimeout(() => {
+        setSuccess(null);
+      }, 3000);
+      
+    } catch (err) {
+      console.error('Error al eliminar post:', err);
+      setError(err instanceof Error ? err.message : 'Ocurrió un error al eliminar. Por favor, intenta nuevamente.');
+      
+      // Después de 3 segundos, ocultar el mensaje de error
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+    }
+  };
 
   // Función para cancelar la edición
   const cancelEdit = () => {
@@ -511,6 +556,13 @@ const LabsAdmin: React.FC = () => {
                             <i className="ri-eye-line"></i>
                           </div>
                         </Link>
+                        <button 
+                          onClick={() => deletePost(post.id, post.title)}
+                          className="p-2 rounded-lg hover:bg-[#E65616]/20 transition-colors text-[#E65616]"
+                          title="Eliminar post"
+                        >
+                          <i className="ri-delete-bin-line"></i>
+                        </button>
                       </div>
                     </div>
                   </motion.div>
