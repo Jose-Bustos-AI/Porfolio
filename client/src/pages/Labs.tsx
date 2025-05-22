@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
 import AdminAuthModal from '../components/AdminAuthModal';
+import NewsletterModal from '../components/NewsletterModal';
 
 // Definición del tipo para cada post
 interface Post {
@@ -23,31 +24,45 @@ const Labs: React.FC = () => {
   // Estado para el modal de autenticación
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  
+  // Estado para el modal de newsletter
+  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  
   const [, setLocation] = useLocation();
 
-  // Verificar si el usuario ya está autenticado al cargar la página
+  // Verificar si el usuario ya está autenticado y/o suscrito al cargar la página
   useEffect(() => {
-    const checkAuthStatus = () => {
+    const checkUserStatus = () => {
+      // Verificar estado de administrador
       const adminStatus = localStorage.getItem('isAdmin');
       if (adminStatus === 'true') {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
       }
+      
+      // Verificar estado de suscripción al newsletter
+      const subscriptionStatus = localStorage.getItem('newsletter_subscribed');
+      if (subscriptionStatus === 'true') {
+        setIsSubscribed(true);
+      } else {
+        setIsSubscribed(false);
+      }
     };
     
     // Comprobar el estado al cargar la página
-    checkAuthStatus();
+    checkUserStatus();
     
     // Añadir un event listener para el almacenamiento
-    window.addEventListener('storage', checkAuthStatus);
+    window.addEventListener('storage', checkUserStatus);
     
     // Crear un intervalo para comprobar periódicamente (por si acaso)
-    const interval = setInterval(checkAuthStatus, 1000);
+    const interval = setInterval(checkUserStatus, 1000);
     
     // Limpiar al desmontar
     return () => {
-      window.removeEventListener('storage', checkAuthStatus);
+      window.removeEventListener('storage', checkUserStatus);
       clearInterval(interval);
     };
   }, []);
@@ -225,35 +240,48 @@ const Labs: React.FC = () => {
                 Volver al inicio
               </div>
             </Link>
-            <div className="text-white/80 flex items-center">
-              {isAdmin ? (
-                <>
+            <div className="flex items-center space-x-4">
+              {/* Botón de Newsletter - solo visible si no está suscrito */}
+              {!isSubscribed && (
+                <button
+                  onClick={() => setIsNewsletterModalOpen(true)}
+                  className="text-white bg-gradient-to-r from-[#E65616] to-[#62d957] px-4 py-2 rounded-full text-sm font-medium flex items-center hover-shine"
+                >
+                  <i className="ri-mail-line mr-2"></i>
+                  Suscribirse
+                </button>
+              )}
+              
+              <div className="text-white/80 flex items-center">
+                {isAdmin ? (
+                  <>
+                    <a 
+                      href="/labs/admin"
+                      onClick={handleAdminClick}
+                      className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center mr-4"
+                    >
+                      <i className="ri-add-circle-line mr-1"></i>
+                      Admin
+                    </a>
+                    <button
+                      onClick={handleLogout}
+                      className="hover:text-[#E65616] transition-colors duration-300 cursor-pointer flex items-center"
+                    >
+                      <i className="ri-logout-box-line mr-1"></i>
+                      Cerrar sesión
+                    </button>
+                  </>
+                ) : (
                   <a 
-                    href="/labs/admin"
+                    href="#"
                     onClick={handleAdminClick}
-                    className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center mr-4"
+                    className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center"
                   >
-                    <i className="ri-add-circle-line mr-1"></i>
+                    <i className="ri-shield-keyhole-line mr-1"></i>
                     Admin
                   </a>
-                  <button
-                    onClick={handleLogout}
-                    className="hover:text-[#E65616] transition-colors duration-300 cursor-pointer flex items-center"
-                  >
-                    <i className="ri-logout-box-line mr-1"></i>
-                    Cerrar sesión
-                  </button>
-                </>
-              ) : (
-                <a 
-                  href="#"
-                  onClick={handleAdminClick}
-                  className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center"
-                >
-                  <i className="ri-shield-keyhole-line mr-1"></i>
-                  Admin
-                </a>
-              )}
+                )}
+              </div>
             </div>
           </nav>
         </div>
@@ -453,6 +481,19 @@ const Labs: React.FC = () => {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         onAuthenticated={handleAuthenticated}
+      />
+      
+      {/* Modal de suscripción al newsletter */}
+      <NewsletterModal
+        isOpen={isNewsletterModalOpen}
+        onClose={() => {
+          setIsNewsletterModalOpen(false);
+          // Verificar si el usuario se ha suscrito después de cerrar
+          const subscriptionStatus = localStorage.getItem('newsletter_subscribed');
+          if (subscriptionStatus === 'true') {
+            setIsSubscribed(true);
+          }
+        }}
       />
     </div>
   );
