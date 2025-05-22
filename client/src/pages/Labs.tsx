@@ -27,10 +27,29 @@ const Labs: React.FC = () => {
 
   // Verificar si el usuario ya está autenticado al cargar la página
   useEffect(() => {
-    const adminStatus = localStorage.getItem('isAdmin');
-    if (adminStatus === 'true') {
-      setIsAdmin(true);
-    }
+    const checkAuthStatus = () => {
+      const adminStatus = localStorage.getItem('isAdmin');
+      if (adminStatus === 'true') {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    };
+    
+    // Comprobar el estado al cargar la página
+    checkAuthStatus();
+    
+    // Añadir un event listener para el almacenamiento
+    window.addEventListener('storage', checkAuthStatus);
+    
+    // Crear un intervalo para comprobar periódicamente (por si acaso)
+    const interval = setInterval(checkAuthStatus, 1000);
+    
+    // Limpiar al desmontar
+    return () => {
+      window.removeEventListener('storage', checkAuthStatus);
+      clearInterval(interval);
+    };
   }, []);
 
   // Obtener los posts de la API
@@ -87,8 +106,17 @@ const Labs: React.FC = () => {
   
   // Función para cerrar sesión
   const handleLogout = () => {
+    // Eliminar del localStorage
     localStorage.removeItem('isAdmin');
+    
+    // Actualizar el estado local
     setIsAdmin(false);
+    
+    // Disparar evento de storage para que otras pestañas detecten el cambio
+    window.dispatchEvent(new Event('storage'));
+    
+    // Mensaje de confirmación opcional
+    alert('Has cerrado sesión correctamente.');
   };
 
   // Función para crear resumen del contenido
