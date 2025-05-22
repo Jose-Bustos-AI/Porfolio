@@ -7,6 +7,7 @@ interface NewsletterModalProps {
 }
 
 const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -21,6 +22,12 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
   // Manejar el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validar el nombre
+    if (!name.trim()) {
+      setError('Por favor, introduce tu nombre');
+      return;
+    }
     
     // Validar el email
     if (!email || !isValidEmail(email)) {
@@ -39,6 +46,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ 
+          name,
           email,
           source: 'labs_newsletter',
           timestamp: new Date().toISOString()
@@ -139,6 +147,31 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
                         Suscríbete para recibir las últimas novedades, artículos y recursos directamente en tu email.
                       </p>
                       <div className="space-y-4">
+                        {/* Campo de nombre */}
+                        <div>
+                          <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                            Nombre <span className="text-[#E65616]">*</span>
+                          </label>
+                          <div className="relative">
+                            <input
+                              type="text"
+                              id="name"
+                              value={name}
+                              onChange={(e) => {
+                                setName(e.target.value);
+                                setError(null); // Limpiar error al escribir
+                              }}
+                              className="w-full bg-[#030015]/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-[#62d957] transition-all duration-300 pr-10"
+                              placeholder="Tu nombre"
+                              required
+                            />
+                            <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                              <i className="ri-user-line text-gray-400"></i>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Campo de email */}
                         <div>
                           <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
                             Email <span className="text-[#E65616]">*</span>
