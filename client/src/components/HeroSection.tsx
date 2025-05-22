@@ -414,7 +414,7 @@ const HeroSection: React.FC = () => {
           >
             <span className="relative">
               <RotatingText words={rotatingWords} />
-            </span> el <GlitchText text="futuro" className="inline-block mx-2" /><br />
+            </span> el <span className="inline-block mx-2 bg-gradient-to-r from-[#00EEFF] to-[#62d957] bg-clip-text text-transparent font-bold">futuro</span><br />
             de tu empresa
           </motion.h1>
           
