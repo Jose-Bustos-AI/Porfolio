@@ -206,9 +206,9 @@ const ServicesSection: React.FC = () => {
       title: "Apps Inteligentes",
       description: "Desarrollamos aplicaciones web y móviles adaptadas a cada sector, con funcionalidades pensadas para captar clientes, automatizar procesos y aumentar tus ingresos desde el primer día.",
       features: [
-        "Apps web progresivas y móviles nativas totalmente personalizadas",
-        "Panel de administración completo para cada tipo de negocio",
-        "Funciones integradas: reservas, notificaciones push, fidelización, reseñas, carta digital, bodega, eventos, pagos, IA y más"
+        "Apps progresivas y móviles 100% personalizadas",
+        "Panel de gestión adaptado a cada negocio",
+        "Funciones integradas: push, reseñas, fidelización, IA, pagos y más"
       ],
       color: "blue" as const
     },
