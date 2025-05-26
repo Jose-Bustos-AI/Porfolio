@@ -235,13 +235,13 @@ const ServicesSection: React.FC = () => {
       color: "pink" as const
     },
     {
-      icon: "shield-keyhole-line",
-      title: "Ciberseguridad",
-      description: "Protegemos tus activos digitales con soluciones avanzadas de seguridad informática y prevención de riesgos.",
+      icon: "customer-service-2-line",
+      title: "Atención con IA",
+      description: "Transforma tu soporte al cliente con asistentes virtuales personalizados que venden, informan y resuelven consultas 24/7.",
       features: [
-        "Evaluaciones de vulnerabilidad",
-        "Seguridad en la nube",
-        "Cumplimiento normativo (GDPR, CCPA)"
+        "Chatbots por web, WhatsApp y voz",
+        "Integración con tu base de datos o CRM",
+        "Especialistas por sector (restauración, fitness, belleza, etc.)"
       ],
       color: "blue" as const
     },
