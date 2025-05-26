@@ -213,13 +213,13 @@ const ServicesSection: React.FC = () => {
       color: "blue" as const
     },
     {
-      icon: "cloud-line",
-      title: "Cloud & DevOps",
-      description: "Modernizamos tu infraestructura digital con soluciones cloud escalables, seguras y eficientes.",
+      icon: "global-line",
+      title: "Web con IA",
+      description: "Webs inteligentes que no solo se ven bien, sino que trabajan por ti. Diseñadas para atraer, convertir y automatizar tareas sin que muevas un dedo.",
       features: [
-        "Migración a la nube (AWS, Azure, GCP)",
-        "Automatización de procesos (CI/CD)",
-        "Arquitectura serverless"
+        "Generación y publicación automática de contenido para SEO local",
+        "Chatbot integrado para atención, reservas o ventas 24/7",
+        "Panel de control simple, potente y autogestionable"
       ],
       color: "purple" as const
     },
