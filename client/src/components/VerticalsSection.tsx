@@ -225,25 +225,25 @@ const VerticalsSection: React.FC = () => {
     },
     fit: {
       title: 'InnovaFit',
-      description: 'Soluciones tecnológicas para gimnasios, centros de fitness y entrenadores personales con seguimiento avanzado.',
-      image: 'https://images.unsplash.com/photo-1571019613914-85f342c6a11e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      description: 'Solución integral para gimnasios, entrenadores y centros fitness que quieren escalar su negocio, automatizar la gestión y ofrecer un servicio profesional desde el móvil.',
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'run-line',
-          title: 'Rutinas Personalizadas',
-          description: 'Planes de entrenamiento adaptativos basados en objetivos individuales.',
+          icon: 'smartphone-line',
+          title: 'App Personalizada',
+          description: 'Sistema completo con reservas de clases, tablas de ejercicios personalizadas, seguimiento de progreso, notificaciones push y pagos integrados. Todo el control en una app con tu marca.',
           color: 'blue'
         },
         {
-          icon: 'heart-pulse-line',
-          title: 'Monitoreo de Salud',
-          description: 'Seguimiento de progreso y métricas de rendimiento en tiempo real.',
+          icon: 'global-line',
+          title: 'Web Inteligente',
+          description: 'Web que posiciona en Google, presenta tus servicios y publica contenido automáticamente con IA. Diseñada para captar nuevos clientes y diferenciarte online.',
           color: 'green'
         },
         {
-          icon: 'trophy-line',
-          title: 'Gamificación',
-          description: 'Sistema de logros y desafíos para motivar a los usuarios.',
+          icon: 'settings-3-line',
+          title: 'Automatizaciones',
+          description: 'Recordatorios, seguimiento de entrenamientos, activación de retos y cobros automáticos. Ahorra tiempo y mejora la experiencia de tus clientes sin esfuerzo.',
           color: 'orange'
         }
       ]
