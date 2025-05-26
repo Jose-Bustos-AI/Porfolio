@@ -154,21 +154,21 @@ const VerticalsSection: React.FC = () => {
       image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'restaurant-line',
-          title: 'Gestión de Mesas',
-          description: 'Reservas automáticas y gestión inteligente del flujo de comensales.',
+          icon: 'smartphone-line',
+          title: 'App Personalizada',
+          description: 'Una app propia para fidelizar clientes, enviar notificaciones push y generar reseñas automáticas. Crea una comunidad alrededor de tu restaurante y mantén el contacto directo sin depender de terceros.',
           color: 'orange'
         },
         {
-          icon: 'smartphone-line',
-          title: 'Carta Digital',
-          description: 'Menús interactivos con recomendaciones personalizadas y pedidos online.',
+          icon: 'global-line',
+          title: 'Web Inteligente',
+          description: 'Web optimizada para SEO local que publica contenido automáticamente con IA. Aparece en Google, atrae clientes desde tu zona y convierte visitas en reservas reales.',
           color: 'blue'
         },
         {
-          icon: 'bar-chart-box-line',
-          title: 'Analítica de Ventas',
-          description: 'Control de inventario y análisis de tendencias gastronómicas.',
+          icon: 'settings-3-line',
+          title: 'Automatización',
+          description: 'Automatiza tareas repetitivas como promociones, reseñas o campañas sin esfuerzo. Ahorra tiempo y haz que tu restaurante trabaje incluso cuando tú no estás.',
           color: 'green'
         }
       ]
