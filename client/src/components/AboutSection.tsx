@@ -69,20 +69,29 @@ const AboutSection: React.FC = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-[#CCCCCC] mb-6"
+              className="text-[#CCCCCC] mb-6 text-lg"
               variants={itemVariants}
             >
-              Somos una empresa tecnológica especializada en transformar negocios tradicionales 
-              a través de soluciones digitales innovadoras y personalizadas.
+              Impulsamos el futuro de las pymes con <span className="text-white font-semibold">inteligencia artificial aplicada</span>, 
+              <span className="text-white font-semibold"> automatización real</span> y soluciones digitales que generan resultados.
             </motion.p>
             
             <motion.p 
               className="text-[#CCCCCC] mb-8"
               variants={itemVariants}
             >
-              Con más de <span className="text-white font-semibold">10 años de experiencia</span>, 
-              nuestro equipo de expertos combina conocimiento técnico y visión estratégica 
-              para impulsar el crecimiento de pequeñas y medianas empresas.
+              En <span className="text-white font-semibold">Innovapyme</span> convertimos ideas en aplicaciones, 
+              problemas en procesos automáticos y negocios tradicionales en empresas inteligentes. 
+              Somos una compañía tecnológica con alma emprendedora, creada para revolucionar la forma 
+              en la que operan las pequeñas y medianas empresas.
+            </motion.p>
+            
+            <motion.p 
+              className="text-[#CCCCCC] mb-8"
+              variants={itemVariants}
+            >
+              Con años desarrollando soluciones a medida, hemos consolidado un ecosistema de productos 
+              especializados, cada uno diseñado para sectores concretos.
             </motion.p>
             
             {/* Stats with neon borders */}
