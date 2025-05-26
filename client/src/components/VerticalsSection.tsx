@@ -175,25 +175,25 @@ const VerticalsSection: React.FC = () => {
     },
     beauty: {
       title: 'InnovaBeauty',
-      description: 'Plataforma integral para salones de belleza, spas y centros estéticos con gestión de citas y tratamientos.',
+      description: 'Solución digital para salones de belleza, uñas y estéticas que fideliza clientas, mejora la visibilidad online y automatiza tareas clave del negocio.',
       image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'scissors-cut-line',
-          title: 'Gestión de Citas',
-          description: 'Sistema avanzado de reservas online con recordatorios automáticos.',
+          icon: 'smartphone-line',
+          title: 'App Personalizada',
+          description: 'Conecta con tus clientas desde el móvil: gestiona citas, envía notificaciones push y activa promociones desde tu propia app. Ideal para fidelizar sin depender de plataformas externas.',
           color: 'purple'
         },
         {
-          icon: 'user-heart-line',
-          title: 'Perfiles de Cliente',
-          description: 'Historial completo de tratamientos y preferencias personalizadas.',
+          icon: 'global-line',
+          title: 'Web Inteligente',
+          description: 'Tu web siempre actualizada con IA: muestra servicios, horarios, promociones y posiciona en Google para captar nuevas clientas. Publicación automática de contenido para mejorar el SEO local.',
           color: 'pink'
         },
         {
-          icon: 'calendar-check-line',
-          title: 'Programación Inteligente',
-          description: 'Optimización automática de horarios y gestión de personal.',
+          icon: 'settings-3-line',
+          title: 'Automatizaciones',
+          description: 'Automatiza tareas como recordatorios de cita, envío de reseñas o campañas de fidelización sin hacer nada manual. Más tiempo para atender, menos tiempo gestionando.',
           color: 'blue'
         }
       ]
