@@ -257,13 +257,13 @@ const ServicesSection: React.FC = () => {
       color: "purple" as const
     },
     {
-      icon: "team-line",
-      title: "IT Staffing",
-      description: "Refuerza tu equipo con profesionales tecnológicos de alto nivel, adaptados a tus necesidades específicas.",
+      icon: "dashboard-line",
+      title: "Paneles Inteligentes",
+      description: "Diseñamos paneles de reservas, fidelización y automatización para controlar todo tu negocio desde un solo lugar.",
       features: [
-        "Developers full-stack, front-end, back-end",
-        "Especialistas DevOps y Cloud",
-        "Project managers y Scrum masters"
+        "Panel de reservas multicanal",
+        "Email marketing automático con IA",
+        "Panel de eventos, reseñas y clientes"
       ],
       color: "pink" as const
     }
