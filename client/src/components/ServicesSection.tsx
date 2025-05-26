@@ -202,13 +202,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
 const ServicesSection: React.FC = () => {
   const services = [
     {
-      icon: "code-line",
-      title: "Desarrollo Web & Móvil",
-      description: "Creamos aplicaciones y sitios web personalizados con diseños responsive y experiencias de usuario excepcionales.",
+      icon: "smartphone-line",
+      title: "Apps Inteligentes",
+      description: "Desarrollamos aplicaciones web y móviles adaptadas a cada sector, con funcionalidades pensadas para captar clientes, automatizar procesos y aumentar tus ingresos desde el primer día.",
       features: [
-        "Aplicaciones web progresivas (PWA)",
-        "Apps nativas para iOS y Android",
-        "E-commerce y plataformas B2B"
+        "Apps web progresivas y móviles nativas totalmente personalizadas",
+        "Panel de administración completo para cada tipo de negocio",
+        "Funciones integradas: reservas, notificaciones push, fidelización, reseñas, carta digital, bodega, eventos, pagos, IA y más"
       ],
       color: "blue" as const
     },
