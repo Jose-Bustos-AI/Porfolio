@@ -246,13 +246,13 @@ const ServicesSection: React.FC = () => {
       color: "blue" as const
     },
     {
-      icon: "customer-service-line",
-      title: "Consultoría Digital",
-      description: "Asesoramos tu transformación digital con estrategias personalizadas que maximizan el valor de tu inversión tecnológica.",
+      icon: "cloud-line",
+      title: "SaaS a Medida",
+      description: "Creamos plataformas SaaS personalizadas para escalar tu idea, digitalizar procesos o lanzar un nuevo modelo de negocio.",
       features: [
-        "Roadmap de transformación digital",
-        "Optimización de procesos IT",
-        "Gestión del cambio tecnológico"
+        "Área de usuario, pagos y suscripciones",
+        "Control de acceso por roles",
+        "Panel de administración completo"
       ],
       color: "purple" as const
     },
