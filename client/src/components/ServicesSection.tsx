@@ -224,13 +224,13 @@ const ServicesSection: React.FC = () => {
       color: "purple" as const
     },
     {
-      icon: "bar-chart-line",
-      title: "AI & Data Analytics",
-      description: "Convierte tus datos en información valiosa con nuestras soluciones de inteligencia artificial y analítica avanzada.",
+      icon: "settings-3-line",
+      title: "Automatizaciones",
+      description: "Automatizamos procesos repetitivos con flujos listos para usar o soluciones a medida. Ahorra tiempo, reduce errores y escala tu negocio.",
       features: [
-        "Business Intelligence personalizado",
-        "Modelos predictivos y Machine Learning",
-        "Automatización con IA"
+        "+400 plantillas con n8n",
+        "Bots de WhatsApp, email y RRSS",
+        "Automatización de reservas, marketing, ventas y soporte"
       ],
       color: "pink" as const
     },
