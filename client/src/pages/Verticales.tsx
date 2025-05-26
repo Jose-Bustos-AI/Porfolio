@@ -27,49 +27,49 @@ const Verticales: React.FC = () => {
       color: 'orange'
     },
     {
+      id: 'innovabeauty',
+      name: 'InnovaBeauty',
+      description: 'Plataforma integral para salones de belleza, spas y centros estéticos con gestión de citas y tratamientos.',
+      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'scissors-cut-line',
+      url: 'https://innovabeauty.innovapyme.ai',
+      color: 'purple'
+    },
+    {
       id: 'innovatattoo',
       name: 'InnovaTattoo',
       description: 'Plataforma para estudios de tatuajes y artistas independientes con gestión de clientes, diseños y citas.',
       image: 'https://images.unsplash.com/photo-1581731353551-c6bdd6fe9472?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'ink-bottle-line',
       url: 'https://innovatattoo.innovapyme.ai',
-      color: 'purple'
-    },
-    {
-      id: 'innovasalud',
-      name: 'InnovaSalud',
-      description: 'Sistemas de gestión inteligente para clínicas, hospitales y profesionales de la salud integrado con IA diagnóstica.',
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
-      icon: 'heart-pulse-line',
-      url: 'https://innovasalud.innovapyme.ai',
       color: 'pink'
     },
     {
-      id: 'innovaeduca',
-      name: 'InnovaEduca',
-      description: 'Plataformas educativas de última generación para escuelas, universidades y centros de formación profesional.',
-      image: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
-      icon: 'book-open-line',
-      url: 'https://innovaeduca.innovapyme.ai',
+      id: 'innovafit',
+      name: 'InnovaFit',
+      description: 'Soluciones tecnológicas para gimnasios, centros de fitness y entrenadores personales con seguimiento avanzado.',
+      image: 'https://images.unsplash.com/photo-1571019613914-85f342c6a11e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'run-line',
+      url: 'https://innovafit.innovapyme.ai',
       color: 'blue'
     },
     {
-      id: 'innovafintech',
-      name: 'InnovaFintech',
-      description: 'Soluciones financieras y bancarias de próxima generación para startups, cooperativas y entidades de crédito.',
-      image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
-      icon: 'bank-line',
-      url: 'https://innovafintech.innovapyme.ai',
+      id: 'innovarealty',
+      name: 'InnovaRealty',
+      description: 'Plataforma inmobiliaria inteligente para agencias, corredores y gestión de propiedades con tours virtuales.',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'home-line',
+      url: 'https://innovarealty.innovapyme.ai',
       color: 'green'
     },
     {
-      id: 'innovaretail',
-      name: 'InnovaRetail',
-      description: 'Tecnología de vanguardia para comercios, tiendas y cadenas de retail con gestión inteligente de inventario.',
-      image: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
-      icon: 'shopping-bag-line',
-      url: 'https://innovaretail.innovapyme.ai', 
-      color: 'pink'
+      id: 'innovalogic',
+      name: 'InnovaLogic',
+      description: 'Soluciones de automatización y logística inteligente para empresas con gestión de cadena de suministro optimizada.',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
+      icon: 'truck-line',
+      url: 'https://innovalogic.innovapyme.ai',
+      color: 'orange'
     },
   ];
 
