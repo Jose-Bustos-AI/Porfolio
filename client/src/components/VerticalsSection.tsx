@@ -136,139 +136,165 @@ const IndustryContent: React.FC<IndustryContentProps> = ({ title, description, i
 };
 
 const VerticalsSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('retail');
+  const [activeTab, setActiveTab] = useState('gastro');
   
   const tabs = [
-    { id: 'retail', label: 'Retail', color: 'blue' },
-    { id: 'fintech', label: 'Fintech', color: 'purple' },
-    { id: 'health', label: 'Healthcare', color: 'pink' },
-    { id: 'manufacturing', label: 'Manufactura', color: 'blue' },
-    { id: 'education', label: 'Educación', color: 'purple' }
+    { id: 'gastro', label: 'InnovaGastro', color: 'orange' },
+    { id: 'beauty', label: 'InnovaBeauty', color: 'purple' },
+    { id: 'tattoo', label: 'InnovaTattoo', color: 'pink' },
+    { id: 'fit', label: 'InnovaFit', color: 'blue' },
+    { id: 'realty', label: 'InnovaRealty', color: 'green' },
+    { id: 'logic', label: 'InnovaLogic', color: 'orange' }
   ];
   
   const tabContentMap: Record<string, IndustryContentProps> = {
-    retail: {
-      title: 'Retail & E-Commerce',
-      description: 'Transformamos la experiencia de compra integrando tecnologías de vanguardia que unen los mundos físico y digital.',
-      image: 'https://images.unsplash.com/photo-1572584642822-6f8de0243c93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+    gastro: {
+      title: 'InnovaGastro',
+      description: 'Soluciones tecnológicas avanzadas para restaurantes, catering y empresas del sector alimentario con gestión integral.',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'store-3-line',
-          title: 'Omnicanalidad',
-          description: 'Experiencias de compra fluidas entre canales físicos y digitales.',
-          color: 'blue'
+          icon: 'restaurant-line',
+          title: 'Gestión de Mesas',
+          description: 'Reservas automáticas y gestión inteligente del flujo de comensales.',
+          color: 'orange'
         },
         {
-          icon: 'customer-service-2-line',
-          title: 'Personalización',
-          description: 'Motores de recomendación basados en IA para mejorar las ventas.',
-          color: 'purple'
+          icon: 'smartphone-line',
+          title: 'Carta Digital',
+          description: 'Menús interactivos con recomendaciones personalizadas y pedidos online.',
+          color: 'blue'
         },
         {
           icon: 'bar-chart-box-line',
-          title: 'Analítica avanzada',
-          description: 'Insights de comportamiento de clientes y optimización de inventario.',
-          color: 'pink'
+          title: 'Analítica de Ventas',
+          description: 'Control de inventario y análisis de tendencias gastronómicas.',
+          color: 'green'
         }
       ]
     },
-    fintech: {
-      title: 'Fintech',
-      description: 'Impulsamos la innovación financiera con plataformas seguras, eficientes y centradas en la experiencia del usuario.',
-      image: 'https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+    beauty: {
+      title: 'InnovaBeauty',
+      description: 'Plataforma integral para salones de belleza, spas y centros estéticos con gestión de citas y tratamientos.',
+      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'bank-line',
-          title: 'Banca digital',
-          description: 'Plataformas bancarias modernas con experiencias fluidas e intuitivas.',
-          color: 'blue'
-        },
-        {
-          icon: 'secure-payment-line',
-          title: 'Pagos innovadores',
-          description: 'Soluciones de pago seguras, rápidas y compatibles con múltiples canales.',
+          icon: 'scissors-cut-line',
+          title: 'Gestión de Citas',
+          description: 'Sistema avanzado de reservas online con recordatorios automáticos.',
           color: 'purple'
         },
         {
-          icon: 'shield-check-line',
-          title: 'Seguridad avanzada',
-          description: 'Protección contra fraudes con tecnología blockchain y biometría.',
+          icon: 'user-heart-line',
+          title: 'Perfiles de Cliente',
+          description: 'Historial completo de tratamientos y preferencias personalizadas.',
           color: 'pink'
+        },
+        {
+          icon: 'calendar-check-line',
+          title: 'Programación Inteligente',
+          description: 'Optimización automática de horarios y gestión de personal.',
+          color: 'blue'
         }
       ]
     },
-    health: {
-      title: 'Healthcare',
-      description: 'Desarrollamos soluciones que mejoran la atención médica, optimizan procesos clínicos y potencian la investigación.',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+    tattoo: {
+      title: 'InnovaTattoo',
+      description: 'Plataforma para estudios de tatuajes y artistas independientes con gestión de clientes, diseños y citas.',
+      image: 'https://images.unsplash.com/photo-1581731353551-c6bdd6fe9472?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
+        {
+          icon: 'ink-bottle-line',
+          title: 'Galería de Diseños',
+          description: 'Portafolio digital con gestión de diseños y referencias visuales.',
+          color: 'pink'
+        },
+        {
+          icon: 'calendar-todo-line',
+          title: 'Seguimiento de Sesiones',
+          description: 'Control de procesos de tatuaje y cuidados post-tratamiento.',
+          color: 'purple'
+        },
+        {
+          icon: 'image-edit-line',
+          title: 'Personalización',
+          description: 'Herramientas para modificar y adaptar diseños a cada cliente.',
+          color: 'blue'
+        }
+      ]
+    },
+    fit: {
+      title: 'InnovaFit',
+      description: 'Soluciones tecnológicas para gimnasios, centros de fitness y entrenadores personales con seguimiento avanzado.',
+      image: 'https://images.unsplash.com/photo-1571019613914-85f342c6a11e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      features: [
+        {
+          icon: 'run-line',
+          title: 'Rutinas Personalizadas',
+          description: 'Planes de entrenamiento adaptativos basados en objetivos individuales.',
+          color: 'blue'
+        },
         {
           icon: 'heart-pulse-line',
-          title: 'Telemedicina',
-          description: 'Plataformas de consulta virtual seguras y accesibles para pacientes y médicos.',
-          color: 'blue'
+          title: 'Monitoreo de Salud',
+          description: 'Seguimiento de progreso y métricas de rendimiento en tiempo real.',
+          color: 'green'
         },
         {
-          icon: 'file-list-3-line',
-          title: 'Historial médico digital',
-          description: 'Sistemas EHR intuitivos con altos estándares de seguridad y privacidad.',
-          color: 'purple'
-        },
-        {
-          icon: 'microscope-line',
-          title: 'IA diagnóstica',
-          description: 'Algoritmos de inteligencia artificial para asistencia en diagnósticos médicos.',
-          color: 'pink'
+          icon: 'trophy-line',
+          title: 'Gamificación',
+          description: 'Sistema de logros y desafíos para motivar a los usuarios.',
+          color: 'orange'
         }
       ]
     },
-    manufacturing: {
-      title: 'Manufactura',
-      description: 'Digitalizamos procesos industriales para aumentar la eficiencia, reducir costos y mejorar la calidad.',
-      image: 'https://images.unsplash.com/photo-1565043589221-5a61f4de5ecd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+    realty: {
+      title: 'InnovaRealty',
+      description: 'Plataforma inmobiliaria inteligente para agencias, corredores y gestión de propiedades con tours virtuales.',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'robot-line',
-          title: 'Industria 4.0',
-          description: 'Implementación de IoT industrial para monitoreo en tiempo real de maquinaria.',
+          icon: 'home-line',
+          title: 'Tours Virtuales',
+          description: 'Recorridos inmersivos en 360° para propiedades residenciales y comerciales.',
+          color: 'green'
+        },
+        {
+          icon: 'map-pin-line',
+          title: 'Geolocalización',
+          description: 'Búsqueda avanzada por ubicación con análisis de mercado local.',
           color: 'blue'
+        },
+        {
+          icon: 'file-text-line',
+          title: 'Gestión Documental',
+          description: 'Automatización de contratos y procesos legales inmobiliarios.',
+          color: 'purple'
+        }
+      ]
+    },
+    logic: {
+      title: 'InnovaLogic',
+      description: 'Soluciones de automatización y logística inteligente para empresas con gestión de cadena de suministro optimizada.',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      features: [
+        {
+          icon: 'truck-line',
+          title: 'Gestión de Rutas',
+          description: 'Optimización inteligente de rutas de entrega con algoritmos avanzados.',
+          color: 'orange'
         },
         {
           icon: 'dashboard-3-line',
-          title: 'Gestión inteligente',
-          description: 'Dashboards y análisis predictivo para optimización de la producción.',
-          color: 'purple'
-        },
-        {
-          icon: 'tools-line',
-          title: 'Mantenimiento predictivo',
-          description: 'Algoritmos que predicen fallos de equipos antes de que ocurran.',
-          color: 'pink'
-        }
-      ]
-    },
-    education: {
-      title: 'Educación',
-      description: 'Creamos plataformas educativas que transforman el aprendizaje haciéndolo más accesible, interactivo y personalizado.',
-      image: 'https://images.unsplash.com/photo-1522661067900-ab829854a57f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-      features: [
-        {
-          icon: 'book-open-line',
-          title: 'E-learning adaptativo',
-          description: 'Plataformas que se adaptan al ritmo y estilo de aprendizaje de cada estudiante.',
+          title: 'Control de Inventario',
+          description: 'Seguimiento en tiempo real de stock y automatización de reposición.',
           color: 'blue'
         },
         {
-          icon: 'virtual-reality-line',
-          title: 'Realidad aumentada',
-          description: 'Experiencias inmersivas que enriquecen el aprendizaje teórico-práctico.',
-          color: 'purple'
-        },
-        {
-          icon: 'test-tube-line',
-          title: 'Analítica educativa',
-          description: 'Medición y optimización de resultados de aprendizaje con datos en tiempo real.',
-          color: 'pink'
+          icon: 'global-line',
+          title: 'Cadena de Suministro',
+          description: 'Integración completa de proveedores y análisis predictivo de demanda.',
+          color: 'green'
         }
       ]
     }
