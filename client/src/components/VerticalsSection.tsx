@@ -200,25 +200,25 @@ const VerticalsSection: React.FC = () => {
     },
     tattoo: {
       title: 'InnovaTattoo',
-      description: 'Plataforma para estudios de tatuajes y artistas independientes con gestión de clientes, diseños y citas.',
-      image: 'https://images.unsplash.com/photo-1581731353551-c6bdd6fe9472?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      description: 'La solución integral para estudios de tatuajes que quieren profesionalizar su negocio, automatizar su gestión y atraer más clientes sin depender de redes sociales ni agendas en papel.',
+      image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'ink-bottle-line',
-          title: 'Galería de Diseños',
-          description: 'Portafolio digital con gestión de diseños y referencias visuales.',
+          icon: 'smartphone-line',
+          title: 'App Personalizada',
+          description: 'Gestión completa de reservas desde el móvil, galería de diseños, notificaciones push y sistema de reseñas. Tu estudio digitalizado en una sola app, directa al cliente.',
           color: 'pink'
         },
         {
-          icon: 'calendar-todo-line',
-          title: 'Seguimiento de Sesiones',
-          description: 'Control de procesos de tatuaje y cuidados post-tratamiento.',
+          icon: 'global-line',
+          title: 'Web Inteligente',
+          description: 'Publica diseños, ofertas y novedades de forma automática con IA para mejorar tu SEO local y aparecer en Google. Captación constante sin mover un dedo.',
           color: 'purple'
         },
         {
-          icon: 'image-edit-line',
-          title: 'Personalización',
-          description: 'Herramientas para modificar y adaptar diseños a cada cliente.',
+          icon: 'settings-3-line',
+          title: 'Automatizaciones',
+          description: 'Recordatorios de cita, seguimiento post-tatuaje y mensajes para generar reseñas automáticamente. Ahorra tiempo y mejora tu reputación online con cada sesión.',
           color: 'blue'
         }
       ]
