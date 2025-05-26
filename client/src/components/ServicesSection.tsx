@@ -68,7 +68,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
 
   return (
     <motion.div 
-      className={`glass rounded-xl p-6 group transition-all duration-300 reveal card-3d ${borderClass} hover-shine overflow-hidden`}
+      className={`glass rounded-xl p-6 group transition-all duration-300 reveal card-3d ${borderClass} hover-shine overflow-hidden h-full flex flex-col`}
       variants={cardVariants}
       custom={index}
       whileHover="hover"
@@ -98,7 +98,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
         }}
       />
       
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col h-full">
         {/* Animated icon with glow effect */}
         <motion.div 
           className={`w-16 h-16 rounded-full bg-[${bgColor}]/10 flex items-center justify-center mb-6 group-hover:bg-[${bgColor}]/20 transition-colors duration-300 animate-glow-pulse`}
@@ -156,7 +156,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
         
         {/* Features list with staggered animations */}
         <motion.ul 
-          className="space-y-2 mb-6"
+          className="space-y-2 mb-6 flex-grow"
           initial="hidden"
           animate={isHovered ? "visible" : "hidden"}
         >
@@ -173,10 +173,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, fea
           ))}
         </motion.ul>
         
-        {/* Call to action with animation */}
+        {/* Call to action with animation - positioned at bottom */}
         <motion.a 
           href="#contacto" 
-          className={`inline-flex items-center text-[${bgColor}] relative`}
+          className={`inline-flex items-center text-[${bgColor}] relative mt-auto`}
           whileHover={{ x: 5 }}
         >
           Saber más 
