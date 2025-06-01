@@ -8,6 +8,7 @@ interface Servicio {
   id: string;
   titulo: string;
   descripcion: string;
+  detalles: string[];
   icono: string;
   color: 'naranja' | 'verde' | 'azul' | 'morado' | 'rosa';
 }
@@ -16,45 +17,69 @@ const Servicios: React.FC = () => {
   // Array con los datos de los servicios
   const servicios: Servicio[] = [
     {
-      id: 'automatizacion',
-      titulo: 'Automatización con IA',
-      descripcion: 'Optimización de tareas, bots inteligentes, workflows con n8n, IA generativa para mejorar la productividad de tu negocio.',
-      icono: 'ri-robot-line',
+      id: 'aplicaciones-web-moviles',
+      titulo: 'Aplicaciones Web y Móviles Personalizadas',
+      descripcion: 'Apps a medida para gestionar clientes, reservas, pagos y marketing.',
+      detalles: [
+        'Diseño adaptable a la imagen de marca del cliente',
+        'Integración con bases de datos seguras y funcionalidades específicas para cada negocio'
+      ],
+      icono: 'ri-smartphone-line',
       color: 'azul'
     },
     {
-      id: 'desarrollo-web',
-      titulo: 'Desarrollo Web a Medida',
-      descripcion: 'Aplicaciones empresariales, PWAs, portales personalizados y paneles de administración adaptados a tus necesidades específicas.',
-      icono: 'ri-code-s-slash-line',
+      id: 'webs-contenido-automatico',
+      titulo: 'Páginas Web con Publicación Automática de Contenidos',
+      descripcion: 'Webs optimizadas para SEO local y posicionamiento en Google.',
+      detalles: [
+        'Publicación automática de artículos, reseñas y contenidos generados con IA',
+        'Motor de reseñas automáticas para mejorar la reputación online'
+      ],
+      icono: 'ri-global-line',
       color: 'naranja'
     },
     {
-      id: 'integracion-apis',
-      titulo: 'Integración de APIs y Plataformas',
-      descripcion: 'Conexión entre herramientas como Stripe, WhatsApp, Google, OpenAI y otras plataformas para optimizar tus procesos.',
-      icono: 'ri-link-m',
+      id: 'automatizaciones-atencion-cliente',
+      titulo: 'Automatizaciones de Atención al Cliente',
+      descripcion: 'Bots de WhatsApp, agentes virtuales de voz y chatbots integrados.',
+      detalles: [
+        'Automatización de respuestas frecuentes, reservas y seguimiento de clientes',
+        'Integración con CRM y apps propias para una gestión 360°'
+      ],
+      icono: 'ri-customer-service-2-line',
       color: 'verde'
     },
     {
-      id: 'reservas',
-      titulo: 'Sistemas de Reservas Inteligentes',
-      descripcion: 'Para restaurantes, gimnasios y otros negocios físicos, con pago, calendario y lógica de negocio personalizada.',
-      icono: 'ri-calendar-check-line',
+      id: 'creacion-saas',
+      titulo: 'Creación de SaaS y Negocios Digitales',
+      descripcion: 'Desarrollo de plataformas SaaS (Software as a Service) a medida.',
+      detalles: [
+        'Modelo de negocio y estrategia de monetización lista para escalar',
+        'Incluye backend, frontend y panel de administración completo'
+      ],
+      icono: 'ri-cloud-line',
       color: 'morado'
     },
     {
-      id: 'entrenamiento-ia',
-      titulo: 'Entrenamiento de IA Personalizada',
-      descripcion: 'Creación de agentes inteligentes entrenados con datos propios, personalizados para cada cliente y sector.',
+      id: 'integracion-ia-procesos',
+      titulo: 'Integración de Inteligencia Artificial en Procesos',
+      descripcion: 'Automatización completa de procesos internos: marketing, ventas, atención al cliente y operaciones.',
+      detalles: [
+        'Integración de IA para análisis predictivo, recomendaciones y generación de contenido',
+        'Uso de n8n, Make, OpenAI y Evolution API'
+      ],
       icono: 'ri-brain-line',
       color: 'rosa'
     },
     {
-      id: 'soporte',
-      titulo: 'Acompañamiento y Soporte Técnico',
-      descripcion: 'Formación, asesoría, tutoriales, y soporte para cada cliente con sus desarrollos tecnológicos.',
-      icono: 'ri-customer-service-2-line',
+      id: 'marketing-digital-embudos',
+      titulo: 'Marketing Digital y Embudos de Ventas',
+      descripcion: 'Estrategia de marketing digital con IA: campañas automatizadas, email marketing y redes sociales.',
+      detalles: [
+        'Embudos de ventas optimizados con seguimiento de clientes potenciales y remarketing',
+        'Herramientas de analítica y reportes avanzados'
+      ],
+      icono: 'ri-megaphone-line',
       color: 'azul'
     }
   ];
@@ -257,7 +282,17 @@ const Servicios: React.FC = () => {
               <h3 className="text-2xl font-bold mb-3">{servicio.titulo}</h3>
               
               {/* Descripción */}
-              <p className="text-gray-300">{servicio.descripcion}</p>
+              <p className="text-gray-300 mb-4">{servicio.descripcion}</p>
+              
+              {/* Detalles */}
+              <ul className="space-y-2">
+                {servicio.detalles.map((detalle, index) => (
+                  <li key={index} className="flex items-start text-sm text-gray-400">
+                    <span className="text-green-400 mr-2 mt-1">✅</span>
+                    {detalle}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </motion.div>
