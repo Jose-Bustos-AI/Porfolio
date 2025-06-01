@@ -1,31 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [location] = useLocation();
   const { scrollY } = useScroll();
   
   // Track scroll position for nav style changes
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 100);
     
-    // Automatically determine active section based on scroll position
-    const sections = ["hero", "quienes-somos", "servicios", "verticales", "contacto"];
-    
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (!element) continue;
+    // Only track sections if we're on the home page
+    if (location === '/') {
+      const sections = ["hero", "quienes-somos", "servicios", "verticales", "contacto"];
       
-      const rect = element.getBoundingClientRect();
-      if (rect.top <= 100 && rect.bottom >= 100) {
-        setActiveItem(`#${section}`);
-        break;
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (!element) continue;
+        
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          setActiveItem(`#${section}`);
+          break;
+        }
       }
+    } else {
+      // Set active item based on current route
+      setActiveItem(location);
     }
   });
+
+  // Set active item on location change
+  useEffect(() => {
+    setActiveItem(location);
+  }, [location]);
 
   // Animation variants
   const navbarVariants = {
@@ -206,40 +217,42 @@ const Navbar: React.FC = () => {
         
         <div className="container mx-auto flex justify-between items-center relative z-10">
           {/* Logo with animation */}
-          <motion.div 
-            className="flex items-center gap-2"
-            initial="initial"
-            animate="visible"
-            whileHover="hover"
-          >
+          <Link href="/">
             <motion.div 
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00EEFF] to-[#0088FF] neon-border-blue flex items-center justify-center"
-              variants={logoVariants}
+              className="flex items-center gap-2 cursor-pointer"
+              initial="initial"
+              animate="visible"
+              whileHover="hover"
             >
-              <span className="font-space font-bold text-[#050816]">IP</span>
-              
-              {/* Glow effect */}
               <motion.div 
-                className="absolute inset-0 rounded-full bg-[#00EEFF] blur-lg opacity-30 z-0"
-                animate={{ 
-                  opacity: [0.3, 0.6, 0.3],
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{ 
-                  duration: 3, 
-                  repeat: Infinity,
-                  ease: "easeInOut" 
-                }}
-              />
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00EEFF] to-[#0088FF] neon-border-blue flex items-center justify-center"
+                variants={logoVariants}
+              >
+                <span className="font-space font-bold text-[#050816]">IP</span>
+                
+                {/* Glow effect */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full bg-[#00EEFF] blur-lg opacity-30 z-0"
+                  animate={{ 
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity,
+                    ease: "easeInOut" 
+                  }}
+                />
+              </motion.div>
+              
+              <motion.span 
+                className="font-space font-bold text-xl md:text-2xl text-white"
+                variants={textVariants}
+              >
+                Innovapyme
+              </motion.span>
             </motion.div>
-            
-            <motion.span 
-              className="font-space font-bold text-xl md:text-2xl text-white"
-              variants={textVariants}
-            >
-              Innovapyme
-            </motion.span>
-          </motion.div>
+          </Link>
           
           {/* Mobile menu button with animation */}
           <motion.button 
@@ -290,61 +303,92 @@ const Navbar: React.FC = () => {
               const isActive = activeItem === item.href;
               
               return (
-                <motion.a 
-                  key={index}
-                  href={item.href} 
-                  className={`py-2 relative overflow-hidden ${isActive ? `neon-text-${item.color}` : 'text-[#CCCCCC]'}`}
+                <Link key={index} href={item.href}>
+                  <motion.div 
+                    className={`py-2 relative overflow-hidden cursor-pointer ${isActive ? `neon-text-${item.color}` : 'text-[#CCCCCC]'}`}
+                    variants={menuItemVariants}
+                    custom={index}
+                    initial="initial"
+                    animate="visible"
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    {/* Text with hover effect */}
+                    <span className="relative z-10">{item.label}</span>
+                    
+                    {/* Animated underline effect */}
+                    <motion.span 
+                      className="absolute bottom-0 left-0 w-full h-0.5 opacity-80"
+                      style={getUnderlineStyle(item.color)}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 0.8 : 0 }}
+                      whileHover={{ scaleX: 1, opacity: 0.8 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
+                </Link>
+              )
+            })}
+            
+            {/* Contact CTA button with glow effect */}
+            {location === '/' ? (
+              <motion.a 
+                href="#contacto" 
+                className="ml-4 px-6 py-2 rounded-full bg-[#0A0A18] neon-border-blue hover-shine relative overflow-hidden"
+                variants={menuItemVariants}
+                custom={navItems.length}
+                initial="initial"
+                animate="visible"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <span className="relative z-10">Contáctanos</span>
+                
+                {/* Glow effect on hover */}
+                <motion.div 
+                  className="absolute inset-0 bg-[#00EEFF]/10 rounded-full z-0"
+                  initial={{ opacity: 0 }}
+                  whileHover={{ 
+                    opacity: [0, 0.2, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.a>
+            ) : (
+              <Link href="/#contacto">
+                <motion.div 
+                  className="ml-4 px-6 py-2 rounded-full bg-[#0A0A18] neon-border-blue hover-shine relative overflow-hidden cursor-pointer"
                   variants={menuItemVariants}
-                  custom={index}
+                  custom={navItems.length}
                   initial="initial"
                   animate="visible"
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  {/* Text with hover effect */}
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10">Contáctanos</span>
                   
-                  {/* Animated underline effect */}
-                  <motion.span 
-                    className="absolute bottom-0 left-0 w-full h-0.5 opacity-80"
-                    style={getUnderlineStyle(item.color)}
-                    initial={{ scaleX: 0, opacity: 0 }}
-                    animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 0.8 : 0 }}
-                    whileHover={{ scaleX: 1, opacity: 0.8 }}
-                    transition={{ duration: 0.3 }}
+                  {/* Glow effect on hover */}
+                  <motion.div 
+                    className="absolute inset-0 bg-[#00EEFF]/10 rounded-full z-0"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ 
+                      opacity: [0, 0.2, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
                   />
-                </motion.a>
-              )
-            })}
-            
-            {/* Contact CTA button with glow effect */}
-            <motion.a 
-              href="#contacto" 
-              className="ml-4 px-6 py-2 rounded-full bg-[#0A0A18] neon-border-blue hover-shine relative overflow-hidden"
-              variants={menuItemVariants}
-              custom={navItems.length}
-              initial="initial"
-              animate="visible"
-              whileHover="hover"
-              whileTap="tap"
-            >
-              <span className="relative z-10">Contáctanos</span>
-              
-              {/* Glow effect on hover */}
-              <motion.div 
-                className="absolute inset-0 bg-[#00EEFF]/10 rounded-full z-0"
-                initial={{ opacity: 0 }}
-                whileHover={{ 
-                  opacity: [0, 0.2, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{ 
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            </motion.a>
+                </motion.div>
+              </Link>
+            )}
           </div>
         </div>
       </motion.div>
@@ -363,30 +407,45 @@ const Navbar: React.FC = () => {
             
             <div className="flex flex-col space-y-4 py-6 px-6 relative z-10">
               {navItems.map((item, index) => (
+                <Link key={index} href={item.href}>
+                  <motion.div
+                    custom={index}
+                    variants={mobileItemVariants}
+                    className={`text-white py-3 pl-4 border-l-2 cursor-pointer ${item.color === 'blue' ? 'border-[#00EEFF]' : item.color === 'purple' ? 'border-[#BD00FF]' : item.color === 'orange' ? 'border-[#E65616]' : item.color === 'green' ? 'border-[#62d957]' : 'border-[#FF00A0]'}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    whileHover={{ x: 5, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    <span className={`neon-text-${item.color}`}>{item.label}</span>
+                  </motion.div>
+                </Link>
+              ))}
+              {location === '/' ? (
                 <motion.a
-                  key={index}
-                  href={item.href}
-                  custom={index}
+                  href="#contacto"
+                  custom={navItems.length}
                   variants={mobileItemVariants}
-                  className={`text-white py-3 pl-4 border-l-2 ${item.color === 'blue' ? 'border-[#00EEFF]' : item.color === 'purple' ? 'border-[#BD00FF]' : 'border-[#FF00A0]'}`}
+                  className="mt-4 px-6 py-3 rounded-full glass neon-border-blue text-center hover-shine"
                   onClick={() => setMobileMenuOpen(false)}
-                  whileHover={{ x: 5, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
+                  whileHover={{ scale: 1.05, y: -3 }}
                   whileTap={{ scale: 0.97 }}
                 >
-                  <span className={`neon-text-${item.color}`}>{item.label}</span>
+                  Contáctanos
                 </motion.a>
-              ))}
-              <motion.a
-                href="#contacto"
-                custom={navItems.length}
-                variants={mobileItemVariants}
-                className="mt-4 px-6 py-3 rounded-full glass neon-border-blue text-center hover-shine"
-                onClick={() => setMobileMenuOpen(false)}
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Contáctanos
-              </motion.a>
+              ) : (
+                <Link href="/#contacto">
+                  <motion.div
+                    custom={navItems.length}
+                    variants={mobileItemVariants}
+                    className="mt-4 px-6 py-3 rounded-full glass neon-border-blue text-center hover-shine cursor-pointer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    whileHover={{ scale: 1.05, y: -3 }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    Contáctanos
+                  </motion.div>
+                </Link>
+              )}
             </div>
           </motion.div>
         )}
