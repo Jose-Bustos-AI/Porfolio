@@ -20,7 +20,7 @@ const Verticales: React.FC = () => {
     {
       id: 'innovagastro',
       name: 'InnovaGastro',
-      description: 'Soluciones tecnológicas avanzadas para restaurantes, catering y empresas del sector alimentario con gestión integral.',
+      description: 'Soluciones tecnológicas diseñadas para propietarios y gerentes de restaurantes, catering y negocios gastronómicos que buscan optimizar su gestión y ofrecer una experiencia excepcional a sus clientes.',
       image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'restaurant-line',
       url: 'https://innovagastro.innovapyme.ai',
@@ -29,7 +29,7 @@ const Verticales: React.FC = () => {
     {
       id: 'innovabeauty',
       name: 'InnovaBeauty',
-      description: 'Plataforma integral para salones de belleza, spas y centros estéticos con gestión de citas y tratamientos.',
+      description: 'Soluciones tecnológicas para salones de belleza, spas y centros estéticos que quieren modernizar su operación, aumentar la fidelidad de sus clientes y destacar en un mercado competitivo.',
       image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'scissors-cut-line',
       url: 'https://innovabeauty.innovapyme.ai',
@@ -38,7 +38,7 @@ const Verticales: React.FC = () => {
     {
       id: 'innovatattoo',
       name: 'InnovaTattoo',
-      description: 'Plataforma para estudios de tatuajes y artistas independientes con gestión de clientes, diseños y citas.',
+      description: 'Soluciones tecnológicas pensadas para estudios de tatuajes y artistas que necesitan profesionalizar la gestión de su negocio y potenciar su talento, convirtiendo cada cita en una oportunidad de crecimiento.',
       image: 'https://images.unsplash.com/photo-1581731353551-c6bdd6fe9472?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'ink-bottle-line',
       url: 'https://innovatattoo.innovapyme.ai',
@@ -47,7 +47,7 @@ const Verticales: React.FC = () => {
     {
       id: 'innovafit',
       name: 'InnovaFit',
-      description: 'Soluciones tecnológicas para gimnasios, centros de fitness y entrenadores personales con seguimiento avanzado.',
+      description: 'Soluciones tecnológicas para gimnasios, centros de fitness y entrenadores personales que buscan crear comunidad, aumentar la retención de clientes y diferenciarse en el mundo del bienestar.',
       image: 'https://images.unsplash.com/photo-1571019613914-85f342c6a11e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'run-line',
       url: 'https://innovafit.innovapyme.ai',
@@ -56,7 +56,7 @@ const Verticales: React.FC = () => {
     {
       id: 'innovarealty',
       name: 'InnovaRealty',
-      description: 'Plataforma inmobiliaria inteligente para agencias, corredores y gestión de propiedades con tours virtuales.',
+      description: 'Soluciones tecnológicas para agencias inmobiliarias, corredores y agentes que desean centralizar la gestión de propiedades, mejorar la atención al cliente y cerrar más operaciones con confianza.',
       image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'home-line',
       url: 'https://innovarealty.innovapyme.ai',
@@ -65,7 +65,7 @@ const Verticales: React.FC = () => {
     {
       id: 'innovalogic',
       name: 'InnovaLogic',
-      description: 'Soluciones de automatización y logística inteligente para empresas con gestión de cadena de suministro optimizada.',
+      description: 'Soluciones tecnológicas para empresas que buscan automatizar procesos clave, mejorar la eficiencia operativa y ahorrar tiempo, permitiéndoles enfocarse en hacer crecer su negocio.',
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&h=300&q=80',
       icon: 'truck-line',
       url: 'https://innovalogic.innovapyme.ai',
