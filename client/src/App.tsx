@@ -66,7 +66,6 @@ function App() {
                } as React.CSSProperties}>
           </div>
           <Toaster />
-          <Navbar />
           <Router />
         </MouseContext.Provider>
       </TooltipProvider>

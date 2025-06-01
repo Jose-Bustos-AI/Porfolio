@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
@@ -42,7 +41,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#050816] text-white overflow-hidden">
-      <Navbar />
       <HeroSection />
       <AboutSection />
       <ServicesSection />
