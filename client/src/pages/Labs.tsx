@@ -352,7 +352,7 @@ const Labs: React.FC = () => {
             {posts.map((post) => (
               <motion.div 
                 key={post.id}
-                className="glass rounded-xl overflow-hidden hover-shine card-3d"
+                className="glass rounded-xl overflow-hidden hover-shine card-3d flex flex-col h-[450px]"
                 variants={itemVariants}
                 whileHover={{ 
                   y: -10,
@@ -399,7 +399,7 @@ const Labs: React.FC = () => {
                 </div>
                 
                 {/* Contenido de la tarjeta */}
-                <div className="p-6 z-20 relative">
+                <div className="p-6 z-20 relative flex flex-col flex-grow">
                   {/* Fecha */}
                   <div className="text-[#CCCCCC] text-sm mb-2">
                     <i className="ri-calendar-line mr-1"></i> {formatDate(post.created_at)}
@@ -417,7 +417,7 @@ const Labs: React.FC = () => {
                   </h3>
                   
                   {/* Extracto del contenido */}
-                  <p className="text-[#CCCCCC] mb-6 min-h-[80px]">
+                  <p className="text-[#CCCCCC] mb-6 flex-grow">
                     {createExcerpt(post.content)}
                   </p>
                   
