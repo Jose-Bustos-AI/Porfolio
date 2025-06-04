@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://innovapymes.com/sitemap.xml
+Sitemap: https://innovapymes.ai/sitemap.xml
 
 # Disallow admin areas
 Disallow: /admin/

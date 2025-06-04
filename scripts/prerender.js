@@ -18,25 +18,25 @@ const metaTags = {
     title: 'Innovapymes - Soluciones de IA y Automatización para PyMEs',
     description: 'Transformamos tu negocio con soluciones de IA personalizadas: SaaS, automatización web, chatbots inteligentes y marketing digital para restaurantes, salones, gimnasios, inmobiliarias y más.',
     keywords: 'IA, automatización, inteligencia artificial, SaaS, desarrollo web, chatbots, marketing digital, restaurantes, salones de belleza, estudios de tatuajes, gimnasios, inmobiliarias, PyMEs',
-    canonical: 'https://innovapymes.com/'
+    canonical: 'https://innovapymes.ai/'
   },
   '/servicios': {
     title: 'Servicios de IA y Automatización - Innovapymes',
     description: 'Soluciones especializadas de IA: Desarrollo SaaS, automatización web con n8n/Make, chatbots inteligentes, aplicaciones móviles y marketing digital para PyMEs.',
     keywords: 'desarrollo SaaS, automatización web, n8n, Make, chatbots OpenAI, aplicaciones móviles, marketing digital, IA para empresas',
-    canonical: 'https://innovapymes.com/servicios'
+    canonical: 'https://innovapymes.ai/servicios'
   },
   '/verticales': {
     title: 'Verticales Especializadas - Innovapymes',
     description: 'Soluciones de IA especializadas para restaurantes (InnovaGastro), salones de belleza (InnovaBeauty), estudios de tatuajes (InnovaTattoo), gimnasios (InnovaFit), inmobiliarias (InnovaRealty) y más.',
     keywords: 'InnovaGastro, InnovaBeauty, InnovaTattoo, InnovaFit, InnovaRealty, InnovaLogic, restaurantes, salones belleza, estudios tatuajes, gimnasios, inmobiliarias, automatización',
-    canonical: 'https://innovapymes.com/verticales'
+    canonical: 'https://innovapymes.ai/verticales'
   },
   '/labs': {
     title: 'Innovapymes Labs - Blog de IA y Tecnología',
     description: 'Descubre las últimas tendencias en inteligencia artificial, automatización y tecnología para PyMEs. Artículos técnicos, casos de éxito y guías prácticas de implementación.',
     keywords: 'blog IA, inteligencia artificial, automatización, tecnología PyMEs, casos de éxito, innovación empresarial, transformación digital',
-    canonical: 'https://innovapymes.com/labs'
+    canonical: 'https://innovapymes.ai/labs'
   }
 };
 
@@ -61,11 +61,11 @@ routes.forEach(route => {
     "name": "Innovapymes",
     "description": meta.description,
     "url": meta.canonical,
-    "logo": "https://innovapymes.com/logo.png",
+    "logo": "https://innovapymes.ai/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "info@innovapymes.com"
+      "email": "info@innovapymes.ai"
     },
     "sameAs": [
       "https://linkedin.com/company/innovapymes",
@@ -130,7 +130,7 @@ routes.forEach(route => {
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes.map(route => `  <url>
-    <loc>https://innovapymes.com${route.path === '/' ? '' : route.path}</loc>
+    <loc>https://innovapymes.ai${route.path === '/' ? '' : route.path}</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
     <changefreq>${route.path === '/' ? 'weekly' : 'monthly'}</changefreq>
     <priority>${route.path === '/' ? '1.0' : '0.8'}</priority>
@@ -144,7 +144,7 @@ const robots = `User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://innovapymes.com/sitemap.xml
+Sitemap: https://innovapymes.ai/sitemap.xml
 
 # Disallow admin areas
 Disallow: /admin/
