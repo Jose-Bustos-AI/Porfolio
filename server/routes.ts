@@ -8,22 +8,24 @@ import uploadsRouter from './routes/uploads';
 import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Servir sitemap.xml y robots.txt desde el directorio SSG PRIMERO
-  app.get('/sitemap.xml', (req, res) => {
+  // Endpoints SEO como rutas de API para evitar conflictos con Vite
+  app.get('/api/seo/sitemap.xml', (req, res) => {
     const sitemapPath = path.join(process.cwd(), 'dist', 'ssg', 'sitemap.xml');
     if (fs.existsSync(sitemapPath)) {
+      const content = fs.readFileSync(sitemapPath, 'utf-8');
       res.setHeader('Content-Type', 'application/xml');
-      res.sendFile(sitemapPath);
+      res.send(content);
     } else {
       res.status(404).send('Sitemap no encontrado');
     }
   });
 
-  app.get('/robots.txt', (req, res) => {
+  app.get('/api/seo/robots.txt', (req, res) => {
     const robotsPath = path.join(process.cwd(), 'dist', 'ssg', 'robots.txt');
     if (fs.existsSync(robotsPath)) {
+      const content = fs.readFileSync(robotsPath, 'utf-8');
       res.setHeader('Content-Type', 'text/plain');
-      res.sendFile(robotsPath);
+      res.send(content);
     } else {
       res.status(404).send('Robots.txt no encontrado');
     }
