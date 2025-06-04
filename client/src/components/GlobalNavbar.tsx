@@ -61,11 +61,48 @@ const GlobalNavbar: React.FC = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <img 
-                  src="/innova-logo.png" 
-                  alt="Innovapymes Logo" 
-                  className="w-full h-full object-contain"
-                />
+                <svg 
+                  viewBox="0 0 100 100" 
+                  className="w-full h-full"
+                >
+                  <defs>
+                    <linearGradient id="blueBot" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#4FC3F7" />
+                      <stop offset="100%" stopColor="#29B6F6" />
+                    </linearGradient>
+                    <linearGradient id="greenRing" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#4CAF50" />
+                      <stop offset="100%" stopColor="#2E7D32" />
+                    </linearGradient>
+                    <linearGradient id="orangeRing" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FF5722" />
+                      <stop offset="100%" stopColor="#D84315" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Anillo azul (superior) */}
+                  <ellipse cx="50" cy="30" rx="35" ry="8" fill="none" stroke="url(#blueBot)" strokeWidth="4" opacity="0.8" transform="rotate(20 50 50)" />
+                  
+                  {/* Anillo verde (izquierda) */}
+                  <ellipse cx="30" cy="65" rx="35" ry="8" fill="none" stroke="url(#greenRing)" strokeWidth="4" opacity="0.8" transform="rotate(-40 50 50)" />
+                  
+                  {/* Anillo naranja (derecha) */}
+                  <ellipse cx="70" cy="65" rx="35" ry="8" fill="none" stroke="url(#orangeRing)" strokeWidth="4" opacity="0.8" transform="rotate(40 50 50)" />
+                  
+                  {/* Robot cabeza cuadrada */}
+                  <rect x="40" y="40" width="20" height="20" rx="3" fill="url(#blueBot)" />
+                  
+                  {/* Ojos del robot */}
+                  <circle cx="45" cy="48" r="1.5" fill="#1A1A2E" />
+                  <circle cx="55" cy="48" r="1.5" fill="#1A1A2E" />
+                  
+                  {/* Boca del robot */}
+                  <rect x="47" y="53" width="6" height="1" rx="0.5" fill="#1A1A2E" />
+                  
+                  {/* Antena */}
+                  <circle cx="50" cy="35" r="1.5" fill="url(#blueBot)" />
+                  <rect x="49.5" y="35" width="1" height="5" fill="url(#blueBot)" />
+                </svg>
               </motion.div>
               <span className="font-bold text-xl md:text-2xl text-white">
                 Innovapymes
