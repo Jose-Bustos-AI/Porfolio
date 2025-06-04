@@ -61,46 +61,11 @@ const GlobalNavbar: React.FC = () => {
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <svg 
-                  viewBox="0 0 200 200" 
-                  className="w-full h-full"
-                >
-                  <defs>
-                    <linearGradient id="blueRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#00EEFF" />
-                      <stop offset="100%" stopColor="#0088FF" />
-                    </linearGradient>
-                    <linearGradient id="greenRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#62d957" />
-                      <stop offset="100%" stopColor="#3fa832" />
-                    </linearGradient>
-                    <linearGradient id="orangeRing" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#E65616" />
-                      <stop offset="100%" stopColor="#cc4915" />
-                    </linearGradient>
-                  </defs>
-                  
-                  {/* Robot head */}
-                  <rect x="70" y="70" width="60" height="60" rx="8" fill="url(#blueRing)" />
-                  
-                  {/* Eyes */}
-                  <circle cx="85" cy="90" r="4" fill="#030015" />
-                  <circle cx="115" cy="90" r="4" fill="#030015" />
-                  
-                  {/* Mouth */}
-                  <rect x="90" y="105" width="20" height="3" rx="1.5" fill="#030015" />
-                  
-                  {/* Antenna */}
-                  <circle cx="100" cy="60" r="3" fill="url(#blueRing)" />
-                  <rect x="99" y="60" width="2" height="10" fill="url(#blueRing)" />
-                  
-                  {/* Orbital rings */}
-                  <g fill="none" strokeWidth="6" strokeLinecap="round">
-                    <path d="M 50 100 A 50 50 0 1 1 150 100" stroke="url(#blueRing)" opacity="0.8" />
-                    <path d="M 30 100 A 70 70 0 0 1 170 100" stroke="url(#greenRing)" opacity="0.7" />
-                    <path d="M 170 100 A 70 70 0 0 1 30 100" stroke="url(#orangeRing)" opacity="0.6" />
-                  </g>
-                </svg>
+                <img 
+                  src="/innova-logo.png" 
+                  alt="Innovapymes Logo" 
+                  className="w-full h-full object-contain"
+                />
               </motion.div>
               <span className="font-bold text-xl md:text-2xl text-white">
                 Innovapymes
