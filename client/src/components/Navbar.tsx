@@ -228,66 +228,11 @@ const Navbar: React.FC = () => {
                 className="w-12 h-12 flex items-center justify-center relative"
                 variants={logoVariants}
               >
-                <svg 
-                  viewBox="0 0 100 100" 
-                  className="w-full h-full relative z-10"
-                >
-                  <defs>
-                    <linearGradient id="blueBotMain" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#4FC3F7" />
-                      <stop offset="100%" stopColor="#29B6F6" />
-                    </linearGradient>
-                    <linearGradient id="greenRingMain" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#4CAF50" />
-                      <stop offset="100%" stopColor="#2E7D32" />
-                    </linearGradient>
-                    <linearGradient id="orangeRingMain" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FF5722" />
-                      <stop offset="100%" stopColor="#D84315" />
-                    </linearGradient>
-                  </defs>
-                  
-                  {/* Anillo azul (superior) */}
-                  <motion.ellipse 
-                    cx="50" cy="30" rx="35" ry="8" 
-                    fill="none" stroke="url(#blueBotMain)" strokeWidth="4" opacity="0.8" 
-                    transform="rotate(20 50 50)"
-                    animate={{ rotate: [20, 380] }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                  />
-                  
-                  {/* Anillo verde (izquierda) */}
-                  <motion.ellipse 
-                    cx="30" cy="65" rx="35" ry="8" 
-                    fill="none" stroke="url(#greenRingMain)" strokeWidth="4" opacity="0.8" 
-                    transform="rotate(-40 50 50)"
-                    animate={{ rotate: [-40, 320] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                  />
-                  
-                  {/* Anillo naranja (derecha) */}
-                  <motion.ellipse 
-                    cx="70" cy="65" rx="35" ry="8" 
-                    fill="none" stroke="url(#orangeRingMain)" strokeWidth="4" opacity="0.8" 
-                    transform="rotate(40 50 50)"
-                    animate={{ rotate: [40, 400] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  />
-                  
-                  {/* Robot cabeza cuadrada */}
-                  <rect x="40" y="40" width="20" height="20" rx="3" fill="url(#blueBotMain)" />
-                  
-                  {/* Ojos del robot */}
-                  <circle cx="45" cy="48" r="1.5" fill="#1A1A2E" />
-                  <circle cx="55" cy="48" r="1.5" fill="#1A1A2E" />
-                  
-                  {/* Boca del robot */}
-                  <rect x="47" y="53" width="6" height="1" rx="0.5" fill="#1A1A2E" />
-                  
-                  {/* Antena */}
-                  <circle cx="50" cy="35" r="1.5" fill="url(#blueBotMain)" />
-                  <rect x="49.5" y="35" width="1" height="5" fill="url(#blueBotMain)" />
-                </svg>
+                <img 
+                  src="https://tullsnkraofthczzuxtx.supabase.co/storage/v1/object/public/imagenes//Logo_innovaPymes.png.png" 
+                  alt="Innovapymes Logo" 
+                  className="w-full h-full object-contain relative z-10"
+                />
                 
                 {/* Glow effect */}
                 <motion.div 
