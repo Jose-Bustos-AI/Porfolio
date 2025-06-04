@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '../components/ParticleBackground';
+import SEOHead from '../components/SEOHead';
 import { Link } from 'wouter';
 
 // Definimos la estructura de un servicio
@@ -223,6 +224,12 @@ const Servicios: React.FC = () => {
 
   return (
     <div className="bg-[#030015] min-h-screen text-white relative overflow-hidden">
+      <SEOHead 
+        title="Servicios de IA y Automatización - Innovapymes"
+        description="Soluciones especializadas de IA: Desarrollo SaaS, automatización web con n8n/Make, chatbots inteligentes, aplicaciones móviles y marketing digital para PyMEs."
+        keywords="desarrollo SaaS, automatización web, n8n, Make, chatbots OpenAI, aplicaciones móviles, marketing digital, IA para empresas"
+        canonical="https://innovapymes.com/servicios"
+      />
       {/* Fondo de partículas */}
       <ParticleBackground 
         density={60} 

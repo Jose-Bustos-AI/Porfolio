@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://innovapymes.com/sitemap.xml
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /labs/admin/
+
+# Allow all search engines to crawl the site
+Crawl-delay: 1
