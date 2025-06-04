@@ -249,7 +249,7 @@ const Navbar: React.FC = () => {
                 className="font-space font-bold text-xl md:text-2xl text-white"
                 variants={textVariants}
               >
-                Innovapyme
+                Innovapymes
               </motion.span>
             </motion.div>
           </Link>

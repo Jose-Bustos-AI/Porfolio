@@ -460,7 +460,7 @@ const Verticales: React.FC = () => {
       <footer className="glass border-t border-white/10 relative z-10">
         <div className="container mx-auto px-4 md:px-8 py-8">
           <div className="text-center text-gray-400">
-            <p>© 2025 Innovapyme. Todos los derechos reservados.</p>
+            <p>© 2025 Innovapymes. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

@@ -653,7 +653,7 @@ const LabsAdmin: React.FC = () => {
       <footer className="glass border-t border-white/10 relative z-10 mt-auto">
         <div className="container mx-auto px-4 md:px-8 py-6">
           <div className="text-center text-gray-400">
-            <p>© 2025 Innovapyme Labs. Panel de Administración.</p>
+            <p>© 2025 Innovapymes Labs. Panel de Administración.</p>
           </div>
         </div>
       </footer>

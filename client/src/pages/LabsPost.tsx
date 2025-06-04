@@ -246,7 +246,7 @@ const LabsPost: React.FC = () => {
                     if (navigator.share) {
                       navigator.share({
                         title: post.title,
-                        text: 'Mira este artículo de Innovapyme Labs',
+                        text: 'Mira este artículo de Innovapymes Labs',
                         url: window.location.href,
                       });
                     } else {
@@ -288,7 +288,7 @@ const LabsPost: React.FC = () => {
       <footer className="glass border-t border-white/10 relative z-10 mt-auto">
         <div className="container mx-auto px-4 md:px-8 py-8">
           <div className="text-center text-gray-400">
-            <p>© 2025 Innovapyme Labs. Todos los derechos reservados.</p>
+            <p>© 2025 Innovapymes Labs. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
