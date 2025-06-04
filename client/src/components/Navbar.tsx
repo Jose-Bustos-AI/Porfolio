@@ -225,14 +225,21 @@ const Navbar: React.FC = () => {
               whileHover="hover"
             >
               <motion.div 
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00EEFF] to-[#0088FF] neon-border-blue flex items-center justify-center"
+                className="w-10 h-10 flex items-center justify-center relative"
                 variants={logoVariants}
               >
-                <span className="font-space font-bold text-[#050816]">IP</span>
+                <img 
+                  src="/logo.png" 
+                  alt="Innovapymes Logo" 
+                  className="w-full h-full object-contain"
+                />
                 
                 {/* Glow effect */}
                 <motion.div 
-                  className="absolute inset-0 rounded-full bg-[#00EEFF] blur-lg opacity-30 z-0"
+                  className="absolute inset-0 blur-lg opacity-30 z-0"
+                  style={{
+                    background: "radial-gradient(circle, rgba(98, 217, 87, 0.6) 0%, rgba(230, 86, 22, 0.6) 100%)"
+                  }}
                   animate={{ 
                     opacity: [0.3, 0.6, 0.3],
                     scale: [1, 1.2, 1]

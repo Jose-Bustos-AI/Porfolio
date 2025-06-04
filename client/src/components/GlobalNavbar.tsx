@@ -50,9 +50,23 @@ const GlobalNavbar: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00EEFF] to-[#0088FF] flex items-center justify-center">
-                <span className="font-bold text-[#050816]">IP</span>
-              </div>
+              <motion.div 
+                className="w-10 h-10 flex items-center justify-center"
+                animate={{ 
+                  filter: [
+                    "drop-shadow(0 0 10px rgba(98, 217, 87, 0.5))",
+                    "drop-shadow(0 0 20px rgba(230, 86, 22, 0.5))",
+                    "drop-shadow(0 0 10px rgba(98, 217, 87, 0.5))"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <img 
+                  src="/logo.png" 
+                  alt="Innovapymes Logo" 
+                  className="w-full h-full object-contain"
+                />
+              </motion.div>
               <span className="font-bold text-xl md:text-2xl text-white">
                 Innovapymes
               </span>
