@@ -51,7 +51,7 @@ const GlobalNavbar: React.FC = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-10 h-10 flex items-center justify-center"
+                className="w-12 h-12 flex items-center justify-center"
                 animate={{ 
                   filter: [
                     "drop-shadow(0 0 10px rgba(98, 217, 87, 0.5))",

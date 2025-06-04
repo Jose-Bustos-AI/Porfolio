@@ -225,7 +225,7 @@ const Navbar: React.FC = () => {
               whileHover="hover"
             >
               <motion.div 
-                className="w-10 h-10 flex items-center justify-center relative"
+                className="w-12 h-12 flex items-center justify-center relative"
                 variants={logoVariants}
               >
                 <svg 
