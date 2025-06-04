@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Link } from 'wouter';
 import ParticleBackground from '@/components/ParticleBackground';
+import SEOHead from '@/components/SEOHead';
 
 // Definición del tipo para cada vertical
 interface Vertical {
@@ -175,6 +176,12 @@ const Verticales: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#030015] text-white overflow-hidden">
+      <SEOHead 
+        title="Verticales Especializadas - Innovapymes"
+        description="Soluciones de IA especializadas para restaurantes (InnovaGastro), salones de belleza (InnovaBeauty), estudios de tatuajes (InnovaTattoo), gimnasios (InnovaFit), inmobiliarias (InnovaRealty) y más."
+        keywords="InnovaGastro, InnovaBeauty, InnovaTattoo, InnovaFit, InnovaRealty, InnovaLogic, restaurantes, salones belleza, estudios tatuajes, gimnasios, inmobiliarias, automatización"
+        canonical="https://innovapymes.com/verticales"
+      />
       {/* Fondo con partículas */}
       <div className="fixed inset-0 z-0">
         <ParticleBackground id="particle-background" connectLines glowEffect density={50} />

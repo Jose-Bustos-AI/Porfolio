@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
 import AdminAuthModal from '../components/AdminAuthModal';
 import NewsletterModal from '../components/NewsletterModal';
+import SEOHead from '@/components/SEOHead';
 
 // Definición del tipo para cada post
 interface Post {
@@ -211,6 +212,12 @@ const Labs: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#030015] text-white overflow-hidden">
+      <SEOHead 
+        title="Innovapymes Labs - Blog de IA y Tecnología"
+        description="Descubre las últimas tendencias en inteligencia artificial, automatización y tecnología para PyMEs. Artículos técnicos, casos de éxito y guías prácticas de implementación."
+        keywords="blog IA, inteligencia artificial, automatización, tecnología PyMEs, casos de éxito, innovación empresarial, transformación digital"
+        canonical="https://innovapymes.com/labs"
+      />
       {/* Fondo con partículas */}
       <div className="fixed inset-0 z-0">
         <ParticleBackground id="particle-background" connectLines glowEffect density={50} />
