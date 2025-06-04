@@ -51,7 +51,7 @@ const GlobalNavbar: React.FC = () => {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-12 h-12 flex items-center justify-center"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-sm border border-white/10"
                 animate={{ 
                   filter: [
                     "drop-shadow(0 0 10px rgba(98, 217, 87, 0.5))",
@@ -64,7 +64,7 @@ const GlobalNavbar: React.FC = () => {
                 <img 
                   src="https://tullsnkraofthczzuxtx.supabase.co/storage/v1/object/public/imagenes//Logo_innovaPymes.png.png" 
                   alt="Innovapymes Logo" 
-                  className="w-full h-full object-contain"
+                  className="w-10 h-10 object-contain rounded-full"
                 />
               </motion.div>
               <span className="font-bold text-xl md:text-2xl text-white">
