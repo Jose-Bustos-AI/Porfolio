@@ -97,7 +97,7 @@ const IndustryContent: React.FC<IndustryContentProps> = ({ title, description, i
         <div className="rounded-xl overflow-hidden">
           <img 
             src={image} 
-            alt={`Innovapyme soluciones para ${title}`} 
+            alt={`Innovapymes soluciones para ${title}`} 
             className="w-full h-auto object-cover rounded-xl transition-transform duration-500 hover:scale-105"
           />
         </div>

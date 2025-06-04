@@ -54,7 +54,7 @@ const GlobalNavbar: React.FC = () => {
                 <span className="font-bold text-[#050816]">IP</span>
               </div>
               <span className="font-bold text-xl md:text-2xl text-white">
-                Innovapyme
+                Innovapymes
               </span>
             </motion.div>
           </Link>

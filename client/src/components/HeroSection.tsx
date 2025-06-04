@@ -422,7 +422,7 @@ const HeroSection: React.FC = () => {
             className="text-[#CCCCCC] text-lg md:text-xl mb-12 max-w-3xl mx-auto backdrop-blur-sm bg-[#050816]/50 py-2 rounded-lg"
             variants={textVariants}
           >
-            En <span className="font-bold text-white">Innovapyme</span> creamos soluciones tecnológicas disruptivas que impulsan 
+            En <span className="font-bold text-white">Innovapymes</span> creamos soluciones tecnológicas disruptivas que impulsan 
             el crecimiento de pequeñas y medianas empresas.
           </motion.p>
           

@@ -80,7 +80,7 @@ const AboutSection: React.FC = () => {
               className="text-[#CCCCCC] mb-8"
               variants={itemVariants}
             >
-              En <span className="text-white font-semibold">Innovapyme</span> convertimos ideas en aplicaciones, 
+              En <span className="text-white font-semibold">Innovapymes</span> convertimos ideas en aplicaciones, 
               problemas en procesos automáticos y negocios tradicionales en empresas inteligentes. 
               Somos una compañía tecnológica con alma emprendedora, creada para revolucionar la forma 
               en la que operan las pequeñas y medianas empresas.
@@ -127,7 +127,7 @@ const AboutSection: React.FC = () => {
             >
               <img 
                 src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-                alt="Equipo de Innovapyme trabajando" 
+                alt="Equipo de Innovapymes trabajando" 
                 className="w-full h-auto rounded-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/80 to-transparent"></div>
