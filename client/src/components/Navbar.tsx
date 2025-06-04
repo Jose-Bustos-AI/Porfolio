@@ -228,11 +228,67 @@ const Navbar: React.FC = () => {
                 className="w-10 h-10 flex items-center justify-center relative"
                 variants={logoVariants}
               >
-                <img 
-                  src="/logo.png" 
-                  alt="Innovapymes Logo" 
-                  className="w-full h-full object-contain"
-                />
+                <svg 
+                  viewBox="0 0 200 200" 
+                  className="w-full h-full"
+                >
+                  <defs>
+                    <linearGradient id="blueRingMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#00EEFF" />
+                      <stop offset="100%" stopColor="#0088FF" />
+                    </linearGradient>
+                    <linearGradient id="greenRingMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#62d957" />
+                      <stop offset="100%" stopColor="#3fa832" />
+                    </linearGradient>
+                    <linearGradient id="orangeRingMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#E65616" />
+                      <stop offset="100%" stopColor="#cc4915" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Robot head */}
+                  <rect x="70" y="70" width="60" height="60" rx="8" fill="url(#blueRingMain)" />
+                  
+                  {/* Eyes */}
+                  <circle cx="85" cy="90" r="4" fill="#030015" />
+                  <circle cx="115" cy="90" r="4" fill="#030015" />
+                  
+                  {/* Mouth */}
+                  <rect x="90" y="105" width="20" height="3" rx="1.5" fill="#030015" />
+                  
+                  {/* Antenna */}
+                  <circle cx="100" cy="60" r="3" fill="url(#blueRingMain)" />
+                  <rect x="99" y="60" width="2" height="10" fill="url(#blueRingMain)" />
+                  
+                  {/* Orbital rings */}
+                  <g fill="none" strokeWidth="6" strokeLinecap="round">
+                    <motion.path 
+                      d="M 50 100 A 50 50 0 1 1 150 100" 
+                      stroke="url(#blueRingMain)" 
+                      opacity="0.8"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <motion.path 
+                      d="M 30 100 A 70 70 0 0 1 170 100" 
+                      stroke="url(#greenRingMain)" 
+                      opacity="0.7"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                    />
+                    <motion.path 
+                      d="M 170 100 A 70 70 0 0 1 30 100" 
+                      stroke="url(#orangeRingMain)" 
+                      opacity="0.6"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    />
+                  </g>
+                </svg>
                 
                 {/* Glow effect */}
                 <motion.div 
