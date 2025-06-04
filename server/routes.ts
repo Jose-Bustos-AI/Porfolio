@@ -8,16 +8,54 @@ import uploadsRouter from './routes/uploads';
 import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // put application routes here
-  // prefix all routes with /api
+  // Servir sitemap.xml y robots.txt desde el directorio SSG PRIMERO
+  app.get('/sitemap.xml', (req, res) => {
+    const sitemapPath = path.join(process.cwd(), 'dist', 'ssg', 'sitemap.xml');
+    if (fs.existsSync(sitemapPath)) {
+      res.setHeader('Content-Type', 'application/xml');
+      res.sendFile(sitemapPath);
+    } else {
+      res.status(404).send('Sitemap no encontrado');
+    }
+  });
 
-  // use storage to perform CRUD operations on the storage interface
-  // e.g. storage.insertUser(user) or storage.getUserByUsername(username)
+  app.get('/robots.txt', (req, res) => {
+    const robotsPath = path.join(process.cwd(), 'dist', 'ssg', 'robots.txt');
+    if (fs.existsSync(robotsPath)) {
+      res.setHeader('Content-Type', 'text/plain');
+      res.sendFile(robotsPath);
+    } else {
+      res.status(404).send('Robots.txt no encontrado');
+    }
+  });
+
+  // Middleware para servir páginas pre-renderizadas cuando sea apropiado
+  app.use((req, res, next) => {
+    // Solo para rutas principales y cuando el user-agent es un bot
+    const isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(req.get('User-Agent') || '');
+    const mainRoutes = ['/', '/servicios', '/verticales', '/labs'];
+    const isMainRoute = mainRoutes.includes(req.path);
+    
+    if (isBot && isMainRoute && req.method === 'GET') {
+      const ssgPath = path.join(process.cwd(), 'dist', 'ssg');
+      const filePath = req.path === '/' 
+        ? path.join(ssgPath, 'index.html')
+        : path.join(ssgPath, req.path, 'index.html');
+        
+      if (fs.existsSync(filePath)) {
+        log(`Sirviendo página pre-renderizada para bot: ${req.path}`, 'ssg');
+        res.setHeader('Content-Type', 'text/html');
+        res.sendFile(filePath);
+        return;
+      }
+    }
+    next();
+  });
 
   // Configurar rutas de API
   app.use('/api/labs', labsRouter);
   app.use('/api/uploads', uploadsRouter);
-  
+
   // Servir archivos estáticos desde la carpeta public
   app.use('/uploads', (req, res, next) => {
     const staticFilesPath = path.join(process.cwd(), 'public', 'uploads');
