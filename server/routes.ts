@@ -8,6 +8,21 @@ import uploadsRouter from './routes/uploads';
 import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Headers de seguridad
+  app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    
+    // Solo agregar HSTS si estamos en producción con HTTPS
+    if (process.env.NODE_ENV === 'production' && req.secure) {
+      res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    }
+    
+    next();
+  });
+
   // Endpoints SEO como rutas de API para evitar conflictos con Vite
   app.get('/api/seo/sitemap.xml', (req, res) => {
     const sitemapPath = path.join(process.cwd(), 'dist', 'ssg', 'sitemap.xml');
