@@ -30,19 +30,25 @@ const RotatingText: React.FC<{ words: string[]; interval?: number }> = ({ words,
   const controls = useAnimationControls();
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      controls.start({
-        opacity: 0,
-        y: 20,
-        transition: { duration: 0.3 }
-      }).then(() => {
+    if (words.length === 0) return;
+    
+    const timer = setInterval(async () => {
+      try {
+        await controls.start({
+          opacity: 0,
+          y: 20,
+          transition: { duration: 0.3 }
+        });
         setCurrentIndex((prev) => (prev + 1) % words.length);
-        controls.start({
+        await controls.start({
           opacity: 1,
           y: 0,
           transition: { duration: 0.3 }
         });
-      });
+      } catch (error) {
+        // Handle potential unmount issues
+        console.warn('Animation controls error:', error);
+      }
     }, interval);
 
     return () => clearInterval(timer);
