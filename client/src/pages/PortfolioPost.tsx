@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useRoute, useLocation } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
+import { sanitizeHTML } from '@/utils/sanitize';
 
 // Definición del tipo para cada post
 interface Post {
@@ -185,6 +186,8 @@ const PortfolioPost: React.FC = () => {
                 src={post.image_url} 
                 alt={post.title} 
                 className="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
               {/* Fecha en la esquina */}
               <div className="absolute top-6 right-6 z-20 px-4 py-2 rounded-full glass text-sm flex items-center">
@@ -217,10 +220,10 @@ const PortfolioPost: React.FC = () => {
                 </div>
               )}
               
-              {/* Contenido HTML */}
+              {/* Contenido HTML sanitizado */}
               <div 
                 className="prose prose-invert prose-lg max-w-none prose-headings:font-space prose-headings:text-[#E65616] prose-a:text-[#00EEFF] prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHTML(post.content) }}
               />
               
               {/* Botones de acción */}

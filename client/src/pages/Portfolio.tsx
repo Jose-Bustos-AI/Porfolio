@@ -5,6 +5,9 @@ import ParticleBackground from '@/components/ParticleBackground';
 import AdminAuthModal from '../components/AdminAuthModal';
 import NewsletterModal from '../components/NewsletterModal';
 import SEOHead from '@/components/SEOHead';
+import LazyImage from '@/components/LazyImage';
+import { sanitizeHTML } from '@/utils/sanitize';
+import { debounce } from '@/utils/performance';
 
 // Definición del tipo para cada post
 interface Post {
@@ -30,6 +33,9 @@ const Portfolio: React.FC = () => {
   // Estado para el modal de newsletter
   const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  
+  // Estado para tarjeta con hover
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   
   const [, setLocation] = useLocation();
 
@@ -208,8 +214,7 @@ const Portfolio: React.FC = () => {
     };
   }, []);
 
-  // Efecto de hover para las tarjetas
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
 
   return (
     <div className="min-h-screen bg-[#030015] text-white overflow-hidden">
@@ -386,7 +391,7 @@ const Portfolio: React.FC = () => {
                     className="absolute inset-0 bg-gradient-to-t from-[#030015] to-transparent opacity-70 z-10"
                     style={{ backgroundImage: 'linear-gradient(to bottom, transparent, rgba(230,86,22,0.3), #030015)' }}
                   ></div>
-                  <img 
+                  <LazyImage 
                     src={post.image_url} 
                     alt={post.title} 
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
@@ -428,9 +433,9 @@ const Portfolio: React.FC = () => {
                     ></motion.span>
                   </h3>
                   
-                  {/* Extracto del contenido */}
+                  {/* Extracto del contenido sanitizado */}
                   <p className="text-[#CCCCCC] mb-6 flex-grow">
-                    {createExcerpt(post.content)}
+                    {createExcerpt(sanitizeHTML(post.content))}
                   </p>
                   
                   {/* Botón "Leer más" */}
