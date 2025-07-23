@@ -99,16 +99,32 @@ export const requireAdmin = (req: Request, res: Response, next: NextFunction) =>
     });
   }
   
-  // In a real app, you'd verify the token here
-  // For now, we'll just check if it matches our simple admin token
+  // Verify token without exposing sensitive data in logs
   const token = authHeader.substring(7);
-  if (token !== 'innova2024') {
+  const isValidToken = verifyAuthToken(token);
+  
+  if (!isValidToken) {
+    // Log security attempt without exposing the actual token
+    console.warn(`[SECURITY] Invalid authentication attempt from IP: ${req.ip} at ${new Date().toISOString()}`);
     return res.status(403).json({
       error: 'Invalid authentication'
     });
   }
   
   next();
+};
+
+// Secure token verification function
+const verifyAuthToken = (token: string): boolean => {
+  try {
+    // In production, this should verify a JWT or check against a secure hash
+    const EXPECTED_TOKEN = process.env.ADMIN_TOKEN || 'innova2024';
+    return token === EXPECTED_TOKEN;
+  } catch (error) {
+    // Never log the actual token or sensitive data
+    console.error('[SECURITY] Token verification error:', error instanceof Error ? error.message : 'Unknown error');
+    return false;
+  }
 };
 
 // Enhanced rate limiting for different endpoints

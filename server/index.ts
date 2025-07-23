@@ -6,6 +6,31 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { addSecurityHeaders, sanitizeQueryParams } from "./middleware/security";
 
+// Sanitize sensitive data from logs
+const sanitizeLogData = (data: any): any => {
+  if (typeof data !== 'object' || data === null) {
+    return data;
+  }
+  
+  const sensitiveFields = ['password', 'token', 'authorization', 'auth', 'secret', 'key'];
+  const sanitized = { ...data };
+  
+  for (const field of sensitiveFields) {
+    if (field in sanitized) {
+      sanitized[field] = '[REDACTED]';
+    }
+  }
+  
+  // Recursively sanitize nested objects
+  for (const key in sanitized) {
+    if (typeof sanitized[key] === 'object' && sanitized[key] !== null) {
+      sanitized[key] = sanitizeLogData(sanitized[key]);
+    }
+  }
+  
+  return sanitized;
+};
+
 const app = express();
 
 // Security headers
@@ -83,7 +108,9 @@ app.use((req, res, next) => {
     if (path.startsWith("/api")) {
       let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
-        logLine += ` :: ${JSON.stringify(capturedJsonResponse)}`;
+        // Sanitize response data before logging
+        const sanitizedResponse = sanitizeLogData(capturedJsonResponse);
+        logLine += ` :: ${JSON.stringify(sanitizedResponse)}`;
       }
 
       if (logLine.length > 80) {
@@ -102,10 +129,31 @@ app.use((req, res, next) => {
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
+    
+    // Sanitize error messages to prevent information leakage
+    let message = "Internal Server Error";
+    
+    // Only expose safe error messages
+    if (status === 400) {
+      message = "Bad Request";
+    } else if (status === 401) {
+      message = "Unauthorized";
+    } else if (status === 403) {
+      message = "Forbidden";
+    } else if (status === 404) {
+      message = "Not Found";
+    } else if (status === 429) {
+      message = "Too Many Requests";
+    }
+    
+    // Log detailed error server-side without exposing sensitive data
+    console.error(`[ERROR] ${status} - ${err.message} - IP: ${_req.ip} - Path: ${_req.path} - Method: ${_req.method}`);
+    
+    // Never send detailed error info to client in production
+    res.status(status).json({ 
+      error: message,
+      timestamp: new Date().toISOString()
+    });
   });
 
   // importantly only setup vite in development and after

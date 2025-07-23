@@ -12,26 +12,45 @@ const AdminAuthModal: React.FC<AdminAuthModalProps> = ({ isOpen, onClose, onAuth
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Contraseña correcta
-  const correctPassword = 'innova2024';
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
     
-    // Simulamos un pequeño retraso para la verificación
-    setTimeout(() => {
-      if (password === correctPassword) {
-        // Guardamos en localStorage
+    try {
+      // Make secure API call instead of client-side verification
+      const response = await fetch('/api/auth/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        // Store secure session token instead of plain boolean
+        localStorage.setItem('adminToken', data.token);
         localStorage.setItem('isAdmin', 'true');
+        
+        // Clear password from memory
+        setPassword('');
+        
         onAuthenticated();
         onClose();
       } else {
-        setError('Contraseña incorrecta. Por favor, inténtalo de nuevo.');
+        setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
+        // Clear password on error
+        setPassword('');
       }
+    } catch (error) {
+      console.error('Authentication error:', error);
+      setError('Error de conexión. Por favor, inténtalo más tarde.');
+      setPassword('');
+    } finally {
       setIsLoading(false);
-    }, 800); // Simulamos una pequeña demora para que parezca que está verificando
+    }
   };
 
   return (
