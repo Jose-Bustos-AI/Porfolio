@@ -306,13 +306,19 @@ const Portfolio: React.FC = () => {
             className="text-4xl md:text-6xl font-space font-bold mb-6 text-white"
             variants={titleVariants}
           >
-            Innovapymes <span className="text-gradient animate-glow-pulse">Portfolio</span>
+            Jose Bustos – <span className="text-gradient animate-glow-pulse">Portfolio</span>
           </motion.h1>
           <motion.p 
-            className="text-xl text-[#CCCCCC] max-w-3xl mx-auto"
+            className="text-xl text-[#CCCCCC] max-w-3xl mx-auto mb-6"
             variants={titleVariants}
           >
-            Explorando nuevas ideas, tecnologías y soluciones para el futuro de la innovación digital
+            Soluciones reales, resultados medibles y automatización que factura.
+          </motion.p>
+          <motion.p 
+            className="text-lg text-[#CCCCCC]/80 max-w-2xl mx-auto"
+            variants={titleVariants}
+          >
+            ¿Quieres ver el código o probarlo tú mismo? Muchos de estos proyectos están también en mi GitHub.
           </motion.p>
         </motion.div>
 
