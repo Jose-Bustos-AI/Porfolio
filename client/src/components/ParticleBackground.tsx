@@ -38,18 +38,25 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
+
+    
     // Set canvas size
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
       if (parent) {
-        canvas.width = parent.offsetWidth;
-        canvas.height = parent.offsetHeight;
+        const width = parent.offsetWidth || window.innerWidth;
+        const height = parent.offsetHeight || window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
         createParticles();
       }
     };
     
     // Create particles
     const createParticles = () => {
+      if (canvas.width === 0 || canvas.height === 0) return;
+      
       const particleCount = Math.max(50, Math.min(200, density));
       const particles: Particle[] = [];
       const colors = ['#00EEFF', '#BD00FF', '#FF00A0', '#7000FF', '#00FFA3'];
@@ -68,6 +75,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       }
       
       particlesRef.current = particles;
+
     };
     
     // Mouse tracking
@@ -182,14 +190,18 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       animationRef.current = requestAnimationFrame(animate);
     };
     
-    // Initialize
-    resizeCanvas();
+    // Initialize with a slight delay to ensure DOM is ready
+    setTimeout(() => {
+      resizeCanvas();
+      if (particlesRef.current.length > 0) {
+        animationRef.current = requestAnimationFrame(animate);
+
+      }
+    }, 100);
+    
     window.addEventListener('resize', resizeCanvas);
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
-    
-    // Start animation
-    animationRef.current = requestAnimationFrame(animate);
     
     // Cleanup
     return () => {
