@@ -189,9 +189,9 @@ const AboutSection: React.FC = () => {
               }}
             >
               <div className="text-sm font-mono mb-2 text-[#00EEFF]">&lt;code&gt;</div>
-              <div className="text-lg font-bold mb-2">Innovación constante</div>
+              <div className="text-lg font-bold mb-2">Crecimiento garantizado</div>
               <p className="text-sm text-[#CCCCCC]">
-                Adoptamos las últimas tecnologías para garantizar soluciones de vanguardia.
+                No solo implementamos tecnología, creamos soluciones vivas que evolucionan contigo y tu negocio.
               </p>
               <div className="text-sm font-mono mt-2 text-[#00EEFF]">&lt;/code&gt;</div>
             </motion.div>
