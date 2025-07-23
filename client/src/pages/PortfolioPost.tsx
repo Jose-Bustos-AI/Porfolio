@@ -119,7 +119,7 @@ const PortfolioPost: React.FC = () => {
             <Link href="/labs">
               <div className="text-lg font-bold text-white flex items-center cursor-pointer hover:text-[#E65616] transition-colors duration-300">
                 <i className="ri-arrow-left-line mr-2"></i>
-                Volver a Labs
+                Volver a Portfolio
               </div>
             </Link>
             <div className="text-white/80">
@@ -166,7 +166,7 @@ const PortfolioPost: React.FC = () => {
                 onClick={() => setLocation('/portfolio')} 
                 className="px-6 py-3 glass rounded-full hover:bg-white/10 transition-colors"
               >
-                Volver a Labs
+                Volver a Portfolio
               </button>
             </div>
           </div>
@@ -231,7 +231,7 @@ const PortfolioPost: React.FC = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <i className="ri-arrow-left-line mr-2"></i>
-                    Volver a Labs
+                    Volver a Portfolio
                   </motion.div>
                 </Link>
                 
@@ -246,7 +246,7 @@ const PortfolioPost: React.FC = () => {
                     if (navigator.share) {
                       navigator.share({
                         title: post.title,
-                        text: 'Mira este artículo de Innovapymes Labs',
+                        text: 'Mira este artículo de Jose Bustos',
                         url: window.location.href,
                       });
                     } else {
@@ -288,7 +288,7 @@ const PortfolioPost: React.FC = () => {
       <footer className="glass border-t border-white/10 relative z-10 mt-auto">
         <div className="container mx-auto px-4 md:px-8 py-8">
           <div className="text-center text-gray-400">
-            <p>© 2025 Innovapymes Labs. Todos los derechos reservados.</p>
+            <p>© 2025 Jose Bustos. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>

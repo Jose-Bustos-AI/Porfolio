@@ -302,7 +302,7 @@ const PortfolioAdmin: React.FC = () => {
             <Link href="/labs">
               <div className="text-lg font-bold text-white flex items-center cursor-pointer hover:text-[#E65616] transition-colors duration-300">
                 <i className="ri-arrow-left-line mr-2"></i>
-                Volver a Labs
+                Volver a Portfolio
               </div>
             </Link>
             <div className="text-white/80 flex items-center space-x-6">
@@ -333,7 +333,7 @@ const PortfolioAdmin: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Panel de Administración <span className="text-[#62d957]">Labs</span>
+            Panel de Administración <span className="text-[#62d957]">Portfolio</span>
           </motion.h1>
           
           <motion.p 
@@ -342,7 +342,7 @@ const PortfolioAdmin: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Aquí puedes añadir, editar y gestionar los posts del blog de Labs.
+            Aquí puedes añadir, editar y gestionar los posts del portfolio.
           </motion.p>
           
           {/* Mensajes de éxito o error */}
@@ -653,7 +653,7 @@ const PortfolioAdmin: React.FC = () => {
       <footer className="glass border-t border-white/10 relative z-10 mt-auto">
         <div className="container mx-auto px-4 md:px-8 py-6">
           <div className="text-center text-gray-400">
-            <p>© 2025 Innovapymes Labs. Panel de Administración.</p>
+            <p>© 2025 Jose Bustos. Panel de Administración.</p>
           </div>
         </div>
       </footer>

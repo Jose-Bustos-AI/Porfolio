@@ -107,7 +107,7 @@ const Portfolio: React.FC = () => {
     e.preventDefault();
     if (isAdmin) {
       // Si ya está autenticado, redirigir directamente al panel de admin
-      setLocation('/labs/admin');
+      setLocation("/portfolio/admin");
     } else {
       // Si no está autenticado, mostrar el modal de autenticación
       setIsAuthModalOpen(true);
@@ -117,7 +117,7 @@ const Portfolio: React.FC = () => {
   // Función para manejar la autenticación exitosa
   const handleAuthenticated = () => {
     setIsAdmin(true);
-    setLocation('/labs/admin');
+    setLocation("/portfolio/admin");
   };
   
   // Función para cerrar sesión
@@ -213,10 +213,10 @@ const Portfolio: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#030015] text-white overflow-hidden">
       <SEOHead 
-        title="Innovapymes Labs - Blog de IA y Tecnología"
-        description="Descubre las últimas tendencias en inteligencia artificial, automatización y tecnología para PyMEs. Artículos técnicos, casos de éxito y guías prácticas de implementación."
-        keywords="blog IA, inteligencia artificial, automatización, tecnología PyMEs, casos de éxito, innovación empresarial, transformación digital"
-        canonical="https://innovapymes.com/labs"
+        title="Jose Bustos - Portfolio de IA y Automatización"
+        description="Descubre mis proyectos de inteligencia artificial, automatización y tecnología. Casos reales, implementaciones exitosas y soluciones personalizadas que generan resultados."
+        keywords="Jose Bustos, portfolio IA, inteligencia artificial, automatización, agentes de voz, casos de éxito, proyectos reales, desarrollo personalizado"
+        canonical="https://bustos.innovapymes.ai/portfolio"
       />
       {/* Fondo con partículas */}
       <div className="fixed inset-0 z-0">
@@ -263,7 +263,7 @@ const Portfolio: React.FC = () => {
                 {isAdmin ? (
                   <>
                     <a 
-                      href="/labs/admin"
+                      href="/portfolio/admin"
                       onClick={handleAdminClick}
                       className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center mr-4"
                     >
@@ -307,7 +307,7 @@ const Portfolio: React.FC = () => {
             className="text-4xl md:text-6xl font-space font-bold mb-6 text-white"
             variants={titleVariants}
           >
-            Innovapymes <span className="text-gradient animate-glow-pulse">Labs</span>
+            Innovapymes <span className="text-gradient animate-glow-pulse">Portfolio</span>
           </motion.h1>
           <motion.p 
             className="text-xl text-[#CCCCCC] max-w-3xl mx-auto"
@@ -429,7 +429,7 @@ const Portfolio: React.FC = () => {
                   </p>
                   
                   {/* Botón "Leer más" */}
-                  <Link href={`/labs/${post.id}`}>
+                  <Link href={`/portfolio/${post.id}`}>
                     <motion.div 
                       className="inline-flex items-center justify-center px-5 py-3 text-base font-medium rounded-full w-full relative overflow-hidden hover-shine cursor-pointer"
                       whileHover={{ scale: 1.02 }}
@@ -478,7 +478,7 @@ const Portfolio: React.FC = () => {
       <footer className="glass border-t border-white/10 relative z-10">
         <div className="container mx-auto px-4 md:px-8 py-8">
           <div className="text-center text-gray-400">
-            <p>© 2025 Innovapymes Labs. Todos los derechos reservados.</p>
+            <p>© 2025 Jose Bustos. Todos los derechos reservados.</p>
           </div>
         </div>
       </footer>
