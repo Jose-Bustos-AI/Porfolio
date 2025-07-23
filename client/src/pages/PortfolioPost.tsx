@@ -10,6 +10,7 @@ interface Post {
   content: string;
   image_url: string;
   video_url?: string;
+  github_url?: string;
   created_at: string;
 }
 
@@ -224,7 +225,7 @@ const PortfolioPost: React.FC = () => {
               
               {/* Botones de acción */}
               <div className="mt-10 flex flex-wrap gap-6 justify-end">
-                <Link href="/labs">
+                <Link href="/portfolio">
                   <motion.div 
                     className="px-6 py-3 glass rounded-full cursor-pointer flex items-center"
                     whileHover={{ scale: 1.05 }}
@@ -235,49 +236,39 @@ const PortfolioPost: React.FC = () => {
                   </motion.div>
                 </Link>
                 
-                <motion.a 
-                  href="#share"
-                  className="px-6 py-3 rounded-full relative overflow-hidden hover-shine cursor-pointer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    // Función de compartir
-                    if (navigator.share) {
-                      navigator.share({
-                        title: post.title,
-                        text: 'Mira este artículo de Jose Bustos',
-                        url: window.location.href,
-                      });
-                    } else {
-                      // Copiar al portapapeles si Web Share API no está disponible
-                      navigator.clipboard.writeText(window.location.href);
-                      alert('Enlace copiado al portapapeles');
-                    }
-                  }}
-                >
-                  {/* Fondo con gradiente animado */}
-                  <motion.div 
-                    className="absolute inset-0 z-0"
-                    style={{ 
-                      background: 'linear-gradient(90deg, #E65616, #62d957, #E65616)',
-                      backgroundSize: '200% 100%'
-                    }}
-                    animate={{ 
-                      backgroundPosition: ['0% 0%', '100% 0%', '0% 0%']
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      ease: 'linear', 
-                      repeat: Infinity 
-                    }}
-                  ></motion.div>
-                  
-                  <span className="relative z-10 font-bold text-black flex items-center">
-                    <i className="ri-share-line mr-2"></i>
-                    Compartir
-                  </span>
-                </motion.a>
+                {/* Botón de GitHub - solo aparece si hay URL de GitHub */}
+                {post.github_url && (
+                  <motion.a 
+                    href={post.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 rounded-full relative overflow-hidden hover-shine cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {/* Fondo con gradiente animado */}
+                    <motion.div 
+                      className="absolute inset-0 z-0"
+                      style={{ 
+                        background: 'linear-gradient(90deg, #E65616, #62d957, #E65616)',
+                        backgroundSize: '200% 100%'
+                      }}
+                      animate={{ 
+                        backgroundPosition: ['0% 0%', '100% 0%', '0% 0%']
+                      }}
+                      transition={{ 
+                        duration: 3, 
+                        ease: 'linear', 
+                        repeat: Infinity 
+                      }}
+                    ></motion.div>
+                    
+                    <span className="relative z-10 font-bold text-black flex items-center">
+                      <i className="ri-github-line mr-2"></i>
+                      GitHub
+                    </span>
+                  </motion.a>
+                )}
               </div>
             </motion.div>
           </motion.div>

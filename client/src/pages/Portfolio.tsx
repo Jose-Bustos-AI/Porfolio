@@ -13,6 +13,7 @@ interface Post {
   content: string;
   image_url: string;
   video_url?: string;
+  github_url?: string;
   created_at: string;
 }
 

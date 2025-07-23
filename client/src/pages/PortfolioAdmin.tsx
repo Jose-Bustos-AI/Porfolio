@@ -11,6 +11,7 @@ interface Post {
   content: string;
   image_url: string;
   video_url?: string;
+  github_url?: string;
   created_at: string;
 }
 
@@ -28,7 +29,8 @@ const PortfolioAdmin: React.FC = () => {
     title: '',
     content: '',
     image_url: '',
-    video_url: ''
+    video_url: '',
+    github_url: ''
   });
 
   // Redirección
@@ -87,7 +89,8 @@ const PortfolioAdmin: React.FC = () => {
       title: post.title,
       content: post.content,
       image_url: post.image_url,
-      video_url: post.video_url || ''
+      video_url: post.video_url || '',
+      github_url: post.github_url || ''
     });
     setEditingPostId(post.id);
     
@@ -146,7 +149,8 @@ const PortfolioAdmin: React.FC = () => {
       title: '',
       content: '',
       image_url: '',
-      video_url: ''
+      video_url: '',
+      github_url: ''
     });
     setEditingPostId(null);
   };
@@ -431,6 +435,22 @@ const PortfolioAdmin: React.FC = () => {
                   placeholder="https://www.youtube.com/embed/video-id"
                 />
                 <p className="text-xs text-[#CCCCCC] mt-1">Use el formato embed para videos de YouTube o Vimeo</p>
+              </div>
+
+              <div className="mb-6">
+                <label htmlFor="github_url" className="block text-sm font-medium mb-2">
+                  URL de GitHub (opcional)
+                </label>
+                <input 
+                  type="url"
+                  id="github_url"
+                  name="github_url"
+                  value={formData.github_url}
+                  onChange={handleChange}
+                  className="w-full bg-[#030015]/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-[#62d957] transition-all duration-300"
+                  placeholder="https://github.com/usuario/repositorio"
+                />
+                <p className="text-xs text-[#CCCCCC] mt-1">Enlace al repositorio del proyecto en GitHub</p>
               </div>
               
               <div className="mb-6">

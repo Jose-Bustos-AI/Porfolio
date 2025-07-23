@@ -20,6 +20,7 @@ export const posts = pgTable("posts", {
   content: text("content").notNull(),
   image_url: text("image_url").notNull(),
   video_url: text("video_url"),
+  github_url: text("github_url"),
   published: boolean("published").default(true).notNull(),
   created_at: timestamp("created_at").defaultNow().notNull(),
   updated_at: timestamp("updated_at").defaultNow().notNull(),
@@ -31,6 +32,7 @@ export const insertPostSchema = createInsertSchema(posts).pick({
   content: true,
   image_url: true,
   video_url: true,
+  github_url: true,
   published: true,
 });
 
@@ -40,6 +42,7 @@ export const updatePostSchema = createInsertSchema(posts).pick({
   content: true,
   image_url: true,
   video_url: true,
+  github_url: true,
   published: true,
 }).partial();
 
