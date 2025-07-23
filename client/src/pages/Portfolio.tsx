@@ -268,8 +268,7 @@ const Portfolio: React.FC = () => {
                       onClick={handleAdminClick}
                       className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center mr-4"
                     >
-                      <i className="ri-add-circle-line mr-1"></i>
-                      Admin
+                      <i className="ri-add-circle-line"></i>
                     </a>
                     <button
                       onClick={handleLogout}
@@ -285,8 +284,7 @@ const Portfolio: React.FC = () => {
                     onClick={handleAdminClick}
                     className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center"
                   >
-                    <i className="ri-shield-keyhole-line mr-1"></i>
-                    Admin
+                    <i className="ri-shield-keyhole-line"></i>
                   </a>
                 )}
               </div>
