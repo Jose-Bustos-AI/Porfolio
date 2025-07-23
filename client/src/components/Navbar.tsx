@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import logoImage from '@assets/Diseño sin título (2)_1753279783166.png';
 
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -230,8 +229,8 @@ const Navbar: React.FC = () => {
                 variants={logoVariants}
               >
                 <img 
-                  src={logoImage} 
-                  alt="Innovapymes Logo" 
+                  src="/logo.png" 
+                  alt="Jose Bustos Logo" 
                   className="w-10 h-10 object-cover rounded-full relative z-10"
                 />
                 
@@ -257,7 +256,7 @@ const Navbar: React.FC = () => {
                 className="font-space font-bold text-xl md:text-2xl text-white"
                 variants={textVariants}
               >
-                Innovapymes
+                Jose Bustos
               </motion.span>
             </motion.div>
           </Link>
