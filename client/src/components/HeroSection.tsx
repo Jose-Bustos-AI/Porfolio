@@ -246,9 +246,9 @@ const HeroSection: React.FC = () => {
   
   // Rotating words to show different technologies/concepts
   const rotatingWords = [
-    "impulso",
-    "transformo",
-    "potencio"
+    "Impulso",
+    "Transformo",
+    "Potencio"
   ];
 
   return (
@@ -425,11 +425,11 @@ const HeroSection: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <ParticleButton href="#servicios" variant="primary">
-              Explorar Servicios
+              Explora mis servicios
             </ParticleButton>
             
             <ParticleButton href="#contacto" variant="secondary" delay={0.1}>
-              Contáctanos
+              Hablemos
             </ParticleButton>
           </div>
         </motion.div>
