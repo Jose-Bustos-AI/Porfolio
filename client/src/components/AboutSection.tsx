@@ -41,9 +41,9 @@ const AboutSection: React.FC = () => {
   };
   
   const stats = [
-    { value: "+500", label: "Proyectos Completados", color: "blue" },
-    { value: "98%", label: "Clientes Satisfechos", color: "purple" },
-    { value: "24/7", label: "Soporte Técnico", color: "pink" }
+    { value: "+10", label: "Soluciones SaaS y automatizaciones lanzadas", color: "blue" },
+    { value: "100%", label: "Proyectos con impacto en facturación", color: "purple" },
+    { value: "24/7", label: "Bots y sistemas trabajando para tu empresa", color: "pink" }
   ];
 
   return (
