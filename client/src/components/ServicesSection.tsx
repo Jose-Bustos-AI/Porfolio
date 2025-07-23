@@ -290,9 +290,9 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <section id="servicios" className="py-20 md:py-32 relative overflow-hidden">
+    <section id="servicios" className="py-20 md:py-32 relative overflow-hidden z-10">
       {/* Background effect */}
-      <div className="absolute w-full h-full bg-[#050816] z-0"></div>
+      <div className="absolute w-full h-full bg-[#050816]/80 z-0"></div>
       <div className="absolute left-0 top-1/4 w-1/2 h-1/2 bg-[#BD00FF]/5 blur-3xl z-0"></div>
       
       <div className="container mx-auto px-6 md:px-16 relative z-10">
