@@ -246,11 +246,9 @@ const HeroSection: React.FC = () => {
   
   // Rotating words to show different technologies/concepts
   const rotatingWords = [
-    "transformamos",
-    "innovamos",
-    "potenciamos", 
-    "digitalizamos",
-    "aceleramos"
+    "impulso",
+    "transformo",
+    "potencio"
   ];
 
   return (
@@ -422,8 +420,7 @@ const HeroSection: React.FC = () => {
             className="text-[#CCCCCC] text-lg md:text-xl mb-12 max-w-3xl mx-auto backdrop-blur-sm bg-[#050816]/50 py-2 rounded-lg"
             variants={textVariants}
           >
-            En <span className="font-bold text-white">Jose Bustos</span> creamos soluciones tecnológicas disruptivas que impulsan 
-            el crecimiento de pequeñas y medianas empresas.
+            Soy Jose Bustos, experto en Inteligencia Artificial. Creo soluciones que multiplican tus ventas, automatizan tu negocio y te ponen por delante de la competencia.
           </motion.p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-6">
