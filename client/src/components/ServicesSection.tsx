@@ -204,7 +204,7 @@ const ServicesSection: React.FC = () => {
     {
       icon: "smartphone-line",
       title: "Apps Inteligentes",
-      description: "Desarrollamos aplicaciones web y móviles adaptadas a cada sector, con funcionalidades pensadas para captar clientes, automatizar procesos y aumentar tus ingresos desde el primer día.",
+      description: "Desarrollo aplicaciones web y móviles adaptadas a cada sector, con funcionalidades pensadas para captar clientes, automatizar procesos y aumentar tus ingresos desde el primer día.",
       features: [
         "Apps progresivas y móviles 100% personalizadas",
         "Panel de gestión adaptado a cada negocio",
@@ -215,7 +215,7 @@ const ServicesSection: React.FC = () => {
     {
       icon: "global-line",
       title: "Web con IA",
-      description: "Webs inteligentes que no solo se ven bien, sino que trabajan por ti. Diseñadas para atraer, convertir y automatizar tareas sin que muevas un dedo.",
+      description: "Webs inteligentes que no solo se ven bien, sino que trabajan por ti. Diseño para atraer, convertir y automatizar tareas sin que muevas un dedo.",
       features: [
         "Generación y publicación automática de contenido para SEO local",
         "Chatbot integrado para atención, reservas o ventas 24/7",
@@ -226,7 +226,7 @@ const ServicesSection: React.FC = () => {
     {
       icon: "settings-3-line",
       title: "Automatizaciones",
-      description: "Automatizamos procesos repetitivos con flujos listos para usar o soluciones a medida. Ahorra tiempo, reduce errores y escala tu negocio.",
+      description: "Automatizo procesos repetitivos con flujos listos para usar o soluciones a medida. Ahorra tiempo, reduce errores y escala tu negocio.",
       features: [
         "+400 plantillas con n8n",
         "Bots de WhatsApp, email y RRSS",
@@ -248,7 +248,7 @@ const ServicesSection: React.FC = () => {
     {
       icon: "cloud-line",
       title: "SaaS a Medida",
-      description: "Creamos plataformas SaaS personalizadas para escalar tu idea, digitalizar procesos o lanzar un nuevo modelo de negocio.",
+      description: "Creo plataformas SaaS personalizadas para escalar tu idea, digitalizar procesos o lanzar un nuevo modelo de negocio.",
       features: [
         "Área de usuario, pagos y suscripciones",
         "Control de acceso por roles",
@@ -259,7 +259,7 @@ const ServicesSection: React.FC = () => {
     {
       icon: "dashboard-line",
       title: "Paneles Inteligentes",
-      description: "Diseñamos paneles de reservas, fidelización y automatización para controlar todo tu negocio desde un solo lugar.",
+      description: "Diseño paneles de reservas, fidelización y automatización para controlar todo tu negocio desde un solo lugar.",
       features: [
         "Panel de reservas multicanal",
         "Email marketing automático con IA",
