@@ -255,26 +255,56 @@ const VerticalsSection: React.FC = () => {
     },
     development: {
       title: 'Desarrollo',
-      description: 'Aplicaciones web y móviles a medida con tecnologías modernas, diseño responsivo y funcionalidades específicas para tu modelo de negocio.',
+      description: 'Utilizo el stack más moderno y probado para que tu producto salga al mercado antes que nadie y empiece a facturar desde el primer día.',
       image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'code-line',
-          title: 'Apps Personalizadas',
-          description: 'Desarrollo completo de aplicaciones web y móviles con funcionalidades específicas, diseño único y total adaptación a tus procesos.',
-          color: 'orange'
-        },
-        {
-          icon: 'smartphone-line',
-          title: 'PWA & Mobile',
-          description: 'Aplicaciones progresivas que funcionan como apps nativas en cualquier dispositivo, con notificaciones push y trabajo offline.',
+          icon: 'window-line',
+          title: 'Winsurf',
+          description: 'Entorno moderno y ágil para crear aplicaciones web y móviles de forma rápida, eficiente y a medida.',
           color: 'blue'
         },
         {
-          icon: 'global-line',
-          title: 'APIs & Integraciones',
-          description: 'Conexión perfecta entre sistemas existentes y nuevas funcionalidades mediante APIs robustas y documentación completa.',
+          icon: 'cursor-line',
+          title: 'Cursor',
+          description: 'Editor inteligente potenciado por IA que acelera el desarrollo, ayuda a detectar errores y sugiere código de forma proactiva.',
+          color: 'purple'
+        },
+        {
+          icon: 'heart-line',
+          title: 'Lovable',
+          description: 'Plataforma perfecta para prototipar, validar y testear ideas de producto digital antes de pasar a desarrollo completo. Ideal para ahorrar tiempo y dinero.',
+          color: 'pink'
+        },
+        {
+          icon: 'refresh-line',
+          title: 'Replicate',
+          description: 'Integro modelos avanzados y APIs de inteligencia artificial en tus productos, facilitando funcionalidades IA de última generación en tus soluciones.',
           color: 'green'
+        },
+        {
+          icon: 'cloud-line',
+          title: 'Replit',
+          description: 'Entorno colaborativo en la nube para desarrollar, probar y lanzar proyectos en cualquier lenguaje y desde cualquier lugar, ideal para equipos y MVPs rápidos.',
+          color: 'orange'
+        },
+        {
+          icon: 'layout-line',
+          title: 'Next.js',
+          description: 'Framework robusto para construir webs y apps escalables, ultra rápidas y optimizadas para SEO. Perfecto para proyectos modernos y profesionales.',
+          color: 'blue'
+        },
+        {
+          icon: 'reactjs-line',
+          title: 'React',
+          description: 'Librería líder en la industria para crear interfaces de usuario dinámicas, intuitivas y de alto rendimiento. Base de toda app moderna.',
+          color: 'cyan'
+        },
+        {
+          icon: 'flashlight-line',
+          title: 'Vite',
+          description: 'Entorno de desarrollo ultrarrápido, ideal para lanzar proyectos web con máxima eficiencia y una experiencia de desarrollo sin fricciones.',
+          color: 'yellow'
         }
       ]
     },
