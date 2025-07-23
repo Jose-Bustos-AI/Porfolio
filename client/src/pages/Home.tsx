@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
+import VerticalsSection from '@/components/VerticalsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -48,6 +49,7 @@ const Home: React.FC = () => {
       />
       <HeroSection />
       <AboutSection />
+      <VerticalsSection />
       <ContactSection />
       <Footer />
     </div>
