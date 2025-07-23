@@ -65,7 +65,7 @@ const AboutSection: React.FC = () => {
               className="text-3xl md:text-4xl font-space font-bold mb-6"
               variants={itemVariants}
             >
-              Quiénes <span className="text-gradient">Somos</span>
+              Quién <span className="text-gradient">Soy</span>
             </motion.h2>
             
             <motion.p 
