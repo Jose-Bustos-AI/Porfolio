@@ -218,26 +218,38 @@ const VerticalsSection: React.FC = () => {
     },
     voice: {
       title: 'Agentes de Voz',
-      description: 'Asistentes virtuales por voz que manejan llamadas, reservas y atención al cliente 24/7 con tecnología de reconocimiento avanzado.',
-      image: 'https://images.unsplash.com/photo-1589254066213-a0c7dc853511?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      description: 'Elijo la herramienta de voz ideal para que tu negocio venda, atienda y cierre clientes aunque tú estés durmiendo.',
+      image: 'https://images.unsplash.com/photo-1553484771-cc0d9b8c2b33?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
           icon: 'phone-line',
-          title: 'Atención Telefónica',
-          description: 'Asistentes que responden llamadas, gestionan citas y resuelven consultas frecuentes con voz natural y comprensión contextual.',
+          title: 'Vapi',
+          description: 'Convierte tu web o app en un call center inteligente: agentes de voz para atención, reservas y ventas automáticas, siempre activos.',
           color: 'pink'
         },
         {
-          icon: 'calendar-line',
-          title: 'Reservas por Voz',
-          description: 'Sistema completo de gestión de citas que permite a los clientes reservar, modificar o cancelar mediante comandos de voz naturales.',
+          icon: 'customer-service-2-line',
+          title: 'RetellAI',
+          description: 'Asistentes de voz personalizados y accesibles para tu negocio, listos para atender y resolver sin complicaciones.',
+          color: 'blue'
+        },
+        {
+          icon: 'mic-line',
+          title: 'ElevenLabs',
+          description: 'Voces ultra realistas y naturales. Experiencia premium y humana en todos tus canales de voz.',
+          color: 'purple'
+        },
+        {
+          icon: 'google-line',
+          title: 'Google Speech API',
+          description: 'Reconocimiento de voz preciso para automatizar respuestas, analizar y entender llamadas.',
           color: 'orange'
         },
         {
-          icon: 'customer-service-2-line',
-          title: 'Soporte Multiidioma',
-          description: 'Agentes que hablan múltiples idiomas y se adaptan al acento local para brindar una experiencia personalizada a cada cliente.',
-          color: 'blue'
+          icon: 'sound-module-line',
+          title: 'Whisper (OpenAI)',
+          description: 'Transcribe audio a texto de forma rápida y precisa, perfecto para convertir llamadas y notas de voz en datos útiles.',
+          color: 'green'
         }
       ]
     },
