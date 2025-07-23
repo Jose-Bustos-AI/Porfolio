@@ -150,26 +150,32 @@ const VerticalsSection: React.FC = () => {
   const tabContentMap: Record<string, IndustryContentProps> = {
     llm: {
       title: 'LLM',
-      description: 'Integración y personalización de modelos de lenguaje grandes para automatizar tareas cognitivas complejas y mejorar la productividad empresarial.',
+      description: 'No adapto tu negocio a un modelo: elijo el LLM perfecto para tu caso, garantizando siempre la mejor solución en rendimiento, precio y resultados.',
       image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'brain-line',
-          title: 'Chatbots Inteligentes',
-          description: 'Asistentes virtuales con IA avanzada que entienden contexto, resuelven consultas complejas y aprenden de cada interacción para mejorar continuamente.',
+          icon: 'openai-line',
+          title: 'OpenAI',
+          description: 'Muy buena para generación de texto, automatización de conversaciones y respuestas fiables. Ideal para chatbots, asistentes y procesos donde la calidad y naturalidad del lenguaje es clave.',
           color: 'blue'
         },
         {
-          icon: 'file-text-line',
-          title: 'Generación de Contenido',
-          description: 'Automatización de creación de textos, emails, reportes y documentos personalizados usando tu tono de voz y estilo específico.',
+          icon: 'cpu-line',
+          title: 'Anthropic',
+          description: 'Perfecta para código, generación de documentos complejos y análisis profundo de información. Excelente para empresas que necesitan IA capaz de entender instrucciones largas, procesar datos o redactar informes y papers técnicos.',
           color: 'purple'
         },
         {
-          icon: 'search-line',
-          title: 'Análisis de Datos',
-          description: 'Procesamiento inteligente de información empresarial para extraer insights valiosos y generar reportes automatizados.',
+          icon: 'google-line',
+          title: 'Gemini (Google)',
+          description: 'Versátil y económica, funciona genial para tareas de análisis, búsqueda de información, generación de resúmenes y automatización ligera. Recomendada para proyectos donde la eficiencia y el coste son importantes.',
           color: 'pink'
+        },
+        {
+          icon: 'code-s-slash-line',
+          title: 'Mistral (Open Source)',
+          description: 'Open source, rápida y gratuita. Ideal para soluciones a medida que requieren personalización total, despliegue propio o ahorro de costes a gran escala. Perfecta para empresas que quieren control absoluto sobre sus datos y modelos.',
+          color: 'green'
         }
       ]
     },
