@@ -307,14 +307,14 @@ const ServicesSection: React.FC = () => {
             className="text-3xl md:text-4xl font-space font-bold mb-6"
             variants={titleVariants}
           >
-            Nuestros <span className="text-gradient">Servicios</span>
+            Así hago que tu negocio <span className="text-gradient">facture más</span>
           </motion.h2>
           <motion.p 
             className="text-[#CCCCCC]"
             variants={titleVariants}
           >
-            Ofrecemos soluciones tecnológicas integrales adaptadas a las necesidades específicas de tu negocio,
-            combinando innovación, calidad y resultados medibles.
+            Cada solución que desarrollo está pensada para un solo objetivo: que tu negocio facture más.
+            Aquí nada es genérico: diseño, implemento y automatizo sistemas que aumentan tus ventas, ahorran tiempo y te dejan siempre un paso por delante.
           </motion.p>
         </motion.div>
         
