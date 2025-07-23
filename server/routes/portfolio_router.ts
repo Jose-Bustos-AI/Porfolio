@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { postsStorage } from '../storage/labs';
+import { postsStorage } from '../storage/portfolio';
 import { insertPostSchema, updatePostSchema } from '@shared/schema';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';

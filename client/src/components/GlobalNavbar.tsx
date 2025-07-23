@@ -7,9 +7,7 @@ const GlobalNavbar: React.FC = () => {
   const [location] = useLocation();
 
   const navItems = [
-    { label: "Servicios", href: "/servicios", color: "purple" },
-    { label: "Verticales", href: "/verticales", color: "orange" },
-    { label: "Labs", href: "/labs", color: "green" }
+    { label: "Portfolio", href: "/portfolio", color: "green" }
   ];
 
   const toggleMobileMenu = () => {
