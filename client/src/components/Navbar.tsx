@@ -229,7 +229,7 @@ const Navbar: React.FC = () => {
                 variants={logoVariants}
               >
                 <img 
-                  src="/logo.png" 
+                  src={`/logo.png?t=${Date.now()}`}
                   alt="Jose Bustos Logo" 
                   className="w-10 h-10 object-cover rounded-full relative z-10"
                 />
