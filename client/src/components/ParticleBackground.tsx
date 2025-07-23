@@ -69,8 +69,8 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
           color: colors[Math.floor(Math.random() * colors.length)],
           speedX: (Math.random() - 0.5) * 2,
           speedY: (Math.random() - 0.5) * 2,
-          alpha: Math.random() * 0.5 + 0.2,
-          minAlpha: Math.random() * 0.1 + 0.1
+          alpha: Math.random() * 0.6 + 0.3,
+          minAlpha: Math.random() * 0.2 + 0.15
         });
       }
       
@@ -166,7 +166,7 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
         // Pulsate opacity
         particle.alpha += Math.random() * 0.01 - 0.005;
         if (particle.alpha < particle.minAlpha) particle.alpha = particle.minAlpha;
-        if (particle.alpha > 0.5) particle.alpha = 0.5;
+        if (particle.alpha > 0.7) particle.alpha = 0.7;
         
         // Apply glow effect
         if (glowEffect) {

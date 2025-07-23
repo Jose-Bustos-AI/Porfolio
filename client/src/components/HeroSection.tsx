@@ -261,7 +261,7 @@ const HeroSection: React.FC = () => {
     <section id="hero" className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
       {/* Enhanced particle effect with more density and glow */}
       <ParticleBackground 
-        density={150} 
+        density={100} 
         glowEffect={true} 
         connectLines={true}
       />
