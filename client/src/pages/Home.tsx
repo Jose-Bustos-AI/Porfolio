@@ -46,7 +46,7 @@ const Home: React.FC = () => {
       {/* Fondo de partículas para toda la página */}
       <div className="fixed inset-0 z-0">
         <ParticleBackground 
-          density={120} 
+          density={140} 
           glowEffect={true} 
           connectLines={true}
         />

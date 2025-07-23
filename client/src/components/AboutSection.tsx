@@ -50,7 +50,7 @@ const AboutSection: React.FC = () => {
   return (
     <section id="quienes-somos" className="py-20 md:py-32 relative overflow-hidden z-10">
       {/* Background effect */}
-      <div className="absolute inset-0 bg-[#0A0A18]/80 z-0"></div>
+      <div className="absolute inset-0 bg-[#0A0A18]/60 z-0"></div>
       <div className="absolute right-0 top-0 w-1/2 h-full bg-[#00EEFF]/5 blur-3xl z-0"></div>
       
       <div className="container mx-auto px-6 md:px-16 relative z-10">

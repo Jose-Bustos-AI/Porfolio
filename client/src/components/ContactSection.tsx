@@ -47,7 +47,7 @@ const ContactSection: React.FC = () => {
   return (
     <section id="contacto" className="py-20 md:py-32 relative overflow-hidden z-10">
       {/* Enhanced background effects with animated gradients */}
-      <div className="absolute inset-0 bg-[#050816]/80 z-0"></div>
+      <div className="absolute inset-0 bg-[#050816]/60 z-0"></div>
       
       {/* Multiple blurred gradient spots with animation */}
       <motion.div 

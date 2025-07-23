@@ -407,7 +407,7 @@ const VerticalsSection: React.FC = () => {
   return (
     <section id="verticales" className="py-20 md:py-32 relative overflow-hidden z-10">
       {/* Background effect */}
-      <div className="absolute inset-0 bg-[#0A0A18]/80 z-0"></div>
+      <div className="absolute inset-0 bg-[#0A0A18]/60 z-0"></div>
       
       {/* Animated background lines */}
       <div className="absolute inset-0 z-0 opacity-10">
