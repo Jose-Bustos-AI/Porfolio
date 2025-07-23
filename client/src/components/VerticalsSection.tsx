@@ -335,26 +335,50 @@ const VerticalsSection: React.FC = () => {
     },
     tools: {
       title: 'Otras Herramientas',
-      description: 'Suite completa de herramientas especializadas para optimizar procesos específicos y mejorar la productividad empresarial.',
+      description: 'Trabajo solo con herramientas de primer nivel para que tu negocio siempre esté listo para vender, escalar y adaptarse al futuro.',
       image: 'https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'image-line',
-          title: 'IA Generativa',
-          description: 'Herramientas para generar imágenes, videos y contenido visual personalizado usando inteligencia artificial avanzada.',
-          color: 'pink'
+          icon: 'bank-card-line',
+          title: 'Stripe',
+          description: 'Plataforma líder para gestionar cobros online y suscripciones de forma sencilla y segura.',
+          color: 'purple'
         },
         {
-          icon: 'file-pdf-line',
-          title: 'Automatización Docs',
-          description: 'Generación automática de contratos, facturas, reportes y documentos legales con plantillas inteligentes y datos dinámicos.',
+          icon: 'container-line',
+          title: 'Docker',
+          description: 'Contenedores para desplegar y escalar proyectos fácilmente, con máxima seguridad y portabilidad.',
+          color: 'blue'
+        },
+        {
+          icon: 'flutter-line',
+          title: 'Flutterflow',
+          description: 'Plataforma visual para crear apps móviles y web de manera rápida y totalmente personalizable.',
+          color: 'cyan'
+        },
+        {
+          icon: 'bar-chart-box-line',
+          title: 'ScoreApp',
+          description: 'Desarrollo ágil de aplicaciones visuales, ideal para MVPs, prototipos o herramientas internas sin necesidad de programar.',
           color: 'orange'
         },
         {
-          icon: 'links-line',
-          title: 'Scraping & APIs',
-          description: 'Extracción automatizada de datos web, monitoreo de competencia y sincronización con plataformas externas.',
+          icon: 'api-line',
+          title: 'APIs Personalizadas',
+          description: 'Conecto y adapto cualquier sistema que ya uses, asegurando integraciones fluidas y automatización total.',
           color: 'green'
+        },
+        {
+          icon: 'webhook-line',
+          title: 'Webhooks',
+          description: 'Automatiza la comunicación entre plataformas y activa procesos en tiempo real sin intervención manual.',
+          color: 'pink'
+        },
+        {
+          icon: 'rocket-line',
+          title: 'Vercel',
+          description: 'Despliegue de proyectos web en la nube, garantizando velocidad, seguridad y alta disponibilidad.',
+          color: 'yellow'
         }
       ]
     }
