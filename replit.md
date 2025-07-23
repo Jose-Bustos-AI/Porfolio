@@ -106,6 +106,12 @@ Innovapymes is a sophisticated full-stack web application specializing in AI and
 
 ```
 Changelog:
+- July 23, 2025. Complete rebranding from "Innovapymes" to "Jose Bustos" personal brand
+  - Eliminated Services and Verticals pages, keeping only Portfolio (renamed from Labs)
+  - Updated navigation structure: Home -> Portfolio -> Contact
+  - Changed API routes from /api/labs to /api/portfolio
+  - Updated all content to first-person singular for personal branding
+  - Added new contact information and social media links
 - July 08, 2025. Initial setup
 ```
 

@@ -14,7 +14,7 @@ interface Post {
   created_at: string;
 }
 
-const LabsAdmin: React.FC = () => {
+const PortfolioAdmin: React.FC = () => {
   // Estados para el formulario y posts existentes
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ const LabsAdmin: React.FC = () => {
     localStorage.removeItem('isAdmin');
     
     // Redirigir a la página principal de Labs
-    setLocation('/labs');
+    setLocation('/portfolio');
     
     // Mensaje de confirmación 
     alert('Has cerrado sesión correctamente.');
@@ -51,7 +51,7 @@ const LabsAdmin: React.FC = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/labs/posts');
+        const response = await fetch('/api/portfolio/posts');
         
         if (!response.ok) {
           throw new Error(`Error al cargar los posts: ${response.status}`);
@@ -104,7 +104,7 @@ const LabsAdmin: React.FC = () => {
     
     try {
       // Llamar a la API para eliminar el post
-      const response = await fetch(`/api/labs/posts/${postId}`, {
+      const response = await fetch(`/api/portfolio/posts/${postId}`, {
         method: 'DELETE',
       });
       
@@ -190,7 +190,7 @@ const LabsAdmin: React.FC = () => {
       
       if (editingPostId) {
         // Actualizar post existente
-        response = await fetch(`/api/labs/posts/${editingPostId}`, {
+        response = await fetch(`/api/portfolio/posts/${editingPostId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ const LabsAdmin: React.FC = () => {
         setSuccess(`Post "${formData.title}" actualizado correctamente.`);
       } else {
         // Crear nuevo post
-        response = await fetch('/api/labs/posts', {
+        response = await fetch('/api/portfolio/posts', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -613,7 +613,7 @@ const LabsAdmin: React.FC = () => {
                       }
                       
                       // Refrescar la lista de posts
-                      const postsResponse = await fetch('/api/labs/posts');
+                      const postsResponse = await fetch('/api/portfolio/posts');
                       const postsData = await postsResponse.json();
                       setPosts(postsData);
                       
@@ -661,4 +661,4 @@ const LabsAdmin: React.FC = () => {
   );
 };
 
-export default LabsAdmin;
+export default PortfolioAdmin;

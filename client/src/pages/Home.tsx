@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
-import ServicesSection from '@/components/ServicesSection';
-import VerticalsSection from '@/components/VerticalsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -43,15 +41,13 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#050816] text-white overflow-hidden">
       <SEOHead 
-        title="Innovapymes - Soluciones de IA y Automatización para PyMEs"
-        description="Transformamos tu negocio con soluciones de IA personalizadas: SaaS, automatización web, chatbots inteligentes y marketing digital para restaurantes, salones, gimnasios, inmobiliarias y más."
-        keywords="IA, automatización, inteligencia artificial, SaaS, desarrollo web, chatbots, marketing digital, restaurantes, salones de belleza, estudios de tatuajes, gimnasios, inmobiliarias, PyMEs"
-        canonical="https://innovapymes.com/"
+        title="Jose Bustos - Experto en IA y Automatización para Empresas"
+        description="Automatiza, escala y gana con soluciones personalizadas de IA y automatización. Desarrollo agentes inteligentes, automatizaciones avanzadas y sistemas que facturan más para tu empresa."
+        keywords="Jose Bustos, IA, automatización, inteligencia artificial, agentes de voz, desarrollo web, chatbots, automatización empresarial, n8n, Make, OpenAI, Vapi"
+        canonical="https://bustos.innovapymes.ai/"
       />
       <HeroSection />
       <AboutSection />
-      <ServicesSection />
-      <VerticalsSection />
       <ContactSection />
       <Footer />
     </div>

@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import path from 'path';
 import fs from 'fs';
-import labsRouter from './routes/labs_router';
+import portfolioRouter from './routes/portfolio_router';
 import uploadsRouter from './routes/uploads';
 import { log } from "./vite";
 
@@ -50,7 +50,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use((req, res, next) => {
     // Solo para rutas principales y cuando el user-agent es un bot
     const isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(req.get('User-Agent') || '');
-    const mainRoutes = ['/', '/servicios', '/verticales', '/labs'];
+    const mainRoutes = ['/', '/portfolio'];
     const isMainRoute = mainRoutes.includes(req.path);
     
     if (isBot && isMainRoute && req.method === 'GET') {
@@ -70,7 +70,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Configurar rutas de API
-  app.use('/api/labs', labsRouter);
+  app.use('/api/portfolio', portfolioRouter);
   app.use('/api/uploads', uploadsRouter);
 
   // Servir archivos estáticos desde la carpeta public

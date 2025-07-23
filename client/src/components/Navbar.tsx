@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     
     // Only track sections if we're on the home page
     if (location === '/') {
-      const sections = ["hero", "quienes-somos", "servicios", "verticales", "contacto"];
+      const sections = ["hero", "contacto"];
       
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -161,9 +161,7 @@ const Navbar: React.FC = () => {
 
   // Navigation items array with colors and styling info
   const navItems = [
-    { label: "Servicios", href: "/servicios", color: "purple" },
-    { label: "Verticales", href: "/verticales", color: "orange" },
-    { label: "Labs", href: "/labs", color: "green" }
+    { label: "Portfolio", href: "/portfolio", color: "green" }
   ];
   
   // Generate dynamic style for menu underline based on color

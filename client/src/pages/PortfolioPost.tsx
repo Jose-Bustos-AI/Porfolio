@@ -13,9 +13,9 @@ interface Post {
   created_at: string;
 }
 
-const LabsPost: React.FC = () => {
+const PortfolioPost: React.FC = () => {
   // Obtener el ID del post desde la URL
-  const [match, params] = useRoute('/labs/:id');
+  const [match, params] = useRoute('/portfolio/:id');
   const [, setLocation] = useLocation();
   const postId = params?.id;
 
@@ -29,7 +29,7 @@ const LabsPost: React.FC = () => {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/labs/posts/${postId}`);
+        const response = await fetch(`/api/portfolio/posts/${postId}`);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -163,7 +163,7 @@ const LabsPost: React.FC = () => {
                 Intentar nuevamente
               </button>
               <button 
-                onClick={() => setLocation('/labs')} 
+                onClick={() => setLocation('/portfolio')} 
                 className="px-6 py-3 glass rounded-full hover:bg-white/10 transition-colors"
               >
                 Volver a Labs
@@ -296,4 +296,4 @@ const LabsPost: React.FC = () => {
   );
 };
 
-export default LabsPost;
+export default PortfolioPost;

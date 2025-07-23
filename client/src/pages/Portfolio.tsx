@@ -16,7 +16,7 @@ interface Post {
   created_at: string;
 }
 
-const Labs: React.FC = () => {
+const Portfolio: React.FC = () => {
   // Estado para almacenar los posts
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
@@ -73,7 +73,7 @@ const Labs: React.FC = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/labs/posts');
+        const response = await fetch('/api/portfolio/posts');
         
         if (!response.ok) {
           throw new Error(`Error al cargar los posts: ${response.status}`);
@@ -506,4 +506,4 @@ const Labs: React.FC = () => {
   );
 };
 
-export default Labs;
+export default Portfolio;

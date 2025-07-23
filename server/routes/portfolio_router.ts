@@ -6,11 +6,11 @@ import { fromZodError } from 'zod-validation-error';
 import fs from 'fs';
 import path from 'path';
 
-// Crear router para las rutas de Labs
-const labsRouter = Router();
+// Crear router para las rutas de Portfolio
+const portfolioRouter = Router();
 
 // GET - Obtener todos los posts
-labsRouter.get('/posts', async (req: Request, res: Response) => {
+portfolioRouter.get('/posts', async (req: Request, res: Response) => {
   try {
     const posts = await postsStorage.getAllPosts();
     res.json(posts);
@@ -21,7 +21,7 @@ labsRouter.get('/posts', async (req: Request, res: Response) => {
 });
 
 // GET - Obtener un post por ID
-labsRouter.get('/posts/:id', async (req: Request, res: Response) => {
+portfolioRouter.get('/posts/:id', async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id);
     
@@ -43,7 +43,7 @@ labsRouter.get('/posts/:id', async (req: Request, res: Response) => {
 });
 
 // POST - Crear un nuevo post
-labsRouter.post('/posts', async (req: Request, res: Response) => {
+portfolioRouter.post('/posts', async (req: Request, res: Response) => {
   try {
     // Validar datos con Zod
     const validatedData = insertPostSchema.parse(req.body);
@@ -68,7 +68,7 @@ labsRouter.post('/posts', async (req: Request, res: Response) => {
 });
 
 // PUT - Actualizar un post existente
-labsRouter.put('/posts/:id', async (req: Request, res: Response) => {
+portfolioRouter.put('/posts/:id', async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id);
     
@@ -103,7 +103,7 @@ labsRouter.put('/posts/:id', async (req: Request, res: Response) => {
 });
 
 // DELETE - Eliminar un post
-labsRouter.delete('/posts/:id', async (req: Request, res: Response) => {
+portfolioRouter.delete('/posts/:id', async (req: Request, res: Response) => {
   try {
     const id = parseInt(req.params.id);
     
@@ -125,7 +125,7 @@ labsRouter.delete('/posts/:id', async (req: Request, res: Response) => {
 });
 
 // POST - Importar posts desde JSON
-labsRouter.post('/posts/import', async (req: Request, res: Response) => {
+portfolioRouter.post('/posts/import', async (req: Request, res: Response) => {
   try {
     // Leer el archivo JSON de posts existente
     const postsFilePath = path.join(process.cwd(), 'data', 'posts.json');
@@ -154,4 +154,4 @@ labsRouter.post('/posts/import', async (req: Request, res: Response) => {
   }
 });
 
-export default labsRouter;
+export default portfolioRouter;

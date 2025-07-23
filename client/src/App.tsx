@@ -7,12 +7,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import GlobalNavbar from "@/components/GlobalNavbar";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
-import Verticales from "@/pages/Verticales";
-import Servicios from "./pages/Servicios";
-// Importaciones para la sección Labs
-import Labs from "./pages/Labs";
-import LabsPost from "./pages/LabsPost";
-import LabsAdmin from "./pages/LabsAdmin";
+// Importaciones para la sección Portfolio (anteriormente Labs)
+import Portfolio from "./pages/Portfolio";
+import PortfolioPost from "./pages/PortfolioPost";
+import PortfolioAdmin from "./pages/PortfolioAdmin";
 
 // Mouse light follower context
 export const MouseContext = createContext<{
@@ -27,11 +25,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/servicios" component={Servicios} />
-      <Route path="/verticales" component={Verticales} />
-      <Route path="/labs/admin" component={LabsAdmin} /> {/* Esta ruta debe ir antes */}
-      <Route path="/labs/:id" component={LabsPost} />
-      <Route path="/labs" component={Labs} />
+      <Route path="/portfolio/admin" component={PortfolioAdmin} /> {/* Esta ruta debe ir antes */}
+      <Route path="/portfolio/:id" component={PortfolioPost} />
+      <Route path="/portfolio" component={Portfolio} />
       <Route component={NotFound} />
     </Switch>
   );
