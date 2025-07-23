@@ -136,164 +136,164 @@ const IndustryContent: React.FC<IndustryContentProps> = ({ title, description, i
 };
 
 const VerticalsSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('gastro');
+  const [activeTab, setActiveTab] = useState('llm');
   
   const tabs = [
-    { id: 'gastro', label: 'InnovaGastro', color: 'orange' },
-    { id: 'beauty', label: 'InnovaBeauty', color: 'purple' },
-    { id: 'tattoo', label: 'InnovaTattoo', color: 'pink' },
-    { id: 'fit', label: 'InnovaFit', color: 'blue' },
-    { id: 'realty', label: 'InnovaRealty', color: 'green' },
-    { id: 'logic', label: 'InnovaLogic', color: 'orange' }
+    { id: 'llm', label: 'LLM', color: 'blue' },
+    { id: 'automation', label: 'Automatización', color: 'purple' },
+    { id: 'voice', label: 'Agentes de Voz', color: 'pink' },
+    { id: 'development', label: 'Desarrollo', color: 'orange' },
+    { id: 'database', label: 'Database', color: 'green' },
+    { id: 'tools', label: 'Otras Herramientas', color: 'blue' }
   ];
   
   const tabContentMap: Record<string, IndustryContentProps> = {
-    gastro: {
-      title: 'InnovaGastro',
-      description: 'Soluciones tecnológicas avanzadas para restaurantes, catering y empresas del sector alimentario con gestión integral.',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    llm: {
+      title: 'LLM',
+      description: 'Integración y personalización de modelos de lenguaje grandes para automatizar tareas cognitivas complejas y mejorar la productividad empresarial.',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'smartphone-line',
-          title: 'App Personalizada',
-          description: 'Una app propia para fidelizar clientes, enviar notificaciones push y generar reseñas automáticas. Crea una comunidad alrededor de tu restaurante y mantén el contacto directo sin depender de terceros.',
-          color: 'orange'
-        },
-        {
-          icon: 'global-line',
-          title: 'Web Inteligente',
-          description: 'Web optimizada para SEO local que publica contenido automáticamente con IA. Aparece en Google, atrae clientes desde tu zona y convierte visitas en reservas reales.',
-          color: 'blue'
-        },
-        {
-          icon: 'settings-3-line',
-          title: 'Automatización',
-          description: 'Automatiza tareas repetitivas como promociones, reseñas o campañas sin esfuerzo. Ahorra tiempo y haz que tu restaurante trabaje incluso cuando tú no estás.',
-          color: 'green'
-        }
-      ]
-    },
-    beauty: {
-      title: 'InnovaBeauty',
-      description: 'Solución digital para salones de belleza, uñas y estéticas que fideliza clientas, mejora la visibilidad online y automatiza tareas clave del negocio.',
-      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-      features: [
-        {
-          icon: 'smartphone-line',
-          title: 'App Personalizada',
-          description: 'Conecta con tus clientas desde el móvil: gestiona citas, envía notificaciones push y activa promociones desde tu propia app. Ideal para fidelizar sin depender de plataformas externas.',
-          color: 'purple'
-        },
-        {
-          icon: 'global-line',
-          title: 'Web Inteligente',
-          description: 'Tu web siempre actualizada con IA: muestra servicios, horarios, promociones y posiciona en Google para captar nuevas clientas. Publicación automática de contenido para mejorar el SEO local.',
-          color: 'pink'
-        },
-        {
-          icon: 'settings-3-line',
-          title: 'Automatizaciones',
-          description: 'Automatiza tareas como recordatorios de cita, envío de reseñas o campañas de fidelización sin hacer nada manual. Más tiempo para atender, menos tiempo gestionando.',
-          color: 'blue'
-        }
-      ]
-    },
-    tattoo: {
-      title: 'InnovaTattoo',
-      description: 'La solución integral para estudios de tatuajes que quieren profesionalizar su negocio, automatizar su gestión y atraer más clientes sin depender de redes sociales ni agendas en papel.',
-      image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-      features: [
-        {
-          icon: 'smartphone-line',
-          title: 'App Personalizada',
-          description: 'Gestión completa de reservas desde el móvil, galería de diseños, notificaciones push y sistema de reseñas. Tu estudio digitalizado en una sola app, directa al cliente.',
-          color: 'pink'
-        },
-        {
-          icon: 'global-line',
-          title: 'Web Inteligente',
-          description: 'Publica diseños, ofertas y novedades de forma automática con IA para mejorar tu SEO local y aparecer en Google. Captación constante sin mover un dedo.',
-          color: 'purple'
-        },
-        {
-          icon: 'settings-3-line',
-          title: 'Automatizaciones',
-          description: 'Recordatorios de cita, seguimiento post-tatuaje y mensajes para generar reseñas automáticamente. Ahorra tiempo y mejora tu reputación online con cada sesión.',
-          color: 'blue'
-        }
-      ]
-    },
-    fit: {
-      title: 'InnovaFit',
-      description: 'Solución integral para gimnasios, entrenadores y centros fitness que quieren escalar su negocio, automatizar la gestión y ofrecer un servicio profesional desde el móvil.',
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-      features: [
-        {
-          icon: 'smartphone-line',
-          title: 'App Personalizada',
-          description: 'Sistema completo con reservas de clases, tablas de ejercicios personalizadas, seguimiento de progreso, notificaciones push y pagos integrados. Todo el control en una app con tu marca.',
-          color: 'blue'
-        },
-        {
-          icon: 'global-line',
-          title: 'Web Inteligente',
-          description: 'Web que posiciona en Google, presenta tus servicios y publica contenido automáticamente con IA. Diseñada para captar nuevos clientes y diferenciarte online.',
-          color: 'green'
-        },
-        {
-          icon: 'settings-3-line',
-          title: 'Automatizaciones',
-          description: 'Recordatorios, seguimiento de entrenamientos, activación de retos y cobros automáticos. Ahorra tiempo y mejora la experiencia de tus clientes sin esfuerzo.',
-          color: 'orange'
-        }
-      ]
-    },
-    realty: {
-      title: 'InnovaRealty',
-      description: 'Plataforma inmobiliaria inteligente para agencias, corredores y gestión de propiedades con tours virtuales.',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-      features: [
-        {
-          icon: 'home-line',
-          title: 'Tours Virtuales',
-          description: 'Recorridos inmersivos en 360° para propiedades residenciales y comerciales.',
-          color: 'green'
-        },
-        {
-          icon: 'map-pin-line',
-          title: 'Geolocalización',
-          description: 'Búsqueda avanzada por ubicación con análisis de mercado local.',
+          icon: 'brain-line',
+          title: 'Chatbots Inteligentes',
+          description: 'Asistentes virtuales con IA avanzada que entienden contexto, resuelven consultas complejas y aprenden de cada interacción para mejorar continuamente.',
           color: 'blue'
         },
         {
           icon: 'file-text-line',
-          title: 'Gestión Documental',
-          description: 'Automatización de contratos y procesos legales inmobiliarios.',
+          title: 'Generación de Contenido',
+          description: 'Automatización de creación de textos, emails, reportes y documentos personalizados usando tu tono de voz y estilo específico.',
           color: 'purple'
+        },
+        {
+          icon: 'search-line',
+          title: 'Análisis de Datos',
+          description: 'Procesamiento inteligente de información empresarial para extraer insights valiosos y generar reportes automatizados.',
+          color: 'pink'
         }
       ]
     },
-    logic: {
-      title: 'InnovaLogic',
-      description: 'Soluciones de automatización y logística inteligente para empresas con gestión de cadena de suministro optimizada.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    automation: {
+      title: 'Automatización',
+      description: 'Flujos de trabajo inteligentes que eliminan tareas repetitivas y conectan tus herramientas existentes para maximizar la eficiencia operativa.',
+      image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'truck-line',
-          title: 'Gestión de Rutas',
-          description: 'Optimización inteligente de rutas de entrega con algoritmos avanzados.',
+          icon: 'settings-3-line',
+          title: 'Flujos Personalizados',
+          description: 'Automatización de procesos específicos de tu negocio con integración completa entre todas tus plataformas y herramientas.',
+          color: 'purple'
+        },
+        {
+          icon: 'smartphone-line',
+          title: 'WhatsApp Business',
+          description: 'Bots avanzados para WhatsApp que gestionan consultas, procesan pedidos y mantienen conversaciones naturales con tus clientes.',
+          color: 'green'
+        },
+        {
+          icon: 'mail-line',
+          title: 'Email Marketing',
+          description: 'Campañas automatizadas inteligentes que se adaptan al comportamiento del usuario y optimizan las conversiones automáticamente.',
+          color: 'blue'
+        }
+      ]
+    },
+    voice: {
+      title: 'Agentes de Voz',
+      description: 'Asistentes virtuales por voz que manejan llamadas, reservas y atención al cliente 24/7 con tecnología de reconocimiento avanzado.',
+      image: 'https://images.unsplash.com/photo-1589254066213-a0c7dc853511?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      features: [
+        {
+          icon: 'phone-line',
+          title: 'Atención Telefónica',
+          description: 'Asistentes que responden llamadas, gestionan citas y resuelven consultas frecuentes con voz natural y comprensión contextual.',
+          color: 'pink'
+        },
+        {
+          icon: 'calendar-line',
+          title: 'Reservas por Voz',
+          description: 'Sistema completo de gestión de citas que permite a los clientes reservar, modificar o cancelar mediante comandos de voz naturales.',
           color: 'orange'
         },
         {
-          icon: 'dashboard-3-line',
-          title: 'Control de Inventario',
-          description: 'Seguimiento en tiempo real de stock y automatización de reposición.',
+          icon: 'customer-service-2-line',
+          title: 'Soporte Multiidioma',
+          description: 'Agentes que hablan múltiples idiomas y se adaptan al acento local para brindar una experiencia personalizada a cada cliente.',
+          color: 'blue'
+        }
+      ]
+    },
+    development: {
+      title: 'Desarrollo',
+      description: 'Aplicaciones web y móviles a medida con tecnologías modernas, diseño responsivo y funcionalidades específicas para tu modelo de negocio.',
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      features: [
+        {
+          icon: 'code-line',
+          title: 'Apps Personalizadas',
+          description: 'Desarrollo completo de aplicaciones web y móviles con funcionalidades específicas, diseño único y total adaptación a tus procesos.',
+          color: 'orange'
+        },
+        {
+          icon: 'smartphone-line',
+          title: 'PWA & Mobile',
+          description: 'Aplicaciones progresivas que funcionan como apps nativas en cualquier dispositivo, con notificaciones push y trabajo offline.',
           color: 'blue'
         },
         {
           icon: 'global-line',
-          title: 'Cadena de Suministro',
-          description: 'Integración completa de proveedores y análisis predictivo de demanda.',
+          title: 'APIs & Integraciones',
+          description: 'Conexión perfecta entre sistemas existentes y nuevas funcionalidades mediante APIs robustas y documentación completa.',
+          color: 'green'
+        }
+      ]
+    },
+    database: {
+      title: 'Database',
+      description: 'Gestión inteligente de datos con bases de datos optimizadas, análisis en tiempo real y sistemas de backup automático.',
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      features: [
+        {
+          icon: 'database-2-line',
+          title: 'Optimización BD',
+          description: 'Estructuras de datos eficientes, índices optimizados y consultas de alto rendimiento para manejar grandes volúmenes de información.',
+          color: 'green'
+        },
+        {
+          icon: 'bar-chart-line',
+          title: 'Analytics Avanzado',
+          description: 'Paneles de control interactivos con métricas en tiempo real, tendencias predictivas y reportes automatizados personalizables.',
+          color: 'purple'
+        },
+        {
+          icon: 'shield-line',
+          title: 'Seguridad & Backup',
+          description: 'Sistemas de respaldo automático, encriptación avanzada y protocolos de seguridad que garantizan la integridad de tus datos.',
+          color: 'blue'
+        }
+      ]
+    },
+    tools: {
+      title: 'Otras Herramientas',
+      description: 'Suite completa de herramientas especializadas para optimizar procesos específicos y mejorar la productividad empresarial.',
+      image: 'https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      features: [
+        {
+          icon: 'image-line',
+          title: 'IA Generativa',
+          description: 'Herramientas para generar imágenes, videos y contenido visual personalizado usando inteligencia artificial avanzada.',
+          color: 'pink'
+        },
+        {
+          icon: 'file-pdf-line',
+          title: 'Automatización Docs',
+          description: 'Generación automática de contratos, facturas, reportes y documentos legales con plantillas inteligentes y datos dinámicos.',
+          color: 'orange'
+        },
+        {
+          icon: 'links-line',
+          title: 'Scraping & APIs',
+          description: 'Extracción automatizada de datos web, monitoreo de competencia y sincronización con plataformas externas.',
           color: 'green'
         }
       ]
@@ -356,14 +356,14 @@ const VerticalsSection: React.FC = () => {
             className="text-3xl md:text-4xl font-space font-bold mb-6"
             variants={titleVariants}
           >
-            Verticales de <span className="text-gradient">Especialización</span>
+            Mi Stack <span className="text-gradient">Tecnológico</span>
           </motion.h2>
           <motion.p 
             className="text-[#CCCCCC]"
             variants={titleVariants}
           >
-            Tenemos experiencia profunda en diversos sectores, lo que nos permite
-            entender los desafíos específicos de tu industria y ofrecer soluciones adaptadas.
+            Domino estas tecnologías y herramientas para crear soluciones completas que transforman tu negocio.
+            Cada proyecto combina lo mejor de cada área para maximizar resultados.
           </motion.p>
         </motion.div>
         
