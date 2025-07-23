@@ -187,6 +187,7 @@ const PortfolioAdmin: React.FC = () => {
         content: formData.content,
         image_url: formData.image_url,
         video_url: formData.video_url || null,
+        github_url: formData.github_url || null,
         published: true
       };
       
@@ -245,7 +246,8 @@ const PortfolioAdmin: React.FC = () => {
         title: '',
         content: '',
         image_url: '',
-        video_url: ''
+        video_url: '',
+        github_url: ''
       });
       setEditingPostId(null);
       
@@ -429,7 +431,7 @@ const PortfolioAdmin: React.FC = () => {
                   type="url"
                   id="video_url"
                   name="video_url"
-                  value={formData.video_url}
+                  value={formData.video_url || ''}
                   onChange={handleChange}
                   className="w-full bg-[#030015]/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-[#62d957] transition-all duration-300"
                   placeholder="https://www.youtube.com/embed/video-id"
@@ -445,7 +447,7 @@ const PortfolioAdmin: React.FC = () => {
                   type="url"
                   id="github_url"
                   name="github_url"
-                  value={formData.github_url}
+                  value={formData.github_url || ''}
                   onChange={handleChange}
                   className="w-full bg-[#030015]/50 border border-gray-700 rounded-lg py-3 px-4 focus:outline-none focus:border-[#62d957] transition-all duration-300"
                   placeholder="https://github.com/usuario/repositorio"
