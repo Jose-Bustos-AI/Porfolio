@@ -117,7 +117,7 @@ const PortfolioPost: React.FC = () => {
       <header className="glass sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto px-4 md:px-8 py-6">
           <nav className="flex justify-between items-center">
-            <Link href="/labs">
+            <Link href="/portfolio">
               <div className="text-lg font-bold text-white flex items-center cursor-pointer hover:text-[#E65616] transition-colors duration-300">
                 <i className="ri-arrow-left-line mr-2"></i>
                 Volver a Portfolio
