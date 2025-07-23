@@ -27,21 +27,21 @@ const ContactSection: React.FC = () => {
   const colorMap = {
     blue: '#00EEFF',
     purple: '#BD00FF',
-    pink: '#FF00A0'
+    pink: '#FF00A0',
+    orange: '#E65616'
   };
   
   // Contact info and social links with enhanced styling
   const contactInfo = [
-    { icon: 'mail-line', title: 'Email', info: 'contacto@innovapyme.com', color: 'blue' },
-    { icon: 'phone-line', title: 'Teléfono', info: '+52 (55) 1234-5678', color: 'purple' },
-    { icon: 'map-pin-line', title: 'Oficinas', info: 'Torre Innovación, Piso 23\nCiudad de México, México', color: 'pink' }
+    { icon: 'mail-line', title: 'Email', info: 'bustos@innovapymes.ai', color: 'blue' },
+    { icon: 'phone-line', title: 'Teléfono / WhatsApp', info: '+34 611 30 12 64', color: 'purple' }
   ];
   
   const socialLinks = [
     { icon: 'linkedin-fill', color: 'blue', label: 'LinkedIn' },
-    { icon: 'twitter-x-fill', color: 'purple', label: 'Twitter' },
+    { icon: 'twitter-x-fill', color: 'purple', label: 'X (Twitter)' },
     { icon: 'instagram-fill', color: 'pink', label: 'Instagram' },
-    { icon: 'facebook-fill', color: 'blue', label: 'Facebook' }
+    { icon: 'youtube-fill', color: 'orange', label: 'YouTube' }
   ];
 
   return (
@@ -96,7 +96,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-gradient animate-glow-pulse">Contacta</span> con nosotros
+            ¿Quieres <span className="text-gradient animate-glow-pulse">hablar conmigo?</span>
           </motion.h2>
           
           <motion.p 
@@ -106,7 +106,7 @@ const ContactSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Estamos disponibles para responder a todas tus consultas. Nuestro equipo está listo para ayudarte en lo que necesites.
+            Escríbeme y uno de mis agentes de IA te responde al instante…
           </motion.p>
         </div>
 
@@ -178,7 +178,7 @@ const ContactSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl font-space font-bold mb-8 text-gradient">Síguenos en redes sociales</h3>
+          <h3 className="text-2xl font-space font-bold mb-8 text-gradient">Sígueme en redes</h3>
           
           <div className="flex flex-wrap justify-center gap-8">
             {socialLinks.map((link, index) => {
@@ -229,8 +229,18 @@ const ContactSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
+          <motion.p 
+            className="text-[#CCCCCC] text-lg mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            ¿Tienes un reto o idea? Escríbeme y en menos de 24h tienes respuesta. Si buscas resultados de verdad, hablamos.
+          </motion.p>
+          
           <motion.a 
-            href="mailto:contacto@innovapyme.com"
+            href="mailto:bustos@innovapymes.ai"
             className="inline-block py-5 px-8 rounded-full relative overflow-hidden hover-shine"
             whileHover={{ scale: 1.05, y: -5 }}
             whileTap={{ scale: 0.97 }}
@@ -250,7 +260,7 @@ const ContactSection: React.FC = () => {
             ></motion.div>
             
             <span className="relative z-10 font-bold text-black text-xl flex items-center justify-center gap-2">
-              <span>Envíanos un email</span>
+              <span>Escríbeme</span>
               <motion.i 
                 className="ri-mail-send-line ml-1"
                 animate={{ 
