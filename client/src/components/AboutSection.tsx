@@ -69,29 +69,66 @@ const AboutSection: React.FC = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-[#CCCCCC] mb-6 text-lg"
+              className="text-[#CCCCCC] mb-6 text-lg font-semibold"
               variants={itemVariants}
             >
-              Impulsamos el futuro de las pymes con <span className="text-white font-semibold">inteligencia artificial aplicada</span>, 
-              <span className="text-white font-semibold"> automatización real</span> y soluciones digitales que generan resultados.
+              No soy un programador más.
             </motion.p>
+            
+            <motion.p 
+              className="text-[#CCCCCC] mb-6"
+              variants={itemVariants}
+            >
+              Me dedico a transformar empresas con <span className="text-white font-semibold">inteligencia artificial aplicada</span> y <span className="text-white font-semibold">automatización real</span>, creando productos digitales que multiplican ventas y eliminan el trabajo repetitivo.
+            </motion.p>
+            
+            <motion.p 
+              className="text-[#CCCCCC] mb-6"
+              variants={itemVariants}
+            >
+              No vas a encontrar aquí un desarrollador que solo escribe código: vas a encontrar un socio que convierte ideas en soluciones que facturan, procesos manuales en sistemas inteligentes y negocios tradicionales en máquinas digitales de crecimiento.
+            </motion.p>
+            
+            <motion.p 
+              className="text-[#CCCCCC] mb-6"
+              variants={itemVariants}
+            >
+              Automatizo ventas, agilizo operaciones y te ayudo a capturar más clientes mientras otros siguen en la era del Excel.
+            </motion.p>
+            
+            <motion.div 
+              className="mb-6"
+              variants={itemVariants}
+            >
+              <p className="text-[#CCCCCC] mb-4">
+                Trabajo con empresas y emprendedores que quieren:
+              </p>
+              
+              <ul className="text-[#CCCCCC] space-y-2 ml-4">
+                <li className="flex items-start">
+                  <span className="text-[#00EEFF] mr-3">•</span>
+                  Aumentar sus ingresos
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#BD00FF] mr-3">•</span>
+                  Automatizar procesos clave
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#FF00A0] mr-3">•</span>
+                  Escalar operaciones sin límites
+                </li>
+                <li className="flex items-start">
+                  <span className="text-[#62d957] mr-3">•</span>
+                  Obtener resultados medibles desde el primer mes
+                </li>
+              </ul>
+            </motion.div>
             
             <motion.p 
               className="text-[#CCCCCC] mb-8"
               variants={itemVariants}
             >
-              En <span className="text-white font-semibold">Innovapymes</span> convertimos ideas en aplicaciones, 
-              problemas en procesos automáticos y negocios tradicionales en empresas inteligentes. 
-              Somos una compañía tecnológica con alma emprendedora, creada para revolucionar la forma 
-              en la que operan las pequeñas y medianas empresas.
-            </motion.p>
-            
-            <motion.p 
-              className="text-[#CCCCCC] mb-8"
-              variants={itemVariants}
-            >
-              Con años desarrollando soluciones a medida, hemos consolidado un ecosistema de productos 
-              especializados, cada uno diseñado para sectores concretos.
+              Aquí no vendo promesas vacías: desarrollo soluciones que impactan tu cuenta bancaria, bots que trabajan 24/7 y sistemas de IA que te dan la ventaja que otros solo sueñan.
             </motion.p>
             
             {/* Stats with neon borders */}
