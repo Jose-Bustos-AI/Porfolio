@@ -181,26 +181,38 @@ const VerticalsSection: React.FC = () => {
     },
     automation: {
       title: 'Automatización',
-      description: 'Flujos de trabajo inteligentes que eliminan tareas repetitivas y conectan tus herramientas existentes para maximizar la eficiencia operativa.',
+      description: 'Elijo la herramienta de automatización que más te hace ganar: máxima eficiencia, cero complicaciones.',
       image: 'https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'settings-3-line',
-          title: 'Flujos Personalizados',
-          description: 'Automatización de procesos específicos de tu negocio con integración completa entre todas tus plataformas y herramientas.',
+          icon: 'node-tree',
+          title: 'n8n',
+          description: 'Automatización visual, flexible y escalable. Conecta cualquier app y crea flujos a medida sin límites.',
           color: 'purple'
         },
         {
-          icon: 'smartphone-line',
-          title: 'WhatsApp Business',
-          description: 'Bots avanzados para WhatsApp que gestionan consultas, procesan pedidos y mantienen conversaciones naturales con tus clientes.',
+          icon: 'puzzle-line',
+          title: 'Make',
+          description: 'Automatiza tareas y conecta plataformas fácilmente, con plantillas listas y control total de cada paso.',
+          color: 'blue'
+        },
+        {
+          icon: 'flashlight-line',
+          title: 'Zapier',
+          description: 'La forma más rápida de automatizar tareas entre cientos de servicios, ideal para empezar y escalar.',
+          color: 'orange'
+        },
+        {
+          icon: 'code-line',
+          title: 'Pipedream',
+          description: 'Automatización avanzada para integrar APIs y personalizar procesos con código, rápido y seguro.',
           color: 'green'
         },
         {
-          icon: 'mail-line',
-          title: 'Email Marketing',
-          description: 'Campañas automatizadas inteligentes que se adaptan al comportamiento del usuario y optimizan las conversiones automáticamente.',
-          color: 'blue'
+          icon: 'robot-line',
+          title: 'RPA',
+          description: 'Digitaliza procesos repetitivos y ahorra tiempo sin cambiar tu sistema actual.',
+          color: 'pink'
         }
       ]
     },
