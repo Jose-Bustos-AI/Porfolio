@@ -19,11 +19,6 @@ interface ParticleBackgroundProps {
   connectLines?: boolean;
 }
 
-/**
- * Enhanced particle background with interactive effects
- * 
- * This component creates a dynamic canvas with reactive particles
- */
 const ParticleBackground: React.FC<ParticleBackgroundProps> = ({ 
   id = "particles-js", 
   className = "",
@@ -43,12 +38,13 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // Set canvas size to match parent
+    // Set canvas size
     const resizeCanvas = () => {
       const parent = canvas.parentElement;
       if (parent) {
         canvas.width = parent.offsetWidth;
         canvas.height = parent.offsetHeight;
+        createParticles();
       }
     };
     
@@ -74,12 +70,12 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       particlesRef.current = particles;
     };
     
-    // Mouse move handler
+    // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+      mouseRef.current = { 
+        x: e.clientX - rect.left, 
+        y: e.clientY - rect.top 
       };
     };
     
@@ -87,23 +83,12 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       mouseRef.current = { x: null, y: null };
     };
     
-    resizeCanvas();
-    createParticles();
-    
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      createParticles();
-    });
-    
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
-    
-    // Draw and update particles
+    // Animation loop
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw connections
-      if (connectLines) {
+      // Draw connections first (behind particles)
+      if (connectLines && particlesRef.current.length > 0) {
         ctx.strokeStyle = '#00EEFF';
         ctx.lineWidth = 0.5;
         ctx.globalAlpha = 0.2;
@@ -149,11 +134,11 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
         }
       }
       
-      // Draw particles
+      // Draw and update particles
       ctx.globalAlpha = 1;
       
       particlesRef.current.forEach(particle => {
-        // Update
+        // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
         
@@ -166,23 +151,29 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
           particle.speedY = -particle.speedY;
         }
         
+        // Keep particles in bounds
+        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
+        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+        
         // Pulsate opacity
         particle.alpha += Math.random() * 0.01 - 0.005;
         if (particle.alpha < particle.minAlpha) particle.alpha = particle.minAlpha;
         if (particle.alpha > 0.5) particle.alpha = 0.5;
         
-        // Draw with glow effect
+        // Apply glow effect
         if (glowEffect) {
           ctx.shadowBlur = 10;
           ctx.shadowColor = particle.color;
         }
         
+        // Draw particle
         ctx.globalAlpha = particle.alpha;
         ctx.fillStyle = particle.color;
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
         
+        // Reset shadow
         if (glowEffect) {
           ctx.shadowBlur = 0;
         }
@@ -191,8 +182,16 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
       animationRef.current = requestAnimationFrame(animate);
     };
     
+    // Initialize
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+    
+    // Start animation
     animationRef.current = requestAnimationFrame(animate);
     
+    // Cleanup
     return () => {
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener('resize', resizeCanvas);
@@ -205,7 +204,13 @@ const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     <canvas 
       ref={canvasRef}
       id={id}
-      className={`absolute inset-0 z-0 ${className}`}
+      className={`absolute inset-0 z-0 pointer-events-none ${className}`}
+      style={{ 
+        width: '100%', 
+        height: '100%',
+        background: 'transparent',
+        display: 'block'
+      }}
     />
   );
 };
