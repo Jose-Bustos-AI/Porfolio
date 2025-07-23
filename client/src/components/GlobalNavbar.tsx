@@ -62,13 +62,13 @@ const GlobalNavbar: React.FC = () => {
                 transition={{ duration: 2, repeat: Infinity }}
               >
                 <img 
-                  src="https://tullsnkraofthczzuxtx.supabase.co/storage/v1/object/public/imagenes//Logo_innovaPymes.png.png" 
-                  alt="Innovapymes Logo" 
-                  className="w-10 h-10 object-contain rounded-full"
+                  src={`/logo.png?t=${Date.now()}`}
+                  alt="Jose Bustos Logo" 
+                  className="w-10 h-10 object-cover rounded-full"
                 />
               </motion.div>
               <span className="font-bold text-xl md:text-2xl text-white">
-                Innovapymes
+                Jose Bustos
               </span>
             </motion.div>
           </Link>

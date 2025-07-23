@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
               <div className="w-10 h-10 rounded-full bg-[#00EEFF] neon-border-blue flex items-center justify-center">
                 <span className="font-space font-bold text-[#050816]">IP</span>
               </div>
-              <span className="font-space font-bold text-xl text-white">Innovapymes</span>
+              <span className="font-space font-bold text-xl text-white">Jose Bustos</span>
             </div>
             <p className="text-[#CCCCCC] mb-6">
               Impulsando la transformación digital de pequeñas y medianas empresas con soluciones tecnológicas innovadoras.
@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
           variants={itemVariants}
         >
           <p className="text-[#CCCCCC] text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Innovapymes. Todos los derechos reservados.
+            &copy; {new Date().getFullYear()} Jose Bustos. Todos los derechos reservados.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-[#CCCCCC] hover:text-white text-sm transition-colors">Política de Privacidad</a>

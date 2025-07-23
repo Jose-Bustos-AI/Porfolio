@@ -9,8 +9,8 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "Innovapymes - Soluciones de IA y Automatización para PyMEs",
-  description = "Innovapymes: Soluciones de IA y automatización para restaurantes, salones de belleza, estudios de tatuajes, gimnasios, inmobiliarias y más. Transformamos tu negocio con tecnología avanzada.",
+  title = "Jose Bustos - Soluciones de IA y Automatización para PyMEs",
+  description = "Jose Bustos: Soluciones de IA y automatización para restaurantes, salones de belleza, estudios de tatuajes, gimnasios, inmobiliarias y más. Transformamos tu negocio con tecnología avanzada.",
   keywords = "IA, automatización, inteligencia artificial, SaaS, desarrollo web, chatbots, marketing digital, restaurantes, salones de belleza, estudios de tatuajes, gimnasios, inmobiliarias",
   ogImage = "/logo.png",
   canonical
