@@ -4,7 +4,7 @@ import AboutSection from '@/components/AboutSection';
 import ServicesSection from '@/components/ServicesSection';
 import VerticalsSection from '@/components/VerticalsSection';
 import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
+
 import SEOHead from '@/components/SEOHead';
 import ParticleBackground from '@/components/ParticleBackground';
 
@@ -66,7 +66,6 @@ const Home: React.FC = () => {
         <ServicesSection />
         <VerticalsSection />
         <ContactSection />
-        <Footer />
       </div>
     </div>
   );
