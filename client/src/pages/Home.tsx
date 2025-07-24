@@ -66,6 +66,13 @@ const Home: React.FC = () => {
         <ServicesSection />
         <VerticalsSection />
         <ContactSection />
+        
+        {/* Copyright */}
+        <div className="py-8 text-center border-t border-white/10">
+          <p className="text-[#CCCCCC] text-sm">
+            © 2025 Jose Bustos. Todos los derechos reservados.
+          </p>
+        </div>
       </div>
     </div>
   );
