@@ -10,7 +10,7 @@ import Home from "@/pages/Home";
 // Importaciones para la sección Portfolio (anteriormente Labs)
 import Portfolio from "./pages/Portfolio";
 import PortfolioPost from "./pages/PortfolioPost";
-import PortfolioAdmin from "./pages/PortfolioAdmin";
+
 
 // Mouse light follower context
 export const MouseContext = createContext<{
@@ -25,7 +25,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/portfolio/admin" component={PortfolioAdmin} /> {/* Esta ruta debe ir antes */}
+
       <Route path="/portfolio/:id" component={PortfolioPost} />
       <Route path="/portfolio" component={Portfolio} />
       <Route component={NotFound} />
