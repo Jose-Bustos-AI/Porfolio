@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import portfolioRouter from './routes/portfolio_router';
 import uploadsRouter from './routes/uploads';
+import authRouter from './routes/auth';
 import { log } from "./vite";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -72,6 +73,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Configurar rutas de API
   app.use('/api/portfolio', portfolioRouter);
   app.use('/api/uploads', uploadsRouter);
+  app.use('/api/auth', authRouter);
 
   // Servir archivos estáticos desde la carpeta public
   app.use('/uploads', (req, res, next) => {
