@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
-
+import AdminAuthModal from '../components/AdminAuthModal';
 import NewsletterModal from '../components/NewsletterModal';
 import SEOHead from '@/components/SEOHead';
 import LazyImage from '@/components/LazyImage';
@@ -26,6 +26,10 @@ const Portfolio: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
+  // Estado para el modal de autenticación
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  
   // Estado para el modal de newsletter
   const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -38,6 +42,14 @@ const Portfolio: React.FC = () => {
   // Verificar si el usuario ya está autenticado y/o suscrito al cargar la página
   useEffect(() => {
     const checkUserStatus = () => {
+      // Verificar estado de administrador
+      const adminStatus = localStorage.getItem('isAdmin');
+      if (adminStatus === 'true') {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+      
       // Verificar estado de suscripción al newsletter
       const subscriptionStatus = localStorage.getItem('newsletter_subscribed');
       if (subscriptionStatus === 'true') {
@@ -97,6 +109,39 @@ const Portfolio: React.FC = () => {
     return new Date(dateString).toLocaleDateString('es-ES', options);
   };
   
+  // Función para manejar el clic en el botón de Admin
+  const handleAdminClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isAdmin) {
+      // Si ya está autenticado, redirigir directamente al panel de admin
+      setLocation("/portfolio/admin");
+    } else {
+      // Si no está autenticado, mostrar el modal de autenticación
+      setIsAuthModalOpen(true);
+    }
+  };
+  
+  // Función para manejar la autenticación exitosa
+  const handleAuthenticated = () => {
+    setIsAdmin(true);
+    setLocation("/portfolio/admin");
+  };
+  
+  // Función para cerrar sesión
+  const handleLogout = () => {
+    // Eliminar del localStorage
+    localStorage.removeItem('isAdmin');
+    
+    // Actualizar el estado local
+    setIsAdmin(false);
+    
+    // Disparar evento de storage para que otras pestañas detecten el cambio
+    window.dispatchEvent(new Event('storage'));
+    
+    // Mensaje de confirmación opcional
+    alert('Has cerrado sesión correctamente.');
+  };
+
   // Función para crear resumen del contenido
   const createExcerpt = (content: string, maxLength: number = 150) => {
     // Eliminar etiquetas HTML
@@ -219,6 +264,35 @@ const Portfolio: React.FC = () => {
                   Suscribirse
                 </button>
               )}
+              
+              <div className="text-white/80 flex items-center">
+                {isAdmin ? (
+                  <>
+                    <a 
+                      href="/portfolio/admin"
+                      onClick={handleAdminClick}
+                      className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center mr-4"
+                    >
+                      <i className="ri-add-circle-line"></i>
+                    </a>
+                    <button
+                      onClick={handleLogout}
+                      className="hover:text-[#E65616] transition-colors duration-300 cursor-pointer flex items-center"
+                    >
+                      <i className="ri-logout-box-line mr-1"></i>
+                      Cerrar sesión
+                    </button>
+                  </>
+                ) : (
+                  <a 
+                    href="#"
+                    onClick={handleAdminClick}
+                    className="hover:text-[#62d957] transition-colors duration-300 cursor-pointer flex items-center"
+                  >
+                    <i className="ri-shield-keyhole-line"></i>
+                  </a>
+                )}
+              </div>
             </div>
           </nav>
         </div>
@@ -419,6 +493,13 @@ const Portfolio: React.FC = () => {
         </div>
       </footer>
 
+      {/* Modal de autenticación de administrador */}
+      <AdminAuthModal 
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+        onAuthenticated={handleAuthenticated}
+      />
+      
       {/* Modal de suscripción al newsletter */}
       <NewsletterModal
         isOpen={isNewsletterModalOpen}
