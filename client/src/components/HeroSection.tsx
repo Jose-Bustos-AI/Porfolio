@@ -34,19 +34,21 @@ const RotatingText: React.FC<{ words: string[]; interval?: number }> = ({ words,
     
     const timer = setInterval(async () => {
       try {
-        await controls.start({
-          opacity: 0,
-          y: 20,
-          transition: { duration: 0.3 }
-        });
-        setCurrentIndex((prev) => (prev + 1) % words.length);
-        await controls.start({
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.3 }
-        });
+        if (controls && typeof controls.start === 'function') {
+          await controls.start({
+            opacity: 0,
+            y: 20,
+            transition: { duration: 0.3 }
+          });
+          setCurrentIndex((prev) => (prev + 1) % words.length);
+          await controls.start({
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.3 }
+          });
+        }
       } catch (error) {
-        // Handle potential unmount issues
+        // Handle potential unmount issues or animation errors
         console.warn('Animation controls error:', error);
       }
     }, interval);

@@ -11,6 +11,7 @@ import Home from "@/pages/Home";
 import Portfolio from "./pages/Portfolio";
 import PortfolioPost from "./pages/PortfolioPost";
 import PortfolioAdmin from "./pages/PortfolioAdmin";
+import ErrorBoundary from "@/utils/errorBoundary";
 
 // Mouse light follower context
 export const MouseContext = createContext<{
@@ -54,17 +55,19 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <MouseContext.Provider value={mousePosition}>
-          <div className="light-follow fixed inset-0 z-0 pointer-events-none" 
-               style={{ 
-                 '--x': `${mousePosition.mouseX}px`, 
-                 '--y': `${mousePosition.mouseY}px` 
-               } as React.CSSProperties}>
-          </div>
-          <Toaster />
-          <GlobalNavbar />
-          <Router />
-        </MouseContext.Provider>
+        <ErrorBoundary>
+          <MouseContext.Provider value={mousePosition}>
+            <div className="light-follow fixed inset-0 z-0 pointer-events-none" 
+                 style={{ 
+                   '--x': `${mousePosition.mouseX}px`, 
+                   '--y': `${mousePosition.mouseY}px` 
+                 } as React.CSSProperties}>
+            </div>
+            <Toaster />
+            <GlobalNavbar />
+            <Router />
+          </MouseContext.Provider>
+        </ErrorBoundary>
       </TooltipProvider>
     </QueryClientProvider>
   );
