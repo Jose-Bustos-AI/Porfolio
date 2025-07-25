@@ -52,7 +52,6 @@ const AboutSection: React.FC = () => {
       {/* Background effect */}
       <div className="absolute inset-0 bg-[#0A0A18]/60 z-0"></div>
       <div className="absolute right-0 top-0 w-1/2 h-full bg-[#00EEFF]/5 blur-3xl z-0"></div>
-      
       <div className="container mx-auto px-6 md:px-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <motion.div 
@@ -128,9 +127,7 @@ const AboutSection: React.FC = () => {
             <motion.p 
               className="text-[#CCCCCC] mb-8"
               variants={itemVariants}
-            >
-              Aquí no vendo promesas vacías: desarrollo soluciones que impactan tu cuenta bancaria, bots que trabajan 24/7 y sistemas de IA que te dan la ventaja que otros solo sueñan.
-            </motion.p>
+            >No vendo promesas vacías: desarrollo soluciones que impactan tu cuenta bancaria, bots que trabajan 24/7 y sistemas de IA que te dan la ventaja que otros solo sueñan.</motion.p>
             
             {/* Stats with neon borders */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10">
