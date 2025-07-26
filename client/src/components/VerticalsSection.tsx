@@ -4,6 +4,7 @@ import voiceAgentImage from '@assets/Diseño sin título (3)_1753520134636.jpg';
 import databaseImage from '@assets/Diseño sin título (5)_1753520510195.jpg';
 import developmentImage from '@assets/Diseño sin título (6)_1753520699668.jpg';
 import toolsImage from '@assets/Diseño sin título (7)_1753521161636.jpg';
+import automationImage from '@assets/Diseño sin título (8)_1753521345634.jpg';
 
 interface TabProps {
   id: string;
@@ -186,7 +187,7 @@ const VerticalsSection: React.FC = () => {
     automation: {
       title: 'Automatización',
       description: 'Elijo la herramienta de automatización que más te hace ganar: máxima eficiencia, cero complicaciones.',
-      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: automationImage,
       features: [
         {
           icon: 'node-tree',
