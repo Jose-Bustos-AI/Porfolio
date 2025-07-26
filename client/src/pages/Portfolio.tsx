@@ -254,16 +254,7 @@ const Portfolio: React.FC = () => {
               </div>
             </Link>
             <div className="flex items-center space-x-4">
-              {/* Botón de Newsletter - solo visible si no está suscrito */}
-              {!isSubscribed && (
-                <button
-                  onClick={() => setIsNewsletterModalOpen(true)}
-                  className="text-white bg-gradient-to-r from-[#E65616] to-[#62d957] px-4 py-2 rounded-full text-sm font-medium flex items-center hover-shine"
-                >
-                  <i className="ri-mail-line mr-2"></i>
-                  Suscribirse
-                </button>
-              )}
+
               
               <div className="text-white/80 flex items-center">
                 {isAdmin ? (
