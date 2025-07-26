@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import voiceAgentImage from '@assets/Diseño sin título (3)_1753520134636.jpg';
 
 interface TabProps {
   id: string;
@@ -219,7 +220,7 @@ const VerticalsSection: React.FC = () => {
     voice: {
       title: 'Agentes de Voz',
       description: 'Elijo la herramienta de voz ideal para que tu negocio venda, atienda y cierre clientes aunque tú estés durmiendo.',
-      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: voiceAgentImage,
       features: [
         {
           icon: 'phone-line',
