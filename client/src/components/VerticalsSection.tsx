@@ -309,26 +309,38 @@ const VerticalsSection: React.FC = () => {
       ]
     },
     database: {
-      title: 'Database',
-      description: 'Gestión inteligente de datos con bases de datos optimizadas, análisis en tiempo real y sistemas de backup automático.',
+      title: 'Bases de Datos que manejo',
+      description: 'Especializado en múltiples tecnologías de bases de datos para cubrir todas las necesidades de tu proyecto, desde aplicaciones web hasta sistemas empresariales complejos.',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
-          icon: 'database-2-line',
-          title: 'Optimización BD',
-          description: 'Estructuras de datos eficientes, índices optimizados y consultas de alto rendimiento para manejar grandes volúmenes de información.',
+          icon: 'cloud-line',
+          title: 'Supabase',
+          description: 'Base de datos moderna y cloud, ideal para apps web y SaaS; ofrece autenticación, storage y API RESTful sobre PostgreSQL.',
           color: 'green'
         },
         {
-          icon: 'bar-chart-line',
-          title: 'Analytics Avanzado',
-          description: 'Paneles de control interactivos con métricas en tiempo real, tendencias predictivas y reportes automatizados personalizables.',
-          color: 'purple'
+          icon: 'database-2-line',
+          title: 'PostgreSQL',
+          description: 'Motor relacional robusto y potente, perfecto para proyectos que requieren transacciones, integridad y consultas complejas.',
+          color: 'blue'
         },
         {
-          icon: 'shield-line',
-          title: 'Seguridad & Backup',
-          description: 'Sistemas de respaldo automático, encriptación avanzada y protocolos de seguridad que garantizan la integridad de tus datos.',
+          icon: 'fire-line',
+          title: 'Firebase',
+          description: 'Solución de Google para apps en tiempo real, notificaciones push y sincronización instantánea. Genial para proyectos móviles.',
+          color: 'orange'
+        },
+        {
+          icon: 'leaf-line',
+          title: 'MongoDB',
+          description: 'Base de datos NoSQL orientada a documentos, ideal para apps flexibles, escalables y con esquemas dinámicos.',
+          color: 'green'
+        },
+        {
+          icon: 'database-line',
+          title: 'MySQL',
+          description: 'Uno de los motores SQL más populares y fiables; perfecto para sitios web, plataformas de e-commerce y proyectos legacy.',
           color: 'blue'
         }
       ]
