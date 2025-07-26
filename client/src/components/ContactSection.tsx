@@ -38,10 +38,10 @@ const ContactSection: React.FC = () => {
   ];
   
   const socialLinks = [
-    { icon: 'linkedin-fill', color: 'blue', label: 'LinkedIn' },
-    { icon: 'twitter-x-fill', color: 'purple', label: 'X (Twitter)' },
-    { icon: 'instagram-fill', color: 'pink', label: 'Instagram' },
-    { icon: 'youtube-fill', color: 'orange', label: 'YouTube' }
+    { icon: 'linkedin-fill', color: 'blue', label: 'LinkedIn', url: 'https://www.linkedin.com/in/jose-bustos-ai/' },
+    { icon: 'twitter-x-fill', color: 'purple', label: 'X (Twitter)', url: 'https://x.com/JoseBustosAI' },
+    { icon: 'instagram-fill', color: 'pink', label: 'Instagram', url: 'https://www.instagram.com/jose_bustos_ai/' },
+    { icon: 'youtube-fill', color: 'orange', label: 'YouTube', url: 'https://www.youtube.com/@JoseBustosAI' }
   ];
 
   return (
@@ -186,7 +186,9 @@ const ContactSection: React.FC = () => {
               return (
                 <motion.a 
                   key={index}
-                  href="#" 
+                  href={link.url} 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="relative group"
                   whileHover={{ scale: 1.15, y: -5 }}
                   whileTap={{ scale: 0.95 }}

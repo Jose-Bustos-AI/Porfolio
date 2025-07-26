@@ -49,16 +49,16 @@ const Footer: React.FC = () => {
               bustos@innovapymes.ai
             </p>
             <div className="flex justify-center space-x-6 mb-8">
-              <a href="#" className="text-[#CCCCCC] hover:text-[#00EEFF] transition-colors">
+              <a href="https://www.linkedin.com/in/jose-bustos-ai/" target="_blank" rel="noopener noreferrer" className="text-[#CCCCCC] hover:text-[#00EEFF] transition-colors">
                 <i className="ri-linkedin-fill text-xl"></i>
               </a>
-              <a href="#" className="text-[#CCCCCC] hover:text-[#BD00FF] transition-colors">
+              <a href="https://x.com/JoseBustosAI" target="_blank" rel="noopener noreferrer" className="text-[#CCCCCC] hover:text-[#BD00FF] transition-colors">
                 <i className="ri-twitter-x-fill text-xl"></i>
               </a>
-              <a href="#" className="text-[#CCCCCC] hover:text-[#FF00A0] transition-colors">
+              <a href="https://www.instagram.com/jose_bustos_ai/" target="_blank" rel="noopener noreferrer" className="text-[#CCCCCC] hover:text-[#FF00A0] transition-colors">
                 <i className="ri-instagram-fill text-xl"></i>
               </a>
-              <a href="#" className="text-[#CCCCCC] hover:text-[#E65616] transition-colors">
+              <a href="https://www.youtube.com/@JoseBustosAI" target="_blank" rel="noopener noreferrer" className="text-[#CCCCCC] hover:text-[#E65616] transition-colors">
                 <i className="ri-youtube-fill text-xl"></i>
               </a>
             </div>
