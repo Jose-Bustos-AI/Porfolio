@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import voiceAgentImage from '@assets/Diseño sin título (3)_1753520134636.jpg';
 import databaseImage from '@assets/Diseño sin título (5)_1753520510195.jpg';
+import developmentImage from '@assets/Diseño sin título (6)_1753520699668.jpg';
 
 interface TabProps {
   id: string;
@@ -258,7 +259,7 @@ const VerticalsSection: React.FC = () => {
     development: {
       title: 'Desarrollo',
       description: 'Utilizo el stack más moderno y probado para que tu producto salga al mercado antes que nadie y empiece a facturar desde el primer día.',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: developmentImage,
       features: [
         {
           icon: 'window-line',
