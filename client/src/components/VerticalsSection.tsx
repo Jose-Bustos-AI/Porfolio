@@ -5,6 +5,7 @@ import databaseImage from '@assets/Diseño sin título (5)_1753520510195.jpg';
 import developmentImage from '@assets/Diseño sin título (6)_1753520699668.jpg';
 import toolsImage from '@assets/Diseño sin título (7)_1753521161636.jpg';
 import automationImage from '@assets/Diseño sin título (8)_1753521345634.jpg';
+import llmImage from '@assets/Diseño sin título (9)_1753521491755.jpg';
 
 interface TabProps {
   id: string;
@@ -156,7 +157,7 @@ const VerticalsSection: React.FC = () => {
     llm: {
       title: 'LLM',
       description: 'No adapto tu negocio a un modelo: elijo el LLM perfecto para tu caso, garantizando siempre la mejor solución en rendimiento, precio y resultados.',
-      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: llmImage,
       features: [
         {
           icon: 'openai-line',
