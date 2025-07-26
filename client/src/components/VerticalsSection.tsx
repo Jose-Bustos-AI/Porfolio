@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import voiceAgentImage from '@assets/Diseño sin título (3)_1753520134636.jpg';
+import databaseImage from '@assets/Diseño sin título (5)_1753520510195.jpg';
 
 interface TabProps {
   id: string;
@@ -312,7 +313,7 @@ const VerticalsSection: React.FC = () => {
     database: {
       title: 'Bases de Datos que manejo',
       description: 'Especializado en múltiples tecnologías de bases de datos para cubrir todas las necesidades de tu proyecto, desde aplicaciones web hasta sistemas empresariales complejos.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: databaseImage,
       features: [
         {
           icon: 'cloud-line',
