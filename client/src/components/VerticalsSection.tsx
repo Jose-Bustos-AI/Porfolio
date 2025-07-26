@@ -219,7 +219,7 @@ const VerticalsSection: React.FC = () => {
     voice: {
       title: 'Agentes de Voz',
       description: 'Elijo la herramienta de voz ideal para que tu negocio venda, atienda y cierre clientes aunque tú estés durmiendo.',
-      image: 'https://images.unsplash.com/photo-1553484771-cc0d9b8c2b33?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
           icon: 'phone-line',
