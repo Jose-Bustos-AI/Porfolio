@@ -182,7 +182,7 @@ const VerticalsSection: React.FC = () => {
     automation: {
       title: 'Automatización',
       description: 'Elijo la herramienta de automatización que más te hace ganar: máxima eficiencia, cero complicaciones.',
-      image: '@assets/Diseño sin título (2)_1753519855728.jpg',
+      image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
       features: [
         {
           icon: 'node-tree',
