@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import voiceAgentImage from '@assets/Diseño sin título (3)_1753520134636.jpg';
 import databaseImage from '@assets/Diseño sin título (5)_1753520510195.jpg';
 import developmentImage from '@assets/Diseño sin título (6)_1753520699668.jpg';
+import toolsImage from '@assets/Diseño sin título (7)_1753521161636.jpg';
 
 interface TabProps {
   id: string;
@@ -351,7 +352,7 @@ const VerticalsSection: React.FC = () => {
     tools: {
       title: 'Otras Herramientas',
       description: 'Trabajo solo con herramientas de primer nivel para que tu negocio siempre esté listo para vender, escalar y adaptarse al futuro.',
-      image: 'https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+      image: toolsImage,
       features: [
         {
           icon: 'bank-card-line',
