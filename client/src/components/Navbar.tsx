@@ -335,65 +335,38 @@ const Navbar: React.FC = () => {
               )
             })}
             
-            {/* Contact CTA button with glow effect */}
-            {location === '/' ? (
-              <motion.a 
-                href="#contacto" 
-                className="ml-4 px-6 py-2 rounded-full bg-[#0A0A18] neon-border-blue hover-shine relative overflow-hidden"
-                variants={menuItemVariants}
-                custom={navItems.length}
-                initial="initial"
-                animate="visible"
-                whileHover="hover"
-                whileTap="tap"
-              >
-                <span className="relative z-10">Contáctanos</span>
-                
-                {/* Glow effect on hover */}
-                <motion.div 
-                  className="absolute inset-0 bg-[#00EEFF]/10 rounded-full z-0"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ 
-                    opacity: [0, 0.2, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 1.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              </motion.a>
-            ) : (
-              <Link href="/#contacto">
-                <motion.div 
-                  className="ml-4 px-6 py-2 rounded-full bg-[#0A0A18] neon-border-blue hover-shine relative overflow-hidden cursor-pointer"
-                  variants={menuItemVariants}
-                  custom={navItems.length}
-                  initial="initial"
-                  animate="visible"
-                  whileHover="hover"
-                  whileTap="tap"
-                >
-                  <span className="relative z-10">Contáctanos</span>
-                  
-                  {/* Glow effect on hover */}
-                  <motion.div 
-                    className="absolute inset-0 bg-[#00EEFF]/10 rounded-full z-0"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ 
-                      opacity: [0, 0.2, 0],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                </motion.div>
-              </Link>
-            )}
+            {/* Download CV button with glow effect */}
+            <motion.a 
+              href="/cv-jose-bustos.pdf" 
+              download="Jose-Bustos-CV.pdf"
+              className="ml-4 px-6 py-2 rounded-full bg-[#0A0A18] neon-border-blue hover-shine relative overflow-hidden flex items-center"
+              variants={menuItemVariants}
+              custom={navItems.length}
+              initial="initial"
+              animate="visible"
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <span className="relative z-10 flex items-center">
+                <i className="ri-download-line mr-2"></i>
+                Descargar CV
+              </span>
+              
+              {/* Glow effect on hover */}
+              <motion.div 
+                className="absolute inset-0 bg-[#00EEFF]/10 rounded-full z-0"
+                initial={{ opacity: 0 }}
+                whileHover={{ 
+                  opacity: [0, 0.2, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ 
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.a>
           </div>
         </div>
       </motion.div>
@@ -425,32 +398,19 @@ const Navbar: React.FC = () => {
                   </motion.div>
                 </Link>
               ))}
-              {location === '/' ? (
-                <motion.a
-                  href="#contacto"
-                  custom={navItems.length}
-                  variants={mobileItemVariants}
-                  className="mt-4 px-6 py-3 rounded-full glass neon-border-blue text-center hover-shine"
-                  onClick={() => setMobileMenuOpen(false)}
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.97 }}
-                >
-                  Contáctanos
-                </motion.a>
-              ) : (
-                <Link href="/#contacto">
-                  <motion.div
-                    custom={navItems.length}
-                    variants={mobileItemVariants}
-                    className="mt-4 px-6 py-3 rounded-full glass neon-border-blue text-center hover-shine cursor-pointer"
-                    onClick={() => setMobileMenuOpen(false)}
-                    whileHover={{ scale: 1.05, y: -3 }}
-                    whileTap={{ scale: 0.97 }}
-                  >
-                    Contáctanos
-                  </motion.div>
-                </Link>
-              )}
+              <motion.a
+                href="/cv-jose-bustos.pdf"
+                download="Jose-Bustos-CV.pdf"
+                custom={navItems.length}
+                variants={mobileItemVariants}
+                className="mt-4 px-6 py-3 rounded-full glass neon-border-blue text-center hover-shine flex items-center justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <i className="ri-download-line mr-2"></i>
+                Descargar CV
+              </motion.a>
             </div>
           </motion.div>
         )}

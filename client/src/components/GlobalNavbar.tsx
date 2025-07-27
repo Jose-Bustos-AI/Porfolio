@@ -125,21 +125,15 @@ const GlobalNavbar: React.FC = () => {
               );
             })}
             
-            {/* Contact button */}
-            {location === '/' ? (
-              <a 
-                href="#contacto" 
-                className="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-[#00EEFF] to-[#0088FF] text-black font-medium hover:from-[#00CCDD] hover:to-[#0066DD] transition-all duration-300"
-              >
-                Contáctanos
-              </a>
-            ) : (
-              <Link href="/#contacto">
-                <div className="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-[#00EEFF] to-[#0088FF] text-black font-medium hover:from-[#00CCDD] hover:to-[#0066DD] transition-all duration-300 cursor-pointer">
-                  Contáctanos
-                </div>
-              </Link>
-            )}
+            {/* Download CV button */}
+            <a 
+              href="/cv-jose-bustos.pdf" 
+              download="Jose-Bustos-CV.pdf"
+              className="ml-4 px-6 py-2 rounded-full bg-gradient-to-r from-[#00EEFF] to-[#0088FF] text-black font-medium hover:from-[#00CCDD] hover:to-[#0066DD] transition-all duration-300 flex items-center"
+            >
+              <i className="ri-download-line mr-2"></i>
+              Descargar CV
+            </a>
           </div>
         </div>
       </div>
@@ -165,24 +159,15 @@ const GlobalNavbar: React.FC = () => {
                   </div>
                 </Link>
               ))}
-              {location === '/' ? (
-                <a
-                  href="#contacto"
-                  className="mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-[#00EEFF] to-[#0088FF] text-black text-center font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Contáctanos
-                </a>
-              ) : (
-                <Link href="/#contacto">
-                  <div
-                    className="mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-[#00EEFF] to-[#0088FF] text-black text-center font-medium cursor-pointer"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Contáctanos
-                  </div>
-                </Link>
-              )}
+              <a
+                href="/cv-jose-bustos.pdf"
+                download="Jose-Bustos-CV.pdf"
+                className="mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-[#00EEFF] to-[#0088FF] text-black text-center font-medium flex items-center justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <i className="ri-download-line mr-2"></i>
+                Descargar CV
+              </a>
             </div>
           </motion.div>
         )}
