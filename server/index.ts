@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import helmet from "helmet";
 import compression from "compression";
 import rateLimit from "express-rate-limit";
+import path from "path";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { addSecurityHeaders, sanitizeQueryParams } from "./middleware/security";
@@ -122,6 +123,14 @@ app.use((req, res, next) => {
   });
 
   next();
+});
+
+// Serve PDF files before Vite middleware
+app.get('/cv-jose-bustos.pdf', (req, res) => {
+  const pdfPath = path.resolve(import.meta.dirname, '..', 'public', 'cv-jose-bustos.pdf');
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', 'attachment; filename="Jose-Bustos-CV.pdf"');
+  res.sendFile(pdfPath);
 });
 
 (async () => {
