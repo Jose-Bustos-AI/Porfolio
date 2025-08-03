@@ -125,12 +125,26 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve PDF files before Vite middleware
+// Serve static files before Vite middleware
 app.get('/cv-jose-bustos.pdf', (req, res) => {
   const pdfPath = path.resolve(import.meta.dirname, '..', 'public', 'cv-jose-bustos.pdf');
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', 'attachment; filename="Jose-Bustos-CV.pdf"');
   res.sendFile(pdfPath);
+});
+
+app.get('/favicon.png', (req, res) => {
+  const faviconPath = path.resolve(import.meta.dirname, '..', 'public', 'favicon.png');
+  res.setHeader('Content-Type', 'image/png');
+  res.setHeader('Cache-Control', 'public, max-age=31536000');
+  res.sendFile(faviconPath);
+});
+
+app.get('/apple-touch-icon.png', (req, res) => {
+  const iconPath = path.resolve(import.meta.dirname, '..', 'public', 'apple-touch-icon.png');
+  res.setHeader('Content-Type', 'image/png');
+  res.setHeader('Cache-Control', 'public, max-age=31536000');
+  res.sendFile(iconPath);
 });
 
 (async () => {
