@@ -1,6 +1,33 @@
 node_modules
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 dist
 .DS_Store
 server/public
 vite.config.ts.*
 *.tar.gz
+
+# Replit specific files (not needed for production)
+.replit
+replit.md
+.cache/replit/
+.upm/
+
+# Build and temp files
+.vite/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Development assets
+attached_assets/

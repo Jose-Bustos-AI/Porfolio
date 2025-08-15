@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import joseBustosPhoto from '@assets/Diseño sin título_1753307523737.jpg';
+// About photo now served from public/images/about.jpg
 
 const AboutSection: React.FC = () => {
   const containerVariants = {
@@ -161,7 +161,7 @@ const AboutSection: React.FC = () => {
               variants={itemVariants}
             >
               <img 
-                src={joseBustosPhoto} 
+                src="/images/about.jpg" 
                 alt="Jose Bustos en su estudio de desarrollo" 
                 className="w-full h-auto rounded-2xl"
               />

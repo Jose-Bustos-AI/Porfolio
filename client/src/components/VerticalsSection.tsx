@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import voiceAgentImage from '@assets/Diseño sin título (3)_1753520134636.jpg';
-import databaseImage from '@assets/Diseño sin título (5)_1753520510195.jpg';
-import developmentImage from '@assets/Diseño sin título (6)_1753520699668.jpg';
-import toolsImage from '@assets/Diseño sin título (7)_1753521161636.jpg';
-import automationImage from '@assets/Diseño sin título (8)_1753521345634.jpg';
-import llmImage from '@assets/Diseño sin título (9)_1753521491755.jpg';
 
 interface TabProps {
   id: string;
@@ -157,7 +151,7 @@ const VerticalsSection: React.FC = () => {
     llm: {
       title: 'LLM',
       description: 'No adapto tu negocio a un modelo: elijo el LLM perfecto para tu caso, garantizando siempre la mejor solución en rendimiento, precio y resultados.',
-      image: llmImage,
+      image: '/images/llm.jpg',
       features: [
         {
           icon: 'openai-line',
@@ -188,7 +182,7 @@ const VerticalsSection: React.FC = () => {
     automation: {
       title: 'Automatización',
       description: 'Elijo la herramienta de automatización que más te hace ganar: máxima eficiencia, cero complicaciones.',
-      image: automationImage,
+      image: '/images/automation.jpg',
       features: [
         {
           icon: 'node-tree',
@@ -225,7 +219,7 @@ const VerticalsSection: React.FC = () => {
     voice: {
       title: 'Agentes de Voz',
       description: 'Elijo la herramienta de voz ideal para que tu negocio venda, atienda y cierre clientes aunque tú estés durmiendo.',
-      image: voiceAgentImage,
+      image: '/images/voice-agent.jpg',
       features: [
         {
           icon: 'phone-line',
@@ -262,7 +256,7 @@ const VerticalsSection: React.FC = () => {
     development: {
       title: 'Desarrollo',
       description: 'Utilizo el stack más moderno y probado para que tu producto salga al mercado antes que nadie y empiece a facturar desde el primer día.',
-      image: developmentImage,
+      image: '/images/development.jpg',
       features: [
         {
           icon: 'window-line',
@@ -317,7 +311,7 @@ const VerticalsSection: React.FC = () => {
     database: {
       title: 'Bases de Datos que manejo',
       description: 'Especializado en múltiples tecnologías de bases de datos para cubrir todas las necesidades de tu proyecto, desde aplicaciones web hasta sistemas empresariales complejos.',
-      image: databaseImage,
+      image: '/images/database.jpg',
       features: [
         {
           icon: 'cloud-line',
@@ -354,7 +348,7 @@ const VerticalsSection: React.FC = () => {
     tools: {
       title: 'Otras Herramientas',
       description: 'Trabajo solo con herramientas de primer nivel para que tu negocio siempre esté listo para vender, escalar y adaptarse al futuro.',
-      image: toolsImage,
+      image: '/images/tools.jpg',
       features: [
         {
           icon: 'bank-card-line',
