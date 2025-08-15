@@ -284,7 +284,7 @@ const VerticalsSection: React.FC = () => {
         },
         {
           icon: 'cloud-line',
-          title: 'Replit',
+          title: 'Cloud IDE',
           description: 'Entorno colaborativo en la nube para desarrollar, probar y lanzar proyectos en cualquier lenguaje y desde cualquier lugar, ideal para equipos y MVPs rápidos.',
           color: 'orange'
         },
