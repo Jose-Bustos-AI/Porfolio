@@ -21,8 +21,11 @@
 ## ⚠️ Archivos Protegidos por el Sistema
 Estos archivos no se pueden eliminar físicamente pero están excluidos del git:
 - `.replit` (archivo de configuración del entorno)
-- `replit.md` (documentación técnica original)
 - `.cache/replit/` (archivos de caché)
+
+## ✅ Archivos Eliminados Completamente
+- `replit.md` → Eliminado (reemplazado por project-notes.md)
+- `attached_assets/` → Eliminado (imágenes movidas a public/images/)
 
 ## ✅ Estado Final del Proyecto
 
