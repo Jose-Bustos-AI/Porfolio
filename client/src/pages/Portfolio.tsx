@@ -6,6 +6,7 @@ import AdminAuthModal from '../components/AdminAuthModal';
 import NewsletterModal from '../components/NewsletterModal';
 import SEOHead from '@/components/SEOHead';
 import LazyImage from '@/components/LazyImage';
+// Nota: El video solo se mostrará dentro del post, no en las tarjetas
 import { sanitizeHTML } from '@/utils/sanitize';
 import { debounce } from '@/utils/performance';
 

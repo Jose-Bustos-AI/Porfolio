@@ -3,6 +3,7 @@ import { Link, useRoute, useLocation } from 'wouter';
 import { motion, Variants } from 'framer-motion';
 import ParticleBackground from '@/components/ParticleBackground';
 import { sanitizeHTML } from '@/utils/sanitize';
+import { isYouTubeUrl, toYouTubeEmbedUrl, isLikelyDirectVideo } from '@/lib/utils';
 
 // Definición del tipo para cada post
 interface Post {
@@ -206,19 +207,43 @@ const PortfolioPost: React.FC = () => {
               </h1>
               
               {/* Video si existe */}
-              {post.video_url && (
-                <div className="my-8 rounded-xl overflow-hidden relative">
-                  <div className="aspect-w-16 aspect-h-9">
-                    <iframe 
-                      src={post.video_url} 
-                      title={post.title}
-                      allowFullScreen
-                      className="w-full h-full"
-                      style={{ border: 'none' }}
-                    />
+              {post.video_url && (() => {
+                const url = post.video_url as string;
+                const isYT = isYouTubeUrl(url);
+                const embedUrl = isYT ? toYouTubeEmbedUrl(url) : url;
+                const isDirect = !isYT && isLikelyDirectVideo(url);
+                return (
+                  <div className="my-8 rounded-xl overflow-hidden relative">
+                    {isYT ? (
+                      <div className="relative w-full pb-[56.25%] h-0">
+                        <iframe
+                          src={embedUrl}
+                          title={post.title}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          className="absolute top-0 left-0 w-full h-full"
+                          style={{ border: 'none' }}
+                        />
+                      </div>
+                    ) : isDirect ? (
+                      <video
+                        src={url}
+                        controls
+                        className="w-full h-auto bg-black"
+                        style={{ aspectRatio: '16 / 9' }}
+                      />
+                    ) : (
+                      <iframe
+                        src={url}
+                        title={post.title}
+                        allowFullScreen
+                        className="w-full h-[360px]"
+                        style={{ border: 'none' }}
+                      />
+                    )}
                   </div>
-                </div>
-              )}
+                );
+              })()}
               
               {/* Contenido HTML sanitizado */}
               <div 

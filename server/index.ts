@@ -1,3 +1,4 @@
+import 'dotenv/config'; // carga .env antes de cualquier uso de process.env
 import express, { type Request, Response, NextFunction } from "express";
 import helmet from "helmet";
 import compression from "compression";
@@ -9,26 +10,20 @@ import { addSecurityHeaders, sanitizeQueryParams } from "./middleware/security";
 
 // Sanitize sensitive data from logs
 const sanitizeLogData = (data: any): any => {
-  if (typeof data !== 'object' || data === null) {
-    return data;
-  }
-  
+  if (typeof data !== 'object' || data === null) return data;
+
   const sensitiveFields = ['password', 'token', 'authorization', 'auth', 'secret', 'key'];
   const sanitized = { ...data };
-  
+
   for (const field of sensitiveFields) {
-    if (field in sanitized) {
-      sanitized[field] = '[REDACTED]';
-    }
+    if (field in sanitized) sanitized[field] = '[REDACTED]';
   }
-  
-  // Recursively sanitize nested objects
+
   for (const key in sanitized) {
     if (typeof sanitized[key] === 'object' && sanitized[key] !== null) {
       sanitized[key] = sanitizeLogData(sanitized[key]);
     }
   }
-  
   return sanitized;
 };
 
@@ -45,17 +40,14 @@ app.use(helmet({
       imgSrc: ["'self'", "data:", "https:", "blob:"],
       connectSrc: ["'self'", "wss:", "ws:"],
       mediaSrc: ["'self'", "https:"],
+      frameSrc: ["'self'", "https://www.youtube.com", "https://www.youtube-nocookie.com"],
       objectSrc: ["'none'"],
       baseUri: ["'self'"],
       formAction: ["'self'"],
       frameAncestors: ["'none'"],
     },
   },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true
-  }
+  hsts: { maxAge: 31536000, includeSubDomains: true, preload: true }
 }));
 
 // Compression for better performance
@@ -69,33 +61,27 @@ app.use(sanitizeQueryParams);
 
 // Rate limiting for API endpoints
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 100,
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
 });
-
 app.use('/api/', apiLimiter);
 
 // Parsing middleware with size limits
-app.use(express.json({ 
+app.use(express.json({
   limit: '10mb',
-  verify: (req, res, buf) => {
-    // Validate JSON structure
-    try {
-      JSON.parse(buf.toString());
-    } catch (e) {
-      throw new Error('Invalid JSON');
-    }
+  verify: (_req, _res, buf) => {
+    try { JSON.parse(buf.toString()); } catch { throw new Error('Invalid JSON'); }
   }
 }));
 app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 app.use((req, res, next) => {
   const start = Date.now();
-  const path = req.path;
-  let capturedJsonResponse: Record<string, any> | undefined = undefined;
+  const p = req.path;
+  let capturedJsonResponse: Record<string, any> | undefined;
 
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
@@ -105,18 +91,13 @@ app.use((req, res, next) => {
 
   res.on("finish", () => {
     const duration = Date.now() - start;
-    if (path.startsWith("/api")) {
-      let logLine = `${req.method} ${path} ${res.statusCode} in ${duration}ms`;
+    if (p.startsWith("/api")) {
+      let logLine = `${req.method} ${p} ${res.statusCode} in ${duration}ms`;
       if (capturedJsonResponse) {
-        // Sanitize response data before logging
         const sanitizedResponse = sanitizeLogData(capturedJsonResponse);
         logLine += ` :: ${JSON.stringify(sanitizedResponse)}`;
       }
-
-      if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
-      }
-
+      if (logLine.length > 80) logLine = logLine.slice(0, 79) + "…";
       log(logLine);
     }
   });
@@ -125,21 +106,21 @@ app.use((req, res, next) => {
 });
 
 // Serve static files before Vite middleware
-app.get('/cv-jose-bustos.pdf', (req, res) => {
+app.get('/cv-jose-bustos.pdf', (_req, res) => {
   const pdfPath = path.resolve(import.meta.dirname, '..', 'public', 'cv-jose-bustos.pdf');
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Disposition', 'attachment; filename="Jose-Bustos-CV.pdf"');
   res.sendFile(pdfPath);
 });
 
-app.get('/favicon.png', (req, res) => {
+app.get('/favicon.png', (_req, res) => {
   const faviconPath = path.resolve(import.meta.dirname, '..', 'public', 'favicon.png');
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Cache-Control', 'public, max-age=31536000');
   res.sendFile(faviconPath);
 });
 
-app.get('/apple-touch-icon.png', (req, res) => {
+app.get('/apple-touch-icon.png', (_req, res) => {
   const iconPath = path.resolve(import.meta.dirname, '..', 'public', 'apple-touch-icon.png');
   res.setHeader('Content-Type', 'image/png');
   res.setHeader('Cache-Control', 'public, max-age=31536000');
@@ -151,51 +132,37 @@ app.get('/apple-touch-icon.png', (req, res) => {
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
-    
-    // Sanitize error messages to prevent information leakage
     let message = "Internal Server Error";
-    
-    // Only expose safe error messages
-    if (status === 400) {
-      message = "Bad Request";
-    } else if (status === 401) {
-      message = "Unauthorized";
-    } else if (status === 403) {
-      message = "Forbidden";
-    } else if (status === 404) {
-      message = "Not Found";
-    } else if (status === 429) {
-      message = "Too Many Requests";
-    }
-    
-    // Log detailed error server-side without exposing sensitive data
+    if (status === 400) message = "Bad Request";
+    else if (status === 401) message = "Unauthorized";
+    else if (status === 403) message = "Forbidden";
+    else if (status === 404) message = "Not Found";
+    else if (status === 429) message = "Too Many Requests";
+
     console.error(`[ERROR] ${status} - ${err.message} - IP: ${_req.ip} - Path: ${_req.path} - Method: ${_req.method}`);
-    
-    // Never send detailed error info to client in production
-    res.status(status).json({ 
-      error: message,
-      timestamp: new Date().toISOString()
-    });
+    res.status(status).json({ error: message, timestamp: new Date().toISOString() });
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
+  // dev: Vite middlewares; prod: serve estáticos
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  // ======== LISTEN (compat Windows) ========
+  const port = Number(process.env.PORT ?? 5000);
+  const host = process.env.HOST ?? "0.0.0.0";
+
+  if (process.platform === "win32") {
+    // Windows no soporta reusePort
+    server.listen(port, host, () => {
+      log(`serving on port ${port}`);
+    });
+  } else {
+    // En *nix podemos usar reusePort
+    server.listen({ port, host, reusePort: true } as any, () => {
+      log(`serving on port ${port}`);
+    });
+  }
 })();

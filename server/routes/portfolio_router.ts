@@ -1,157 +1,155 @@
-import { Router, Request, Response } from 'express';
-import { postsStorage } from '../storage/portfolio';
-import { insertPostSchema, updatePostSchema } from '@shared/schema';
-import { ZodError } from 'zod';
-import { fromZodError } from 'zod-validation-error';
-import fs from 'fs';
-import path from 'path';
+import { Router } from "express";
+import { db } from "../db";
+import * as schema from "@shared/schema";
+import { eq, desc } from "drizzle-orm";
+import { z } from "zod";
 
-// Crear router para las rutas de Portfolio
-const portfolioRouter = Router();
+/**
+ * Validación del body (solo URLs, sin archivos)
+ * OJO: usamos snake_case para que coincida con el schema Drizzle.
+ */
+const postInput = z.object({
+  title: z.string().min(1, "Titulo requerido"),
+  content: z.string().min(1, "Contenido requerido"),
+  image_url: z.string().url("URL de imagen inválida"),
+  video_url: z
+    .string()
+    .url("URL de video inválida")
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  github_url: z
+    .string()
+    .url("URL de GitHub inválida")
+    .optional()
+    .or(z.literal("").transform(() => undefined)),
+  published: z.boolean().optional().default(true),
+});
 
-// GET - Obtener todos los posts
-portfolioRouter.get('/posts', async (req: Request, res: Response) => {
+const postUpdateInput = postInput.partial();
+
+const router = Router();
+
+/**
+ * LISTAR POSTS
+ * Para simplificar el Front, devolvemos directamente un ARRAY.
+ */
+router.get("/posts", async (_req, res) => {
   try {
-    const posts = await postsStorage.getAllPosts();
-    res.json(posts);
-  } catch (error) {
-    console.error('Error al obtener posts:', error);
-    res.status(500).json({ error: 'Error al obtener los posts' });
+    const rows = await db
+      .select()
+      .from(schema.posts)
+      .orderBy(desc(schema.posts.created_at));
+
+    res.json(rows);
+  } catch (e) {
+    console.error("Error al obtener posts:", e);
+    res.status(500).json({ error: "Error al obtener los posts" });
   }
 });
 
-// GET - Obtener un post por ID
-portfolioRouter.get('/posts/:id', async (req: Request, res: Response) => {
+/**
+ * OBTENER UN POST POR ID
+ */
+router.get("/posts/:id", async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
-    
-    if (isNaN(id)) {
-      return res.status(400).json({ error: 'ID inválido' });
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const rows = await db
+      .select()
+      .from(schema.posts)
+      .where(eq(schema.posts.id, id))
+      .limit(1);
+
+    if (!rows || rows.length === 0) {
+      return res.status(404).json({ error: "Post no encontrado" });
     }
-    
-    const post = await postsStorage.getPostById(id);
-    
-    if (!post) {
-      return res.status(404).json({ error: 'Post no encontrado' });
-    }
-    
-    res.json(post);
-  } catch (error) {
-    console.error('Error al obtener post:', error);
-    res.status(500).json({ error: 'Error al obtener el post' });
+
+    res.json(rows[0]);
+  } catch (e) {
+    console.error("Error al obtener post por id:", e);
+    res.status(500).json({ error: "Error al obtener el post" });
   }
 });
 
-// POST - Crear un nuevo post
-portfolioRouter.post('/posts', async (req: Request, res: Response) => {
+/**
+ * CREAR POST (solo JSON, sin multer)
+ */
+router.post("/posts", async (req, res) => {
   try {
-    // Validar datos con Zod
-    const validatedData = insertPostSchema.parse(req.body);
-    
-    // Crear post en la base de datos
-    const newPost = await postsStorage.createPost(validatedData);
-    
-    res.status(201).json(newPost);
-  } catch (error) {
-    console.error('Error al crear post:', error);
-    
-    if (error instanceof ZodError) {
-      // Error de validación
-      return res.status(400).json({ 
-        error: 'Datos inválidos', 
-        details: fromZodError(error).message 
-      });
+    const parsed = postInput.parse(req.body);
+
+    const [inserted] = await db
+      .insert(schema.posts)
+      .values({
+        title: parsed.title,
+        content: parsed.content,
+        image_url: parsed.image_url,
+        video_url: parsed.video_url,
+        github_url: parsed.github_url,
+        published: parsed.published ?? true,
+      })
+      .returning();
+
+    res.json(inserted);
+  } catch (e: any) {
+    if (e?.issues) {
+      return res.status(400).json({ error: "Datos inválidos", details: e.issues });
     }
-    
-    res.status(500).json({ error: 'Error al crear el post' });
+    console.error("Error al crear post:", e);
+    res.status(500).json({ error: "Error al crear el post" });
   }
 });
 
-// PUT - Actualizar un post existente
-portfolioRouter.put('/posts/:id', async (req: Request, res: Response) => {
+/**
+ * ACTUALIZAR POST
+ */
+router.put("/posts/:id", async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
-    
-    if (isNaN(id)) {
-      return res.status(400).json({ error: 'ID inválido' });
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const parsed = postUpdateInput.parse(req.body);
+
+    const [updated] = await db
+      .update(schema.posts)
+      .set({
+        ...(parsed.title !== undefined ? { title: parsed.title } : {}),
+        ...(parsed.content !== undefined ? { content: parsed.content } : {}),
+        ...(parsed.image_url !== undefined ? { image_url: parsed.image_url } : {}),
+        ...(parsed.video_url !== undefined ? { video_url: parsed.video_url } : {}),
+        ...(parsed.github_url !== undefined ? { github_url: parsed.github_url } : {}),
+        ...(parsed.published !== undefined ? { published: parsed.published } : {}),
+        updated_at: new Date(),
+      })
+      .where(eq(schema.posts.id, id))
+      .returning();
+
+    if (!updated) return res.status(404).json({ error: "Post no encontrado" });
+    res.json(updated);
+  } catch (e: any) {
+    if (e?.issues) {
+      return res.status(400).json({ error: "Datos inválidos", details: e.issues });
     }
-    
-    // Validar datos con Zod
-    const validatedData = updatePostSchema.parse(req.body);
-    
-    // Actualizar post en la base de datos
-    const updatedPost = await postsStorage.updatePost(id, validatedData);
-    
-    if (!updatedPost) {
-      return res.status(404).json({ error: 'Post no encontrado' });
-    }
-    
-    res.json(updatedPost);
-  } catch (error) {
-    console.error('Error al actualizar post:', error);
-    
-    if (error instanceof ZodError) {
-      // Error de validación
-      return res.status(400).json({ 
-        error: 'Datos inválidos', 
-        details: fromZodError(error).message 
-      });
-    }
-    
-    res.status(500).json({ error: 'Error al actualizar el post' });
+    console.error("Error al actualizar post:", e);
+    res.status(500).json({ error: "Error al actualizar el post" });
   }
 });
 
-// DELETE - Eliminar un post
-portfolioRouter.delete('/posts/:id', async (req: Request, res: Response) => {
+/**
+ * ELIMINAR POST
+ */
+router.delete("/posts/:id", async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
-    
-    if (isNaN(id)) {
-      return res.status(400).json({ error: 'ID inválido' });
-    }
-    
-    const deleted = await postsStorage.deletePost(id);
-    
-    if (!deleted) {
-      return res.status(404).json({ error: 'Post no encontrado' });
-    }
-    
-    res.status(200).json({ success: true, message: 'Post eliminado correctamente' });
-  } catch (error) {
-    console.error('Error al eliminar post:', error);
-    res.status(500).json({ error: 'Error al eliminar el post' });
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    await db.delete(schema.posts).where(eq(schema.posts.id, id));
+    res.json({ success: true });
+  } catch (e) {
+    console.error("Error al eliminar post:", e);
+    res.status(500).json({ error: "Error al eliminar el post" });
   }
 });
 
-// POST - Importar posts desde JSON
-portfolioRouter.post('/posts/import', async (req: Request, res: Response) => {
-  try {
-    // Leer el archivo JSON de posts existente
-    const postsFilePath = path.join(process.cwd(), 'data', 'posts.json');
-    
-    if (!fs.existsSync(postsFilePath)) {
-      return res.status(404).json({ error: 'Archivo de posts no encontrado' });
-    }
-    
-    const postsData = JSON.parse(fs.readFileSync(postsFilePath, 'utf8'));
-    
-    if (!Array.isArray(postsData)) {
-      return res.status(400).json({ error: 'Formato de archivo inválido' });
-    }
-    
-    // Importar los posts a la base de datos
-    const importedPosts = await postsStorage.importFromJson(postsData);
-    
-    res.status(200).json({ 
-      success: true, 
-      message: `${importedPosts.length} posts importados correctamente`,
-      posts: importedPosts
-    });
-  } catch (error) {
-    console.error('Error al importar posts:', error);
-    res.status(500).json({ error: 'Error al importar los posts' });
-  }
-});
-
-export default portfolioRouter;
+export default router;
