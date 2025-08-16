@@ -105,7 +105,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       log('Redirigiendo a la ruta de importación de posts', 'init-db');
       
       // Hacemos una solicitud a nuestra propia API
-      const importResponse = await fetch('http://localhost:5000/api/labs/posts/import', {
+      const importResponse = await fetch('http://localhost:5000/api/portfolio/posts/import', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
