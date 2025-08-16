@@ -1,3 +1,14 @@
+## Docker
+
+Este proyecto incluye archivos para dockerización:
+
+- `.dockerignore`
+- `Dockerfile`
+- `docker-compose.yml`
+- `.env.example` (plantilla)
+
+Sigue las instrucciones en `.env.example` para crear tu `.env` (no lo subas al repo).
+
 # Jose Bustos - Portfolio
 
 Portfolio personal y sitio web de negocio para Jose Bustos, especialista en IA y automatización que proporciona soluciones de inteligencia artificial y automatización para pequeñas y medianas empresas.
