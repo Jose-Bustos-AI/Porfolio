@@ -15,7 +15,7 @@ export const AUTH_CONFIG = {
 // Simple password verification (in production, use bcrypt)
 export const verifyAdminPassword = (password: string): boolean => {
   // For now, direct comparison - but this should be hashed
-  const ADMIN_PASSWORD = 'innova2024'; // Move to environment variable
+  const ADMIN_PASSWORD = 'Almeria82'; // Move to environment variable
   return password === ADMIN_PASSWORD;
 };
 
