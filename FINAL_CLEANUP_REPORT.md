@@ -43,7 +43,7 @@ Estos archivos no se pueden eliminar físicamente pero están excluidos del git:
 - ✅ Servidor funcionando correctamente en puerto 5000
 - ✅ Aplicación React cargando sin errores
 - ✅ Base de datos conectada
-- ✅ Autenticación admin funcionando (password: Almeria82)
+- ✅ Autenticación admin funcionando (password en variable de entorno)
 - ✅ Descarga de CV operativa
 - ✅ Todas las funcionalidades principales intactas
 

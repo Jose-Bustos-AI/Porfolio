@@ -118,7 +118,7 @@ export const requireAdmin = (req: Request, res: Response, next: NextFunction) =>
 const verifyAuthToken = (token: string): boolean => {
   try {
     // In production, this should verify a JWT or check against a secure hash
-    const EXPECTED_TOKEN = process.env.ADMIN_TOKEN || 'Almeria82';
+    const EXPECTED_TOKEN = process.env.ADMIN_TOKEN || process.env.ADMIN_PASSWORD || 'defaultPassword123';
     return token === EXPECTED_TOKEN;
   } catch (error) {
     // Never log the actual token or sensitive data

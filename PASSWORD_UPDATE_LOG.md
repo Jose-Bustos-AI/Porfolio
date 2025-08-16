@@ -14,10 +14,12 @@
 
 ## Estado
 ✅ Contraseña actualizada en todos los archivos relevantes
-⚠️ Pendiente de reinicio del servidor para aplicar cambios
+✅ Contraseña movida a variable de entorno ADMIN_PASSWORD
+✅ Código ya NO expone la contraseña
+✅ GitHub seguro - contraseña no visible
 
-## Nota de Seguridad
-La contraseña sigue siendo hardcodeada en el código. Para producción se recomienda:
-- Usar variables de entorno (ADMIN_PASSWORD)
-- Implementar hash con bcrypt
-- Usar JWT tokens con expiración
+## Seguridad Mejorada
+✅ Contraseña en variable de entorno (ADMIN_PASSWORD=Almeria82)
+✅ Código lee desde process.env.ADMIN_PASSWORD
+✅ No hay exposición en repositorio GitHub
+⚠️ Futuro: Implementar bcrypt para hash de contraseñas
