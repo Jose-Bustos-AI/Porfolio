@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-interface GlassmorphismCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface GlassmorphismCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onDrag' | 'onDragEnd' | 'onDragStart' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'> {
   children: React.ReactNode;
   variant?: 'blue' | 'purple' | 'pink' | 'none';
   animate?: boolean;

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-interface TabProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface TabProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onDrag' | 'onDragEnd' | 'onDragStart' | 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration'> {
   active?: boolean;
   color?: 'blue' | 'purple' | 'pink';
   children: React.ReactNode;

@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { postsStorage } from '../storage/labs';
+import { postsStorage } from '../storage/portfolio';
 import { insertPostSchema, updatePostSchema } from '@shared/schema';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
@@ -59,7 +59,7 @@ labsRouter.post('/posts', async (req: Request, res: Response) => {
       // Error de validación
       return res.status(400).json({ 
         error: 'Datos inválidos', 
-        details: formatZodError(error).message 
+        details: fromZodError(error).message 
       });
     }
     
@@ -94,7 +94,7 @@ labsRouter.put('/posts/:id', async (req: Request, res: Response) => {
       // Error de validación
       return res.status(400).json({ 
         error: 'Datos inválidos', 
-        details: formatZodError(error).message 
+        details: fromZodError(error).message 
       });
     }
     
