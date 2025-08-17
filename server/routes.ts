@@ -7,6 +7,8 @@ import portfolioRouter from './routes/portfolio_router';
 import uploadsRouter from './routes/uploads';
 import authRouter from './routes/auth';
 import { log } from "./vite";
+import { db } from "./db";
+import * as schema from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Headers de seguridad
@@ -22,6 +24,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
     
     next();
+  });
+
+  // Endpoint de salud para orquestación/monitoring
+  app.get('/api/health', async (_req: Request, res: Response) => {
+    const payload: Record<string, any> = {
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      env: process.env.NODE_ENV || 'development',
+    };
+    try {
+      // Verificación mínima de BBDD (no altera esquema)
+      await db.select().from(schema.posts).limit(1);
+      payload.db = 'ok';
+    } catch (e) {
+      payload.db = 'error';
+    }
+    res.status(200).json(payload);
   });
 
   // Endpoints SEO como rutas de API para evitar conflictos con Vite

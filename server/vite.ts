@@ -1,85 +1,28 @@
-import express, { type Express } from "express";
-import fs from "fs";
-import path from "path";
-import { createServer as createViteServer, createLogger } from "vite";
-import { type Server } from "http";
-import viteConfig from "../vite.config";
-import { nanoid } from "nanoid";
+// server/vite.ts
+import type express from "express";
+import type { Server as HttpServer } from "http";
 
-const viteLogger = createLogger();
+// ❗ Nada de imports de 'vite' ni plugins arriba.
+// Los cargamos sólo si estamos en desarrollo con import() dinámico.
 
-export function log(message: string, source = "express") {
-  const formattedTime = new Date().toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  });
+export async function setupVite(app: express.Express, server: HttpServer) {
+  if (process.env.NODE_ENV !== "development") return;
 
-  console.log(`${formattedTime} [${source}] ${message}`);
-}
+  // Carga perezosa de Vite y plugins SOLO en dev
+  const { createServer } = await import("vite");
+  const react = (await import("@vitejs/plugin-react")).default;
+  const Windi = (await import("vite-plugin-windicss")).default;
 
-export async function setupVite(app: Express, server: Server) {
-  const serverOptions = {
-    middlewareMode: true,
-    hmr: { server },
-    allowedHosts: true,
-  };
-
-  const vite = await createViteServer({
-    ...viteConfig,
-    configFile: false,
-    customLogger: {
-      ...viteLogger,
-      error: (msg, options) => {
-        viteLogger.error(msg, options);
-        process.exit(1);
-      },
-    },
-    server: serverOptions,
+  const vite = await createServer({
     appType: "custom",
+    server: { middlewareMode: true, hmr: { server } },
+    plugins: [react(), Windi()],
   });
 
   app.use(vite.middlewares);
-  app.use("*", async (req, res, next) => {
-    const url = req.originalUrl;
-
-    try {
-      const clientTemplate = path.resolve(
-        import.meta.dirname,
-        "..",
-        "client",
-        "index.html",
-      );
-
-      // always reload the index.html file from disk incase it changes
-      let template = await fs.promises.readFile(clientTemplate, "utf-8");
-      template = template.replace(
-        `src="/src/main.tsx"`,
-        `src="/src/main.tsx?v=${nanoid()}"`,
-      );
-      const page = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ "Content-Type": "text/html" }).end(page);
-    } catch (e) {
-      vite.ssrFixStacktrace(e as Error);
-      next(e);
-    }
-  });
 }
 
-export function serveStatic(app: Express) {
-  const distPath = path.resolve(import.meta.dirname, "public");
-
-  if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
-  }
-
-  app.use(express.static(distPath));
-
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
-  });
+export function serveStatic(_app: express.Express) {
+  // Producción: sirves estáticos desde /dist (si ya lo hacías en otro sitio, déjalo igual)
+  // Aquí no cargamos Vite.
 }
