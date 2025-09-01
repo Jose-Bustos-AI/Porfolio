@@ -160,8 +160,7 @@ const AboutSection: React.FC = () => {
               className="relative rounded-2xl overflow-hidden group"
               variants={itemVariants}
             >
-              <img 
-                src="/images/about.jpg" 
+              <img src="/images/jose-bustos-personal.jpg" 
                 alt="Jose Bustos en su estudio de desarrollo" 
                 className="w-full h-auto rounded-2xl"
               />
