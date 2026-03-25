@@ -1,11 +1,16 @@
-import { db } from '../server/db';
-
 export default async function handler(req: any, res: any) {
   try {
-    // Try a simple DB query
+    const { createClient } = await import('@libsql/client/http');
+    const client = createClient({
+      url: (process.env.TURSO_DATABASE_URL || '').replace('libsql://', 'https://'),
+      authToken: process.env.TURSO_AUTH_TOKEN,
+    });
+    const { drizzle } = await import('drizzle-orm/libsql');
+    const schema = await import('../shared/schema');
+    const db = drizzle(client, { schema });
     const result = await db.query.posts.findMany({ limit: 1 });
-    res.json({ ok: true, db: 'connected', rows: result.length });
+    res.json({ ok: true, rows: result.length });
   } catch (e: any) {
-    res.status(500).json({ ok: false, error: e.message, stack: e.stack?.slice(0, 300) });
+    res.status(500).json({ ok: false, error: e.message, type: e.constructor?.name });
   }
 }
