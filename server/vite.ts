@@ -1,6 +1,19 @@
 // server/vite.ts
-import type express from "express";
+import express from "express";
 import type { Server as HttpServer } from "http";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+
+export function log(message: string, source = "express") {
+  const formattedTime = new Date().toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  console.log(`${formattedTime} [${source}] ${message}`);
+}
 
 // ❗ Nada de imports de 'vite' ni plugins arriba.
 // Los cargamos sólo si estamos en desarrollo con import() dinámico.
@@ -22,7 +35,19 @@ export async function setupVite(app: express.Express, server: HttpServer) {
   app.use(vite.middlewares);
 }
 
-export function serveStatic(_app: express.Express) {
-  // Producción: sirves estáticos desde /dist (si ya lo hacías en otro sitio, déjalo igual)
-  // Aquí no cargamos Vite.
+export function serveStatic(app: express.Express) {
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const distPath = path.resolve(__dirname, "../dist/public");
+
+  if (!fs.existsSync(distPath)) {
+    log(`Static files not found at ${distPath}`, "static");
+    return;
+  }
+
+  app.use(express.static(distPath));
+
+  app.get("*", (_req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
 }
