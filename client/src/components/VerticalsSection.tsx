@@ -142,11 +142,12 @@ const VerticalsSection: React.FC = () => {
     { id: 'llm', label: 'LLM', color: 'blue' },
     { id: 'automation', label: 'Automatización', color: 'purple' },
     { id: 'voice', label: 'Agentes de Voz', color: 'pink' },
-    { id: 'development', label: 'Desarrollo', color: 'orange' },
-    { id: 'database', label: 'Database', color: 'green' },
-    { id: 'tools', label: 'Otras Herramientas', color: 'blue' }
+    { id: 'imagevideo', label: 'Imagen & Video IA', color: 'orange' },
+    { id: 'development', label: 'Desarrollo', color: 'green' },
+    { id: 'database', label: 'Database', color: 'blue' },
+    { id: 'tools', label: 'Otras Herramientas', color: 'purple' }
   ];
-  
+
   const tabContentMap: Record<string, IndustryContentProps> = {
     llm: {
       title: 'LLM',
@@ -155,27 +156,33 @@ const VerticalsSection: React.FC = () => {
       features: [
         {
           icon: 'openai-line',
-          title: 'OpenAI',
-          description: 'Muy buena para generación de texto, automatización de conversaciones y respuestas fiables. Ideal para chatbots, asistentes y procesos donde la calidad y naturalidad del lenguaje es clave.',
+          title: 'OpenAI (GPT-4o / o3)',
+          description: 'El estándar del sector para chatbots, asistentes y automatización de conversaciones. Calidad y naturalidad del lenguaje insuperables para el cliente final.',
           color: 'blue'
         },
         {
           icon: 'cpu-line',
-          title: 'Anthropic',
-          description: 'Perfecta para código, generación de documentos complejos y análisis profundo de información. Excelente para empresas que necesitan IA capaz de entender instrucciones largas, procesar datos o redactar informes y papers técnicos.',
+          title: 'Anthropic (Claude)',
+          description: 'Líder en razonamiento complejo, análisis de documentos largos y generación de código. Mi elección cuando el proyecto requiere precisión y contexto extenso.',
           color: 'purple'
         },
         {
           icon: 'google-line',
-          title: 'Gemini (Google)',
-          description: 'Versátil y económica, funciona genial para tareas de análisis, búsqueda de información, generación de resúmenes y automatización ligera. Recomendada para proyectos donde la eficiencia y el coste son importantes.',
+          title: 'Gemini 2.5 (Google)',
+          description: 'Multimodal nativo con la ventana de contexto más larga del mercado. Ideal para análisis de documentos, búsqueda aumentada y proyectos que combinan texto, imagen y audio.',
           color: 'pink'
         },
         {
           icon: 'code-s-slash-line',
-          title: 'Mistral (Open Source)',
-          description: 'Open source, rápida y gratuita. Ideal para soluciones a medida que requieren personalización total, despliegue propio o ahorro de costes a gran escala. Perfecta para empresas que quieren control absoluto sobre sus datos y modelos.',
+          title: 'DeepSeek',
+          description: 'La revolución del open source en 2025. Rendimiento comparable a los modelos top a una fracción del coste, ideal para despliegues propios y proyectos que requieren control total de datos.',
           color: 'green'
+        },
+        {
+          icon: 'meta-line',
+          title: 'Llama (Meta)',
+          description: 'El open source de referencia. Flexible, potente y gratuito para ejecutar localmente o en infraestructura propia, perfecto para soluciones donde la privacidad es crítica.',
+          color: 'orange'
         }
       ]
     },
@@ -187,31 +194,31 @@ const VerticalsSection: React.FC = () => {
         {
           icon: 'node-tree',
           title: 'n8n',
-          description: 'Automatización visual, flexible y escalable. Conecta cualquier app y crea flujos a medida sin límites.',
+          description: 'Automatización visual, flexible y escalable. La herramienta que más uso: conecta cualquier app, admite código personalizado y se puede desplegar en tu propio servidor.',
           color: 'purple'
         },
         {
           icon: 'puzzle-line',
           title: 'Make',
-          description: 'Automatiza tareas y conecta plataformas fácilmente, con plantillas listas y control total de cada paso.',
+          description: 'Automatiza tareas y conecta plataformas fácilmente, con plantillas listas y control total de cada paso. Ideal para equipos no técnicos.',
           color: 'blue'
         },
         {
           icon: 'flashlight-line',
           title: 'Zapier',
-          description: 'La forma más rápida de automatizar tareas entre cientos de servicios, ideal para empezar y escalar.',
+          description: 'La forma más rápida de automatizar tareas entre cientos de servicios. Perfecto para empezar a automatizar sin fricción.',
           color: 'orange'
         },
         {
-          icon: 'code-line',
-          title: 'Pipedream',
-          description: 'Automatización avanzada para integrar APIs y personalizar procesos con código, rápido y seguro.',
+          icon: 'links-line',
+          title: 'LangChain / LangGraph',
+          description: 'El framework de referencia para orquestar agentes IA. Encadeno LLMs, herramientas y memoria para construir flujos de trabajo inteligentes y autónomos.',
           color: 'green'
         },
         {
-          icon: 'robot-line',
-          title: 'RPA',
-          description: 'Digitaliza procesos repetitivos y ahorra tiempo sin cambiar tu sistema actual.',
+          icon: 'team-line',
+          title: 'CrewAI',
+          description: 'Sistemas multiagente donde cada IA tiene un rol específico. Ideal para proyectos que requieren investigación, análisis y ejecución coordinada de forma autónoma.',
           color: 'pink'
         }
       ]
@@ -224,32 +231,75 @@ const VerticalsSection: React.FC = () => {
         {
           icon: 'phone-line',
           title: 'Vapi',
-          description: 'Convierte tu web o app en un call center inteligente: agentes de voz para atención, reservas y ventas automáticas, siempre activos.',
+          description: 'La plataforma líder para agentes de voz telefónicos. Construyo call centers inteligentes que atienden, reservan y venden de forma totalmente autónoma 24/7.',
           color: 'pink'
-        },
-        {
-          icon: 'customer-service-2-line',
-          title: 'RetellAI',
-          description: 'Asistentes de voz personalizados y accesibles para tu negocio, listos para atender y resolver sin complicaciones.',
-          color: 'blue'
         },
         {
           icon: 'mic-line',
           title: 'ElevenLabs',
-          description: 'Voces ultra realistas y naturales. Experiencia premium y humana en todos tus canales de voz.',
+          description: 'Síntesis de voz ultra realista e indetectable. Clono voces, genero locuciones y creo experiencias de audio premium que nadie distingue de una voz humana.',
           color: 'purple'
         },
         {
-          icon: 'google-line',
-          title: 'Google Speech API',
-          description: 'Reconocimiento de voz preciso para automatizar respuestas, analizar y entender llamadas.',
+          icon: 'play-circle-line',
+          title: 'Play.ai',
+          description: 'Agentes de voz conversacionales con latencia mínima. Respuestas naturales y fluidas en tiempo real, perfecto para atención al cliente y asistentes interactivos.',
+          color: 'blue'
+        },
+        {
+          icon: 'emotion-line',
+          title: 'Hume AI',
+          description: 'La primera IA con inteligencia emocional en la voz. Detecta y responde al estado emocional del usuario, llevando la experiencia de atención a otro nivel.',
           color: 'orange'
         },
         {
           icon: 'sound-module-line',
           title: 'Whisper (OpenAI)',
-          description: 'Transcribe audio a texto de forma rápida y precisa, perfecto para convertir llamadas y notas de voz en datos útiles.',
+          description: 'Transcripción de audio a texto con precisión quirúrgica en cualquier idioma. La base de todo pipeline de voz que construyo.',
           color: 'green'
+        }
+      ]
+    },
+    imagevideo: {
+      title: 'Imagen & Video IA',
+      description: 'Especializado en modelos generativos de última generación. Genero, entreno y despliego soluciones de imagen y vídeo IA a medida, tanto con modelos comerciales como open source.',
+      image: '/images/llm.jpg',
+      features: [
+        {
+          icon: 'image-line',
+          title: 'FLUX (Black Forest Labs)',
+          description: 'El modelo de imagen open source más avanzado del mercado. Entreno LoRAs personalizadas sobre FLUX para crear estilos visuales únicos, personajes y productos a medida.',
+          color: 'orange'
+        },
+        {
+          icon: 'film-line',
+          title: 'Wan 2.2',
+          description: 'Generación de vídeo de alta calidad con LoRAs propias entrenadas. Creo contenido de vídeo IA personalizado con consistencia de personaje y estilo para proyectos creativos.',
+          color: 'pink'
+        },
+        {
+          icon: 'flow-chart',
+          title: 'ComfyUI',
+          description: 'El workflow open source de referencia para generación de imagen y vídeo. Construyo pipelines complejos, encadeno modelos y automatizo la producción visual a escala.',
+          color: 'purple'
+        },
+        {
+          icon: 'server-flash-line',
+          title: 'fal.ai',
+          description: 'Inferencia serverless de modelos IA de imagen y vídeo a escala. Despliego y llamo a modelos como FLUX, Wan o LoRAs propias mediante API sin gestionar infraestructura.',
+          color: 'blue'
+        },
+        {
+          icon: 'cpu-line',
+          title: 'RunPod',
+          description: 'GPU serverless para entrenar y ejecutar modelos pesados. Uso RunPod para entrenamiento de LoRAs, despliegue de ComfyUI en producción y workloads de alta demanda.',
+          color: 'green'
+        },
+        {
+          icon: 'brain-line',
+          title: 'LoRA Training',
+          description: 'Fine-tuning de modelos de imagen y vídeo con conjuntos de datos propios. Especialidad clave para crear estilos, personajes o productos únicos con coherencia visual total.',
+          color: 'orange'
         }
       ]
     },
@@ -259,138 +309,138 @@ const VerticalsSection: React.FC = () => {
       image: '/images/development.jpg',
       features: [
         {
-          icon: 'window-line',
-          title: 'Winsurf',
-          description: 'Entorno moderno y ágil para crear aplicaciones web y móviles de forma rápida, eficiente y a medida.',
-          color: 'blue'
+          icon: 'terminal-box-line',
+          title: 'Claude Code',
+          description: 'El agente de desarrollo IA más potente del momento. Lo uso para construir, refactorizar y desplegar proyectos completos con una velocidad y precisión imposibles de alcanzar manualmente.',
+          color: 'purple'
         },
         {
           icon: 'cursor-line',
           title: 'Cursor',
-          description: 'Editor inteligente potenciado por IA que acelera el desarrollo, ayuda a detectar errores y sugiere código de forma proactiva.',
-          color: 'purple'
+          description: 'Editor potenciado por IA que acelera el desarrollo, detecta errores en tiempo real y sugiere código de forma proactiva. Mi entorno principal para proyectos complejos.',
+          color: 'blue'
         },
         {
           icon: 'heart-line',
           title: 'Lovable',
-          description: 'Plataforma perfecta para prototipar, validar y testear ideas de producto digital antes de pasar a desarrollo completo. Ideal para ahorrar tiempo y dinero.',
+          description: 'Genera apps full-stack funcionales desde una descripción en lenguaje natural. Ideal para prototipar rápido y validar ideas con el cliente antes de desarrollar.',
           color: 'pink'
         },
         {
-          icon: 'refresh-line',
-          title: 'Replicate',
-          description: 'Integro modelos avanzados y APIs de inteligencia artificial en tus productos, facilitando funcionalidades IA de última generación en tus soluciones.',
-          color: 'green'
+          icon: 'flashlight-line',
+          title: 'Bolt.new',
+          description: 'Crea aplicaciones web completas en segundos directamente en el navegador. Perfecto para MVPs y demostraciones rápidas con stack moderno listo para producción.',
+          color: 'orange'
         },
         {
-          icon: 'cloud-line',
-          title: 'Cloud IDE',
-          description: 'Entorno colaborativo en la nube para desarrollar, probar y lanzar proyectos en cualquier lenguaje y desde cualquier lugar, ideal para equipos y MVPs rápidos.',
-          color: 'orange'
+          icon: 'magic-line',
+          title: 'v0 (Vercel)',
+          description: 'Generación de interfaces de usuario con IA. Convierto diseños y descripciones en componentes React de calidad producción en cuestión de segundos.',
+          color: 'green'
         },
         {
           icon: 'layout-line',
           title: 'Next.js',
-          description: 'Framework robusto para construir webs y apps escalables, ultra rápidas y optimizadas para SEO. Perfecto para proyectos modernos y profesionales.',
+          description: 'Framework de referencia para apps web escalables, rápidas y SEO-optimizadas. Base de casi todos mis proyectos de producción.',
           color: 'blue'
         },
         {
           icon: 'reactjs-line',
           title: 'React',
-          description: 'Librería líder en la industria para crear interfaces de usuario dinámicas, intuitivas y de alto rendimiento. Base de toda app moderna.',
+          description: 'La librería de UI más usada del mundo. Construyo interfaces dinámicas, mantenibles y de alto rendimiento que escalan con el negocio.',
           color: 'cyan'
         },
         {
-          icon: 'flashlight-line',
+          icon: 'code-s-slash-line',
           title: 'Vite',
-          description: 'Entorno de desarrollo ultrarrápido, ideal para lanzar proyectos web con máxima eficiencia y una experiencia de desarrollo sin fricciones.',
+          description: 'Entorno de desarrollo ultrarrápido con Hot Module Replacement instantáneo. Hace que el ciclo de desarrollo sea significativamente más ágil.',
           color: 'yellow'
         }
       ]
     },
     database: {
-      title: 'Bases de Datos que manejo',
-      description: 'Especializado en múltiples tecnologías de bases de datos para cubrir todas las necesidades de tu proyecto, desde aplicaciones web hasta sistemas empresariales complejos.',
+      title: 'Bases de Datos',
+      description: 'Elijo la base de datos correcta para cada proyecto. Desde PostgreSQL clásico hasta vectorial para IA, siempre con el mejor equilibrio entre rendimiento, coste y escalabilidad.',
       image: '/images/database.jpg',
       features: [
         {
-          icon: 'cloud-line',
-          title: 'Supabase',
-          description: 'Base de datos moderna y cloud, ideal para apps web y SaaS; ofrece autenticación, storage y API RESTful sobre PostgreSQL.',
-          color: 'green'
-        },
-        {
           icon: 'database-2-line',
           title: 'PostgreSQL',
-          description: 'Motor relacional robusto y potente, perfecto para proyectos que requieren transacciones, integridad y consultas complejas.',
+          description: 'El motor relacional más robusto y versátil. Mi primera opción para proyectos que requieren integridad de datos, transacciones complejas y escalabilidad a largo plazo.',
           color: 'blue'
         },
         {
-          icon: 'fire-line',
-          title: 'Firebase',
-          description: 'Solución de Google para apps en tiempo real, notificaciones push y sincronización instantánea. Genial para proyectos móviles.',
-          color: 'orange'
-        },
-        {
-          icon: 'leaf-line',
-          title: 'MongoDB',
-          description: 'Base de datos NoSQL orientada a documentos, ideal para apps flexibles, escalables y con esquemas dinámicos.',
+          icon: 'cloud-line',
+          title: 'Supabase',
+          description: 'PostgreSQL con autenticación, storage y API REST listos. La solución ideal para lanzar SaaS y apps web rápidamente sin gestionar infraestructura.',
           color: 'green'
         },
         {
           icon: 'database-line',
-          title: 'MySQL',
-          description: 'Uno de los motores SQL más populares y fiables; perfecto para sitios web, plataformas de e-commerce y proyectos legacy.',
-          color: 'blue'
+          title: 'Turso',
+          description: 'SQLite serverless distribuido globalmente. Latencia mínima, coste cero en el free tier y perfecto para apps JAMstack y portfolios como este mismo.',
+          color: 'orange'
+        },
+        {
+          icon: 'fire-line',
+          title: 'Firebase',
+          description: 'Base de datos en tiempo real de Google. Ideal para apps móviles con sincronización instantánea, autenticación y notificaciones push.',
+          color: 'pink'
+        },
+        {
+          icon: 'search-eye-line',
+          title: 'Pinecone',
+          description: 'Base de datos vectorial para IA. Esencial para construir sistemas RAG, búsqueda semántica y aplicaciones que necesitan memoria a largo plazo sobre documentos propios.',
+          color: 'purple'
         }
       ]
     },
     tools: {
       title: 'Otras Herramientas',
-      description: 'Trabajo solo con herramientas de primer nivel para que tu negocio siempre esté listo para vender, escalar y adaptarse al futuro.',
+      description: 'El ecosistema completo que rodea mis proyectos: pagos, despliegue, APIs y infraestructura cloud de primer nivel.',
       image: '/images/tools.jpg',
       features: [
         {
           icon: 'bank-card-line',
           title: 'Stripe',
-          description: 'Plataforma líder para gestionar cobros online y suscripciones de forma sencilla y segura.',
+          description: 'La plataforma de pagos más fiable del mercado. Implemento cobros únicos, suscripciones recurrentes y marketplaces con total seguridad y cumplimiento normativo.',
           color: 'purple'
         },
         {
           icon: 'container-line',
           title: 'Docker',
-          description: 'Contenedores para desplegar y escalar proyectos fácilmente, con máxima seguridad y portabilidad.',
+          description: 'Contenedores para empaquetar y desplegar cualquier proyecto con consistencia garantizada entre entornos. Indispensable para producción seria.',
           color: 'blue'
-        },
-        {
-          icon: 'flutter-line',
-          title: 'Flutterflow',
-          description: 'Plataforma visual para crear apps móviles y web de manera rápida y totalmente personalizable.',
-          color: 'cyan'
-        },
-        {
-          icon: 'bar-chart-box-line',
-          title: 'ScoreApp',
-          description: 'Desarrollo ágil de aplicaciones visuales, ideal para MVPs, prototipos o herramientas internas sin necesidad de programar.',
-          color: 'orange'
-        },
-        {
-          icon: 'api-line',
-          title: 'APIs Personalizadas',
-          description: 'Conecto y adapto cualquier sistema que ya uses, asegurando integraciones fluidas y automatización total.',
-          color: 'green'
-        },
-        {
-          icon: 'webhook-line',
-          title: 'Webhooks',
-          description: 'Automatiza la comunicación entre plataformas y activa procesos en tiempo real sin intervención manual.',
-          color: 'pink'
         },
         {
           icon: 'rocket-line',
           title: 'Vercel',
-          description: 'Despliegue de proyectos web en la nube, garantizando velocidad, seguridad y alta disponibilidad.',
-          color: 'yellow'
+          description: 'El estándar para despliegue de apps Next.js y React. CI/CD automático, CDN global y preview deployments que aceleran el ciclo de desarrollo.',
+          color: 'pink'
+        },
+        {
+          icon: 'global-line',
+          title: 'Cloudflare',
+          description: 'CDN global, protección DDoS y Workers serverless en el edge. Uso Cloudflare para maximizar rendimiento y seguridad en cualquier proyecto.',
+          color: 'orange'
+        },
+        {
+          icon: 'server-line',
+          title: 'Railway',
+          description: 'Despliegue de backends, bases de datos y servicios sin fricción. La alternativa moderna a Heroku con mejor precio y experiencia de developer.',
+          color: 'green'
+        },
+        {
+          icon: 'mail-send-line',
+          title: 'Resend',
+          description: 'Emails transaccionales con la API más limpia del mercado. Onboarding, notificaciones y comunicaciones automáticas con entregabilidad garantizada.',
+          color: 'blue'
+        },
+        {
+          icon: 'api-line',
+          title: 'Integraciones API',
+          description: 'Conecto cualquier sistema mediante APIs REST, GraphQL o webhooks. Si tiene API, lo integro: CRMs, ERPs, plataformas de pago, redes sociales y más.',
+          color: 'cyan'
         }
       ]
     }
