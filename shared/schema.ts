@@ -1,23 +1,24 @@
-import { pgTable, text, serial, boolean, timestamp } from "drizzle-orm/pg-core";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
+export const users = sqliteTable("users", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
 });
 
-export const posts = pgTable("posts", {
-  id: serial("id").primaryKey(),
+export const posts = sqliteTable("posts", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   title: text("title").notNull(),
   content: text("content").notNull(),
   image_url: text("image_url").notNull(),
-  video_url: text("video_url"),         // opcional en BD
-  github_url: text("github_url"),       // opcional en BD
-  published: boolean("published").default(true).notNull(),
-  created_at: timestamp("created_at").defaultNow().notNull(),
-  updated_at: timestamp("updated_at").defaultNow().notNull(),
+  video_url: text("video_url"),
+  github_url: text("github_url"),
+  published: integer("published", { mode: "boolean" }).default(true).notNull(),
+  created_at: text("created_at").default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`).notNull(),
+  updated_at: text("updated_at").default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`).notNull(),
 });
 
 /** ----------- Zod schemas ----------- **/

@@ -1,13 +1,15 @@
 import 'dotenv/config';
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import { createClient } from '@libsql/client';
+import { drizzle } from 'drizzle-orm/libsql';
 import * as schema from '@shared/schema';
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL must be set. Did you forget to provision a database?');
+if (!process.env.TURSO_DATABASE_URL || !process.env.TURSO_AUTH_TOKEN) {
+  throw new Error('TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set');
 }
 
-// Driver HTTP (funciona en local y en un VPS con Node)
-const sql = neon(process.env.DATABASE_URL);
+const client = createClient({
+  url: process.env.TURSO_DATABASE_URL,
+  authToken: process.env.TURSO_AUTH_TOKEN,
+});
 
-export const db = drizzle(sql, { schema });
+export const db = drizzle(client, { schema });
