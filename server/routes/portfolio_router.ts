@@ -120,7 +120,7 @@ router.put("/posts/:id", async (req, res) => {
         ...(parsed.video_url !== undefined ? { video_url: parsed.video_url } : {}),
         ...(parsed.github_url !== undefined ? { github_url: parsed.github_url } : {}),
         ...(parsed.published !== undefined ? { published: parsed.published } : {}),
-        updated_at: new Date(),
+        updated_at: new Date().toISOString(),
       })
       .where(eq(schema.posts.id, id))
       .returning();
