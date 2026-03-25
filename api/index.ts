@@ -5,14 +5,10 @@ import compression from "compression";
 import rateLimit from "express-rate-limit";
 import path from "path";
 import fs from "fs";
-import { fileURLToPath } from "url";
 import { addSecurityHeaders, sanitizeQueryParams } from "../server/middleware/security";
 import portfolioRouter from '../server/routes/portfolio_router';
 import uploadsRouter from '../server/routes/uploads';
 import authRouter from '../server/routes/auth';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 
