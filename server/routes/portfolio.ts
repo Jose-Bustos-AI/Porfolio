@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { postsStorage } from '../storage/portfolio';
-import { insertPostSchema, updatePostSchema } from '@shared/schema';
+import { insertPostSchema, updatePostSchema } from '../../shared/schema';
 import { ZodError } from 'zod';
 import { fromZodError } from 'zod-validation-error';
 import fs from 'fs';

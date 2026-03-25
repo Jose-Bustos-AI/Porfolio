@@ -1,6 +1,6 @@
 import { db } from '../db';
-import { posts } from '@shared/schema';
-import { InsertPost, Post, UpdatePost } from '@shared/schema';
+import { posts } from '../../shared/schema';
+import { InsertPost, Post, UpdatePost } from '../../shared/schema';
 import { eq, desc } from 'drizzle-orm';
 
 /**

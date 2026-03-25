@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { createClient } from '@libsql/client/http';
 import { drizzle } from 'drizzle-orm/libsql';
-import * as schema from '@shared/schema';
+import * as schema from '../shared/schema';
 
 if (!process.env.TURSO_DATABASE_URL || !process.env.TURSO_AUTH_TOKEN) {
   throw new Error('TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set');

@@ -33,3 +33,4 @@ yarn-error.log*
 
 # Development assets
 attached_assets/
+.vercel
