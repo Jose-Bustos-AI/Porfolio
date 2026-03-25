@@ -5,8 +5,10 @@
   "outputDirectory": "dist/public",
   "functions": {
     "api/index.ts": {
-      "memory": 1024,
       "maxDuration": 30
+    },
+    "api/ping.ts": {
+      "maxDuration": 10
     }
   },
   "rewrites": [
